@@ -24,6 +24,11 @@ import { Role } from '../authentication/authentication.enum';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
+  @Get('ping')
+  pong() {
+    return { message: 'pong' };
+  }
+
   @Post()
   @HttpCode(HttpStatus.CREATED)
   async createUser(

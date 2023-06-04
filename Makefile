@@ -1,6 +1,8 @@
 .PHONY: build start stop restart
 
 build:
+	npm i --prefix ./api
+	npm i --prefix ./front
 	docker-compose up --build -V    
 
 start:
