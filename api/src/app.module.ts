@@ -2,10 +2,13 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
-import { TypeOrmCustomModule } from './typeorm/typeorm.module.js';
-import { UserController } from './user/user.controller';
-import { UserModule } from './user/user.module';
-import { User } from './user/User.js';
+import { TypeOrmCustomModule } from './typeorm/typeorm.module';
+import { UsersModule } from './users/users.module';
+import { User } from './users/User';
+import { AuthenticationController } from './authentication/authentication.controller';
+import { AuthenticationService } from './authentication/authentication.service';
+import { AuthenticationModule } from './authentication/authentication.module';
+import { SeedService } from './seed/seed.service';
 
 @Module({
   imports: [
@@ -22,9 +25,11 @@ import { User } from './user/User.js';
     }),
     TypeOrmCustomModule.register(),
     TypeOrmModule.forFeature([User]),
-    UserModule,
+    UsersModule,
+    AuthenticationModule,
   ],
-  controllers: [UserController],
-  providers: [],
+  controllers: [AuthenticationController],
+  providers: [AuthenticationService, SeedService],
+  exports: [SeedService],
 })
 export class AppModule {}

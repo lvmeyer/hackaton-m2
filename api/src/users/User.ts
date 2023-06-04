@@ -1,4 +1,5 @@
 import { IsEmail } from 'class-validator';
+import { Role } from '../authentication/authentication.enum';
 import {
   Column,
   CreateDateColumn,
@@ -18,6 +19,14 @@ export class User {
 
   @Column()
   password: string;
+
+  @Column({
+    nullable: false,
+    type: 'enum',
+    enum: Role,
+    default: Role.USER,
+  })
+  public role: Role;
 
   @CreateDateColumn()
   createdDate: Date;

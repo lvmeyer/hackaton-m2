@@ -10,3 +10,6 @@ stop:
 	docker-compose down
 
 restart: stop start
+
+seed:
+	docker compose exec api npm run seed
