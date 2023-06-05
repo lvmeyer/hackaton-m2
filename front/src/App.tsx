@@ -4,7 +4,7 @@ function App() {
 	const [count, setCount] = useState(0);
 
 	async function testApi() {
-		const response = await fetch('http://0.0.0.0:3000/users/ping');
+		const response = await fetch('http://localhost:3000/users/ping');
 		const msg = await response.json();
 		alert(msg.message);
 	}

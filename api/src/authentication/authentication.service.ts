@@ -3,6 +3,7 @@ import { UsersService } from '../users/users.service';
 import { LoginRequest, RegisterRequest } from './dto/authentication.request';
 import { compare, hash } from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
+import jwt from 'jsonwebtoken';
 
 @Injectable()
 export class AuthenticationService {
@@ -31,9 +32,12 @@ export class AuthenticationService {
       email: user.email,
     };
 
-    const token = this.jwtService.sign(payload);
+    const access_token = this.jwtService.sign(payload, {
+      secret: process.env.JWT_SECRET,
+      expiresIn: '1d',
+    });
 
-    return { access_token: token };
+    return { access_token };
   }
 
   public async register(registerRequest: RegisterRequest) {
@@ -45,9 +49,11 @@ export class AuthenticationService {
 
     const saltRounds = 10;
     const hashedPassword = await hash(registerRequest.password, saltRounds);
-    await this.usersService.createUser({
+    const newUser = await this.usersService.createUser({
       email: registerRequest.email,
       password: hashedPassword,
     });
+
+    return newUser;
   }
 }
