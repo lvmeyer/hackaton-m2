@@ -7,7 +7,11 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './User';
 import { Repository } from 'typeorm';
-import { CreateUserRequest, UpdateUserRequest } from './dto/users.request';
+import {
+  CreateUserRequest,
+  UpdateProfileRequest,
+  UpdateUserRequest,
+} from './dto/users.request';
 import { hash } from 'bcryptjs';
 import { Role } from '../authentication/authentication.enum';
 import { JwtService } from '@nestjs/jwt';
@@ -32,6 +36,19 @@ export class UsersService {
     }
 
     return user;
+  }
+
+  async updateProfile(
+    access_token: string,
+    updateProfileRequest: UpdateProfileRequest,
+  ): Promise<any> {
+    const user = await this.getMe(access_token);
+
+    await this.usersRepository.update(user.id, {
+      email: updateProfileRequest.email,
+    });
+
+    return { message: 'Profile updated successfully' };
   }
 
   async createUser(createUserRequest: CreateUserRequest): Promise<any> {

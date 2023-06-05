@@ -15,7 +15,11 @@ import {
 } from '@nestjs/common';
 import { User } from './User';
 import { UsersService } from './users.service';
-import { CreateUserRequest, UpdateUserRequest } from './dto/users.request';
+import {
+  CreateUserRequest,
+  UpdateProfileRequest,
+  UpdateUserRequest,
+} from './dto/users.request';
 import {
   AuthenticationRequired,
   HasRole,
@@ -28,10 +32,10 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Get('me')
-  getMe(@Req() req: Request & { access_token: string }) {
+  getMe(@Req() req: Request) {
     console.log('REQUEST', req.cookies.access_token);
     if (!req?.cookies?.access_token) {
-      throw new BadRequestException('User not connected');
+      throw new BadRequestException('Internal error, user not logged in');
     }
 
     try {
@@ -39,6 +43,22 @@ export class UsersController {
     } catch (err) {
       throw new BadRequestException(err.message);
     }
+  }
+
+  @Patch('/profile')
+  @AuthenticationRequired()
+  updateProfile(
+    @Req() req: Request,
+    @Body(ValidationPipe) updateProfileRequest: UpdateProfileRequest,
+  ) {
+    if (!req?.cookies?.access_token) {
+      throw new BadRequestException('Internal error, please login');
+    }
+
+    return this.usersService.updateProfile(
+      req.cookies.access_token,
+      updateProfileRequest,
+    );
   }
 
   @Post()
@@ -66,6 +86,7 @@ export class UsersController {
 
   @Patch(':uuid')
   @AuthenticationRequired()
+  @HasRole(Role.ADMINISTRATOR)
   @HttpCode(HttpStatus.OK)
   async update(
     @Param('uuid', ParseUUIDPipe) uuid: string,

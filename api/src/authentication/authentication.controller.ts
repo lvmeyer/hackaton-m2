@@ -4,13 +4,12 @@ import {
   HttpCode,
   HttpStatus,
   Post,
-  Req,
   Res,
   ValidationPipe,
 } from '@nestjs/common';
 import { LoginRequest, RegisterRequest } from './dto/authentication.request';
 import { AuthenticationService } from './authentication.service';
-import { Response, Request } from 'express';
+import { Response } from 'express';
 
 @Controller('authentication')
 export class AuthenticationController {

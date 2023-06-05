@@ -19,3 +19,10 @@ export class UpdateUserRequest {
 
   password: any;
 }
+
+export class UpdateProfileRequest {
+  @IsDefined()
+  @IsString()
+  @IsEmail()
+  public email: string;
+}
