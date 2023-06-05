@@ -3,7 +3,6 @@ import { UsersService } from '../users/users.service';
 import { LoginRequest, RegisterRequest } from './dto/authentication.request';
 import { compare, hash } from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
-import jwt from 'jsonwebtoken';
 
 @Injectable()
 export class AuthenticationService {
@@ -18,7 +17,7 @@ export class AuthenticationService {
     const user = await this.usersService.getUserByEmail(loginRequest.email);
 
     if (!user) {
-      throw new BadRequestException('Invalid email or password');
+      throw new BadRequestException('User not found');
     }
 
     const isValidPassword = await compare(loginRequest.password, user.password);

@@ -10,13 +10,29 @@ import { Repository } from 'typeorm';
 import { CreateUserRequest, UpdateUserRequest } from './dto/users.request';
 import { hash } from 'bcryptjs';
 import { Role } from '../authentication/authentication.enum';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User)
     private readonly usersRepository: Repository<User>,
+    private readonly jwtService: JwtService,
   ) {}
+
+  async getMe(access_token: string): Promise<User> {
+    console.log('access_token', access_token);
+    const email = this.jwtService.verify(access_token, {
+      secret: process.env.JWT_SECRET,
+    }).email;
+
+    const user = await this.usersRepository.findOneBy({ email });
+    if (!user) {
+      throw new BadRequestException('User not found');
+    }
+
+    return user;
+  }
 
   async createUser(createUserRequest: CreateUserRequest): Promise<any> {
     try {

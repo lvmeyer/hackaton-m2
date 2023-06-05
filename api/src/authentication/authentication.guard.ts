@@ -21,18 +21,16 @@ export class AuthenticationGuard implements CanActivate {
   public async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest<Request>();
 
-    const authorizationHeader = request.get('Authorization');
+    const cookie = request.get('Cookie');
 
-    if (!authorizationHeader) {
-      throw new BadRequestException('Authorization header is missing');
+    if (!cookie) {
+      throw new BadRequestException('Cookie is missing');
     }
 
-    const [authorizationType, token] = authorizationHeader.split(' ');
+    const cookieDetail = cookie.split(' ')[0];
 
-    if (authorizationType !== 'Bearer') {
-      throw new BadRequestException('Authorization type should be Bearer');
-    }
-
+    const token = cookie.substring(13, cookieDetail.indexOf(';'));
+    console.log('token', token);
     if (!token) {
       throw new BadRequestException('Token is missing');
     }
@@ -42,7 +40,10 @@ export class AuthenticationGuard implements CanActivate {
         'role',
         context.getHandler(),
       );
-      const { id } = this.jwtService.verify(token);
+      const { id } = this.jwtService.verify(token, {
+        secret: process.env.JWT_SECRET,
+      });
+
       const user = await this.usersService.getUserById(id);
 
       console.log(user);

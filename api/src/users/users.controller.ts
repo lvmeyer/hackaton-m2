@@ -10,6 +10,8 @@ import {
   Patch,
   Post,
   ValidationPipe,
+  Req,
+  BadRequestException,
 } from '@nestjs/common';
 import { User } from './User';
 import { UsersService } from './users.service';
@@ -19,14 +21,24 @@ import {
   HasRole,
 } from '../authentication/authentication.decorator';
 import { Role } from '../authentication/authentication.enum';
+import { Request } from 'express';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Get('ping')
-  pong() {
-    return { message: 'pong' };
+  @Get('me')
+  getMe(@Req() req: Request & { access_token: string }) {
+    console.log('REQUEST', req.cookies.access_token);
+    if (!req?.cookies?.access_token) {
+      throw new BadRequestException('User not connected');
+    }
+
+    try {
+      return this.usersService.getMe(req.cookies.access_token);
+    } catch (err) {
+      throw new BadRequestException(err.message);
+    }
   }
 
   @Post()

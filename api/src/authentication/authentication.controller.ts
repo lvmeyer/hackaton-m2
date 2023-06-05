@@ -25,7 +25,6 @@ export class AuthenticationController {
     @Res({ passthrough: true }) res: Response,
   ) {
     const jwt = await this.authenticationService.login(loginRequest);
-    console.log('PROCESS_ENV', process.env.NODE_ENV);
 
     res.cookie('access_token', jwt.access_token, {
       httpOnly: true,
@@ -33,6 +32,12 @@ export class AuthenticationController {
       sameSite: 'strict',
       maxAge: 3600,
     });
+  }
+
+  @Post('logout')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  async logout(@Res({ passthrough: true }) res: Response) {
+    res.clearCookie('access_token');
   }
 
   @Post('register')
