@@ -31,6 +31,11 @@ import { Request } from 'express';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
+  @Get('ping')
+  ping() {
+    return { message: 'pong' };
+  }
+
   @Get('me')
   getMe(@Req() req: Request) {
     console.log('REQUEST', req.cookies.access_token);
