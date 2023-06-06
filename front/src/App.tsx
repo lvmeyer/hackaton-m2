@@ -10,6 +10,7 @@ import Formation from './Vues/Formation';
 import Users from './Vues/Users';
 import Login from './Vues/Login';
 import Register from './Vues/Register';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import Navbar from './Components/Navbar';
 
