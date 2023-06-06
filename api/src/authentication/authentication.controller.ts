@@ -23,14 +23,15 @@ export class AuthenticationController {
     @Body(ValidationPipe) loginRequest: LoginRequest,
     @Res({ passthrough: true }) res: Response,
   ) {
-    const jwt = await this.authenticationService.login(loginRequest);
+    const response = await this.authenticationService.login(loginRequest);
 
-    res.cookie('access_token', jwt.access_token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV !== 'development',
-      sameSite: 'strict',
-      maxAge: 3600,
+    res.cookie('access_token', response.access_token, {
+      // httpOnly: true,
+      // secure: process.env.NODE_ENV !== 'development',
+      // sameSite: 'strict',
+      // maxAge: 3600,
     });
+    return { id: response.payload.id, email: response.payload.email };
   }
 
   @Post('logout')
