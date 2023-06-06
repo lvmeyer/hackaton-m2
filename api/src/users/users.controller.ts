@@ -12,7 +12,7 @@ import {
   ValidationPipe,
   Req,
   BadRequestException,
-  Res,
+  Headers,
 } from '@nestjs/common';
 import { User } from './User';
 import { UsersService } from './users.service';
@@ -26,7 +26,7 @@ import {
   HasRole,
 } from '../authentication/authentication.decorator';
 import { Role } from '../authentication/authentication.enum';
-import { Request, Response } from 'express';
+import { Request } from 'express';
 
 @Controller('users')
 export class UsersController {
@@ -38,12 +38,9 @@ export class UsersController {
   }
 
   @Get('me')
-  getMe() {
-    const access_token = 'test';
-    // console.log('REQUEST', req.cookies.access_token);
-    // if (!req?.cookies?.access_token) {
-    //   throw new BadRequestException('Internal error, user not logged in');
-    // }
+  @AuthenticationRequired()
+  getMe(@Headers() headers: any) {
+    const access_token = headers.authorization.split(' ')[1];
 
     try {
       return this.usersService.getMe(access_token);

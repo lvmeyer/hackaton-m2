@@ -40,7 +40,7 @@ function Login() {
 			navigate('/home');
 		} catch (error: any) {
 			toast.error(error.data.message);
-			console.log(error);
+			console.error(error);
 		}
 	};
 

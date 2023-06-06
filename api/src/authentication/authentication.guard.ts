@@ -27,7 +27,7 @@ export class AuthenticationGuard implements CanActivate {
       throw new BadRequestException('Authorization header is missing');
     }
 
-    const [authorizationType, token] = authorizationHeader.split(' ')[0];
+    const [authorizationType, token] = authorizationHeader.split(' ');
 
     if (authorizationType !== 'Bearer') {
       throw new BadRequestException('Authorization should be Bearer');
