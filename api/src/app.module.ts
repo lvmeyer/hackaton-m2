@@ -31,7 +31,8 @@ import { SeedService } from './seed/seed.service';
     TypeOrmCustomModule.register(),
     TypeOrmModule.forFeature([User, Competence]),
     UsersModule,
-    AuthenticationModule
+    CompetencesModule,
+    AuthenticationModule,
   ],
   controllers: [AuthenticationController],
   providers: [AuthenticationService, SeedService],

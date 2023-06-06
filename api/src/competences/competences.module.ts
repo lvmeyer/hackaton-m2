@@ -3,11 +3,13 @@ import { CompetencesService } from './competences.service';
 import { CompetencesController } from './competences.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Competence } from './Competence';
+import { User } from 'src/users/User';
+import { UsersService } from 'src/users/users.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Competence])],
+  imports: [TypeOrmModule.forFeature([Competence, User])],
   controllers: [CompetencesController],
-  providers: [CompetencesService],
+  providers: [CompetencesService, UsersService],
   exports: [CompetencesService],
 })
 export class CompetencesModule {}
