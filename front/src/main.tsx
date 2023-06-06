@@ -16,6 +16,8 @@ import {
 } from 'react-router-dom';
 import Register from './Vues/Register.tsx';
 import Homepage from './Vues/Homepage.tsx';
+import Profile from './Vues/Profile.tsx';
+import Formation from './Vues/Formation.tsx';
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -23,7 +25,8 @@ const router = createBrowserRouter(
 			<Route index={true} path="/" element={<Login />} />
 			<Route path="/home" element={<Homepage />} />
 			<Route path="/register" element={<Register />} />
-			{/* <Route path="/profile" element={<Profile />} /> */}
+			<Route path="/profile" element={<Profile />} />
+			<Route path="/formation" element={<Formation />} />
 		</Route>
 	)
 );
