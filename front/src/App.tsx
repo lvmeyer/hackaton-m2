@@ -1,29 +1,35 @@
-import { useState } from 'react';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes
+} from "react-router-dom";
+
+import Homepage from './Vues/Homepage';
+import Formation from './Vues/Formation';
+import Users from './Vues/Users';
+import Login from './Vues/Login';
+import Register from './Vues/Register';
+
+import Navbar from './Components/Navbar';
 
 function App() {
-	const [count, setCount] = useState(0);
-
-	async function testApi() {
-		const response = await fetch('http://localhost:3000/users/ping');
-		const msg = await response.json();
-		alert(msg.message);
-	}
 
 	return (
 		<>
-			<h1>Vite + React</h1>
-			<button onClick={testApi}>Ping</button>
-			<div className="card">
-				<button onClick={() => setCount((count) => count + 1)}>
-					count is {count}
-				</button>
-				<p>
-					Edit <code>src/App.tsx</code> and save to test HMR
-				</p>
-			</div>
-			<p className="read-the-docs">
-				Click on the Vite and React logos to learn more
-			</p>
+		    <Router>
+				
+				<div>
+				<Routes>
+					<Route path="/" element={<Homepage />} />
+					<Route path="/formation" element={<Formation />} />
+					<Route path="/users" element={<Users />} />
+					<Route path="/login" element={<Login />} />
+					<Route path="/register" element={<Register />} />
+				</Routes>
+					
+				</div>
+			</Router>
 		</>
 	);
 }
