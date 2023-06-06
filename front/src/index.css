@@ -10,10 +10,7 @@
     bottom: 0;
     width: 200px;
 }
-.nav-logo {
-    width: 150px;
-    height: auto;
-}
+
 .nav-app{
     display: flex;
    
@@ -25,7 +22,7 @@
 }
 
 .nav-text {
-    padding: 10px;
+    padding: 1em;
     text-decoration: none;
     color: white;
 }
@@ -36,4 +33,9 @@ ul {
 
 ul > li {
     padding-bottom: 1em;
+}
+
+.logo {
+    width: 125px;
+    height: auto;
 }

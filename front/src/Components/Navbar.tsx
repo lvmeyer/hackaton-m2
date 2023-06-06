@@ -19,6 +19,11 @@ const Navbar: React.FC = () => {
 			<ul>
 				{userInfo ? (
 					<>
+						<li className="nav">
+							<Link to="/home">
+								<img className="logo" src={logo} alt="logo" />
+							</Link>
+						</li>
 						<li>
 							<Link className="nav-text" to="/home">
 								Accueil
