@@ -18,8 +18,8 @@ function App() {
 	return (
 		<>
 		    <Router>
+				<Navbar />
 				
-				<div>
 				<Routes>
 					<Route path="/" element={<Homepage />} />
 					<Route path="/formation" element={<Formation />} />
@@ -28,7 +28,6 @@ function App() {
 					<Route path="/register" element={<Register />} />
 				</Routes>
 					
-				</div>
 			</Router>
 		</>
 	);
