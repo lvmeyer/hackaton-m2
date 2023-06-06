@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Get,
   HttpCode,
   HttpStatus,
   Post,
@@ -24,14 +25,14 @@ export class AuthenticationController {
     @Res({ passthrough: true }) res: Response,
   ) {
     const response = await this.authenticationService.login(loginRequest);
-
-    res.cookie('access_token', response.access_token, {
-      // httpOnly: true,
-      // secure: process.env.NODE_ENV !== 'development',
-      // sameSite: 'strict',
-      // maxAge: 3600,
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
+    res.cookie('accewwwss_token', 'test', {
+      httpOnly: true,
+      secure: process.env.NODE_ENV !== 'development',
+      sameSite: 'strict',
+      maxAge: 3600,
     });
-    return { id: response.payload.id, email: response.payload.email };
+    res.json({ id: response.payload.id, email: response.payload.email });
   }
 
   @Post('logout')

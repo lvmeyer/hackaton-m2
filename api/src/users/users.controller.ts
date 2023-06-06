@@ -12,6 +12,7 @@ import {
   ValidationPipe,
   Req,
   BadRequestException,
+  Res,
 } from '@nestjs/common';
 import { User } from './User';
 import { UsersService } from './users.service';
@@ -25,7 +26,7 @@ import {
   HasRole,
 } from '../authentication/authentication.decorator';
 import { Role } from '../authentication/authentication.enum';
-import { Request } from 'express';
+import { Request, Response } from 'express';
 
 @Controller('users')
 export class UsersController {
@@ -37,17 +38,25 @@ export class UsersController {
   }
 
   @Get('me')
-  getMe(@Req() req: Request) {
-    console.log('REQUEST', req.cookies.access_token);
-    if (!req?.cookies?.access_token) {
-      throw new BadRequestException('Internal error, user not logged in');
-    }
+  getMe(@Req() req: Request, @Res({ passthrough: true }) res: Response) {
+    res.cookie('accewwwss_token', 'test', {
+      httpOnly: true,
+      secure: process.env.NODE_ENV !== 'development',
+      sameSite: 'strict',
+      maxAge: 3600,
+    });
+    res.json({});
 
-    try {
-      return this.usersService.getMe(req.cookies.access_token);
-    } catch (err) {
-      throw new BadRequestException(err.message);
-    }
+    // console.log('REQUEST', req.cookies.access_token);
+    // if (!req?.cookies?.access_token) {
+    //   throw new BadRequestException('Internal error, user not logged in');
+    // }
+
+    // try {
+    //   return this.usersService.getMe(req.cookies.access_token);
+    // } catch (err) {
+    //   throw new BadRequestException(err.message);
+    // }
   }
 
   @Patch('/profile')
