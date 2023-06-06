@@ -1,0 +1,39 @@
+.nav-bg-color{
+    background-color: #282B2A;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 200px;
+}
+.nav-logo {
+    width: 150px;
+    height: auto;
+}
+.nav-app{
+    display: flex;
+   
+}
+
+.content {
+    flex-grow: 1;
+    margin-left: 200px;
+}
+
+.nav-text {
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+}
+
+ul {
+    list-style-type: none;
+}
+
+ul > li {
+    padding-bottom: 1em;
+}
