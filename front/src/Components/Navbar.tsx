@@ -7,7 +7,8 @@ const Navbar: React.FC = () => {
 		<nav className='nav-bg-color'>
 			<ul>
         <li className='nav'>
-          <Link className='nav-logo' to="/login">
+          <Link to="/home">
+            <img className='logo' src={logo} alt="logo" />
           </Link>
         </li>
 				<li>
