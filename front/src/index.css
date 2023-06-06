@@ -10,7 +10,14 @@
     bottom: 0;
     width: 200px;
 }
+<<<<<<< HEAD
 
+=======
+.nav-logo {
+    width: 150px;
+    height: auto;
+}
+>>>>>>> aa432b9 (nav without logo)
 .nav-app{
     display: flex;
    
@@ -22,7 +29,11 @@
 }
 
 .nav-text {
+<<<<<<< HEAD
     padding: 1em;
+=======
+    padding: 10px;
+>>>>>>> aa432b9 (nav without logo)
     text-decoration: none;
     color: white;
 }
@@ -33,9 +44,12 @@ ul {
 
 ul > li {
     padding-bottom: 1em;
+<<<<<<< HEAD
 }
 
 .logo {
     width: 125px;
     height: auto;
+=======
+>>>>>>> aa432b9 (nav without logo)
 }
