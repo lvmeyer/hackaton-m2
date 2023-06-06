@@ -7,7 +7,7 @@ export class SeedService {
   public constructor(
     private readonly usersService: UsersService,
     private readonly competencesService: CompetencesService,
-    ) {}
+  ) {}
 
   public async seed() {
     await this.usersService.seed();
