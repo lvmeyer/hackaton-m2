@@ -3,8 +3,8 @@ import { CompetencesService } from './competences.service';
 import { CompetencesController } from './competences.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Competence } from './Competence';
-import { User } from 'src/users/User';
-import { UsersService } from 'src/users/users.service';
+import { User } from '../users/User';
+import { UsersService } from '../users/users.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Competence, User])],

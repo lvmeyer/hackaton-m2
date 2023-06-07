@@ -9,8 +9,8 @@ export class SeedService {
     private readonly competencesService: CompetencesService,
   ) {}
 
-  public async seed() {
-    await this.usersService.seed();
+  public async seed() { 
     await this.competencesService.seed();
+    await this.usersService.seed();
   }
 }

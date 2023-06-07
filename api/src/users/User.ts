@@ -4,9 +4,12 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinTable,
+  ManyToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { Competence } from '../competences/Competence';
 
 @Entity()
 export class User {
@@ -33,4 +36,8 @@ export class User {
 
   @UpdateDateColumn()
   updatedDate: Date;
+
+  @ManyToMany(() => Competence)
+  @JoinTable()
+  competences: Competence[];
 }

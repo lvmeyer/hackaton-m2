@@ -81,17 +81,17 @@ export class CompetencesService {
 
     await this.competencesRepository.insert({
       competence: 'PHP',
-      type: true,
+      type: true
     });
 
     await this.competencesRepository.insert({
       competence: 'JavaScript',
-      type: true,
+      type: true
     });
 
     return this.competencesRepository.insert({
       competence: 'Bon vivant le man !',
-      type: false,
+      type: false
     });
   }
 }
