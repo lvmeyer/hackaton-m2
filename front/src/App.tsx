@@ -9,7 +9,6 @@ import './index.css';
 function App() {
 	return (
 		<>
-			<Outlet />
 			<div>
 				<div className="nav-app">
 					<Navbar />

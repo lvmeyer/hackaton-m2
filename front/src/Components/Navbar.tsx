@@ -25,11 +25,6 @@ const Navbar: React.FC = () => {
 							</Link>
 						</li>
 						<li>
-							<Link className="nav-text" to="/home">
-								Accueil
-							</Link>
-						</li>
-						<li>
 							<Link to="/formation">Formation</Link>
 						</li>
 						<li>
