@@ -33,6 +33,11 @@ const Navbar: React.FC = () => {
 						<li>
 							<Link className="nav-text" to="/users">Utilisateurs</Link>
 						</li>
+						<li>
+							<Link to="/developer" className="nav-text">
+								developer
+							</Link>
+						</li>
 						<li>{userInfo.email}</li>
 						<li>
 							<Link className="nav-text" to="/profile">Profile</Link>
