@@ -21,19 +21,22 @@ export class AuthenticationGuard implements CanActivate {
   public async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest<Request>();
 
-    const cookie = request.get('Cookie');
+    const authorizationHeader = request.get('Authorization');
 
-    if (!cookie) {
-      throw new BadRequestException('Cookie is missing');
+    if (!authorizationHeader) {
+      throw new BadRequestException('Authorization header is missing');
     }
 
-    const cookieDetail = cookie.split(' ')[0];
+    const [authorizationType, token] = authorizationHeader.split(' ');
 
-    const token = cookie.substring(13, cookieDetail.indexOf(';'));
-    console.log('token', token);
+    if (authorizationType !== 'Bearer') {
+      throw new BadRequestException('Authorization should be Bearer');
+    }
+
     if (!token) {
       throw new BadRequestException('Token is missing');
     }
+    console.log('token', token);
 
     try {
       const role = this.reflector.get<string | undefined>(

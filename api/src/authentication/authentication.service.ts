@@ -13,7 +13,7 @@ export class AuthenticationService {
 
   public async login(
     loginRequest: LoginRequest,
-  ): Promise<{ access_token: string }> {
+  ): Promise<{ access_token: string; payload: any }> {
     const user = await this.usersService.getUserByEmail(loginRequest.email);
 
     if (!user) {
@@ -36,7 +36,7 @@ export class AuthenticationService {
       expiresIn: '1d',
     });
 
-    return { access_token };
+    return { access_token, payload };
   }
 
   public async register(registerRequest: RegisterRequest) {
