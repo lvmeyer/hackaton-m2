@@ -2,9 +2,9 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { Outlet } from 'react-router-dom';
-import Navbar from './Components/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
+import Navbar from './Components/Navbar';
 
 function App() {
 	return (

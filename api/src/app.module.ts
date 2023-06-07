@@ -10,7 +10,7 @@ import { AuthenticationService } from './authentication/authentication.service';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { SeedService } from './seed/seed.service';
 import { LevelModule } from './level/level.module';
-import { MissionModule } from './mission/mission.module';
+// import { MissionModule } from './mission/mission.module';
 
 @Module({
   imports: [
@@ -30,7 +30,7 @@ import { MissionModule } from './mission/mission.module';
     UsersModule,
     AuthenticationModule,
     LevelModule,
-    MissionModule,
+    // MissionModule,
   ],
   controllers: [AuthenticationController],
   providers: [AuthenticationService, SeedService],
