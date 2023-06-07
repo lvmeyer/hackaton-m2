@@ -11,6 +11,7 @@ import {
   CreateUserRequest,
   UpdateProfileRequest,
   UpdateUserRequest,
+  UpdatePasswordRequest
 } from './dto/users.request';
 import { hash } from 'bcryptjs';
 import { Role } from '../authentication/authentication.enum';
@@ -38,7 +39,6 @@ export class UsersService {
     if (!user) {
       throw new BadRequestException('User not found');
     }
-
     return user;
   }
 
@@ -50,6 +50,21 @@ export class UsersService {
 
     await this.usersRepository.update(user.id, {
       email: updateProfileRequest.email,
+    });
+
+    return { message: 'Profile updated successfully' };
+  }
+
+  async updatePassword(
+    access_token: string,
+    updatePasswordRequest: UpdatePasswordRequest,   
+  ): Promise<any> {
+    const user = await this.getMe(access_token);
+    const NewPassword = await hash(updatePasswordRequest.password, 10);
+
+
+    await this.usersRepository.update(user.id, {
+      password: NewPassword,
     });
 
     return { message: 'Profile updated successfully' };
