@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../slices/authSlice.ts';
+import logo from '../../public/img/blanc-fond-gris.png';
 
 const Navbar: React.FC = () => {
 	const { userInfo } = useSelector((state) => state.auth);
@@ -14,18 +15,22 @@ const Navbar: React.FC = () => {
 	};
 
 	return (
-		<nav>
+		<nav className="nav-bg-color">
 			<ul>
 				{userInfo ? (
 					<>
-						<li>
-							<Link to="/home">Accueil</Link>
+						<li className="nav">
+							<Link to="/home">
+								<img className="logo" src={logo} alt="logo" />
+							</Link>
 						</li>
 						<li>
 							<Link to="/formation">Formation</Link>
 						</li>
 						<li>
-							<Link to="/users">Utilisateurs</Link>
+							<Link className="nav-text" to="/users">
+								Utilisateurs
+							</Link>
 						</li>
 						<li>{userInfo.email}</li>
 						<li>
@@ -36,7 +41,13 @@ const Navbar: React.FC = () => {
 						</li>
 					</>
 				) : (
-					<></>
+					<>
+						<li className="nav">
+							<Link className="nav-logo" to="/login">
+								Login
+							</Link>
+						</li>
+					</>
 				)}
 			</ul>
 		</nav>
