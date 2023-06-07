@@ -14,6 +14,7 @@ import { AuthenticationController } from './authentication/authentication.contro
 import { AuthenticationService } from './authentication/authentication.service';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { SeedService } from './seed/seed.service';
+import { MissionsModule } from './missions/missions.module';
 
 @Module({
   imports: [
@@ -32,7 +33,9 @@ import { SeedService } from './seed/seed.service';
     TypeOrmModule.forFeature([User, Competence]),
     UsersModule,
     CompetencesModule,
+    MissionsModule,
     AuthenticationModule,
+    MissionsModule,
   ],
   controllers: [AuthenticationController],
   providers: [AuthenticationService, SeedService],
