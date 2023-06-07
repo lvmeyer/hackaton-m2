@@ -17,24 +17,25 @@ const Navbar: React.FC = () => {
 	return (
 		<nav className="nav-bg-color">
 			<ul>
-				{userInfo ? (
-					<>
 						<li className="nav">
 							<Link to="/home">
 								<img className="logo" src={logo} alt="logo" />
 							</Link>
 						</li>
+						{userInfo ? (
+						<>
 						<li>
-							<Link to="/formation">Formation</Link>
+							<Link className='mission nav-text' to="/missions">Missions</Link>
 						</li>
 						<li>
-							<Link className="nav-text" to="/users">
-								Utilisateurs
-							</Link>
+							<Link className="nav-text" to="/formation">Formation</Link>
+						</li>
+						<li>
+							<Link className="nav-text" to="/users">Utilisateurs</Link>
 						</li>
 						<li>{userInfo.email}</li>
 						<li>
-							<Link to="/profile">Profile</Link>
+							<Link className="nav-text" to="/profile">Profile</Link>
 						</li>
 						<li>
 							<button onClick={logoutHandler}>Logout</button>
