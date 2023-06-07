@@ -16,12 +16,16 @@ import {
 import { hash } from 'bcryptjs';
 import { Role } from '../authentication/authentication.enum';
 import { JwtService } from '@nestjs/jwt';
+import { Competence } from '../competences/Competence';
+import { randomInt } from 'crypto';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User)
     private readonly usersRepository: Repository<User>,
+    @InjectRepository(Competence)
+    private readonly competencesRepository: Repository<Competence>,
     private readonly jwtService: JwtService,
   ) {}
 
@@ -90,6 +94,18 @@ export class UsersService {
 
     return user;
   }
+  
+  async findUserCompetences(uuid: string) {
+    const user = await this.usersRepository.findOne({
+      where: {
+        id: uuid,
+      },
+      relations: {
+        competences: true,
+      },
+    });
+    return user;
+  }
 
   async update(
     uuid: string,
@@ -126,16 +142,30 @@ export class UsersService {
 
     await this.usersRepository.delete({});
 
-    await this.usersRepository.insert({
+    const competence = await this.competencesRepository.findOneBy({
+      competence: 'PHP',
+    });
+    const competence2 = await this.competencesRepository.findOneBy({
+      competence: 'JavaScript',
+    });
+
+    
+    const administrator = this.usersRepository.create({
       role: Role.ADMINISTRATOR,
       email: 'admin@admin.com',
       password: administratorPassword,
+      competences: [competence, competence2],
     });
+    await this.usersRepository.save(administrator);
 
-    return this.usersRepository.insert({
+
+    const user = this.usersRepository.create({
       role: Role.USER,
       email: 'user@user.com',
       password: userPassword,
+      competences: [competence]
     });
+    return this.usersRepository.save(user);
+
   }
 }

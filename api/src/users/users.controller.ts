@@ -101,6 +101,14 @@ export class UsersController {
     return this.usersService.getUserById(uuid);
   }
 
+  @Get(':uuid/competences')
+  @HttpCode(HttpStatus.OK)
+  async findUserCompetences(
+    @Param('uuid', ParseUUIDPipe) uuid: string,
+  ): Promise<User> {
+    return this.usersService.findUserCompetences(uuid);
+  }
+
   @Patch(':uuid')
   @AuthenticationRequired()
   @HasRole(Role.ADMINISTRATOR)

@@ -17,23 +17,30 @@ const Navbar: React.FC = () => {
 	return (
 		<nav className="nav-bg-color">
 			<ul>
-				{userInfo ? (
-					<>
 						<li className="nav">
 							<Link to="/home">
 								<img className="logo" src={logo} alt="logo" />
 							</Link>
 						</li>
-						<li>{userInfo.email}</li>
+						{userInfo ? (
+						<>
 						<li>
-							<Link to="/formation" className='nav-text'>
-								Vue Formation
-							</Link>
+							<Link className='mission nav-text' to="/missions">Missions</Link>
+						</li>
+						<li>
+							<Link className="nav-text" to="/formation">Formation</Link>
+						</li>
+						<li>
+							<Link className="nav-text" to="/users">Utilisateurs</Link>
 						</li>
 						<li>
 							<Link to="/profile" className='nav-text'>
 								Mon Profile
 							</Link>
+						</li>
+						<li>{userInfo.email}</li>
+						<li>
+							<Link className="nav-text" to="/profile">Profile</Link>
 						</li>
 						<li>
 							<button onClick={logoutHandler}>Logout</button>
