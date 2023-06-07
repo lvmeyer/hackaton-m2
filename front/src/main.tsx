@@ -19,6 +19,7 @@ import Homepage from './Vues/Homepage.tsx';
 import Profile from './Vues/Profile.tsx';
 import Formation from './Vues/Formation.tsx';
 import Developer from './Vues/Developer.tsx';
+import Mission from './Vues/Mission.tsx';
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -29,6 +30,7 @@ const router = createBrowserRouter(
 			<Route path="/profile" element={<Profile />} />
 			<Route path="/formation" element={<Formation />} />
 			<Route path="/developer" element={<Developer />} />
+			<Route path="/mission" element={<Mission />} />
 			{/* <Route path="/profile" element={<Profile />} /> */}
 		</Route>
 	)
