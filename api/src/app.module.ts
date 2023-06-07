@@ -9,6 +9,8 @@ import { AuthenticationController } from './authentication/authentication.contro
 import { AuthenticationService } from './authentication/authentication.service';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { SeedService } from './seed/seed.service';
+import { LevelModule } from './level/level.module';
+import { MissionModule } from './mission/mission.module';
 
 @Module({
   imports: [
@@ -27,6 +29,8 @@ import { SeedService } from './seed/seed.service';
     TypeOrmModule.forFeature([User]),
     UsersModule,
     AuthenticationModule,
+    LevelModule,
+    MissionModule,
   ],
   controllers: [AuthenticationController],
   providers: [AuthenticationService, SeedService],
