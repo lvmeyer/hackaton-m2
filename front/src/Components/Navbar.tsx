@@ -24,22 +24,16 @@ const Navbar: React.FC = () => {
 								<img className="logo" src={logo} alt="logo" />
 							</Link>
 						</li>
-						<li>
-							<Link to="/formation">Formation</Link>
-						</li>
-						<li>
-							<Link className="nav-text" to="/users">
-								Utilisateurs
-							</Link>
-						</li>
-						<li>
-							<Link to="/developer" className="nav-text">
-								developer
-							</Link>
-						</li>
 						<li>{userInfo.email}</li>
 						<li>
-							<Link to="/profile">Profile</Link>
+							<Link to="/formation" className='nav-text'>
+								Vue Formation
+							</Link>
+						</li>
+						<li>
+							<Link to="/profile" className='nav-text'>
+								Mon Profile
+							</Link>
 						</li>
 						<li>
 							<button onClick={logoutHandler}>Logout</button>

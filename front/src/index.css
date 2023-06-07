@@ -60,7 +60,8 @@ ul > li {
 }
 
 .progress {
-	width: 150px;
+	width: 80%;
+	height: 10px;
 }
 
 .progress-bar {

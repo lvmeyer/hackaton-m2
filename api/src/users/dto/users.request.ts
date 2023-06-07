@@ -26,3 +26,9 @@ export class UpdateProfileRequest {
   @IsEmail()
   public email: string;
 }
+
+export class UpdatePasswordRequest {
+  @IsDefined()
+  @IsString()
+  public password: string;
+}
