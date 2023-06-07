@@ -7,11 +7,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { MissionsController } from './missions.controller';
 import { CompetencesService } from '../competences/competences.service';
 import { UsersService } from '../users/users.service';
+import { LevelsService } from '../level/level.service';
+import { Level } from '../level/Level';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Mission, Competence, User])],
+  imports: [TypeOrmModule.forFeature([Mission, Competence, User, Level])],
   controllers: [MissionsController],
-  providers: [MissionsService, CompetencesService, UsersService],
+  providers: [MissionsService, CompetencesService, UsersService, LevelsService],
   exports: [MissionsService],
 })
 export class MissionsModule {}

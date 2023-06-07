@@ -1,5 +1,5 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-// import { Mission } from "src/mission/Mission" ;
+import { Mission } from "../missions/Mission";
 
 @Entity()
 export class Level {
@@ -9,6 +9,6 @@ export class Level {
     @Column({unique: true})
     level: string;
 
-    // @OneToMany(() => Mission, (mission) => mission.level)
-    // missions: Mission[]
+    @OneToMany(() => Mission, (mission) => mission.level)
+    missions: Mission[]
 }

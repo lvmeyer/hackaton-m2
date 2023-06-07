@@ -1,6 +1,8 @@
 import { IsDate, IsDecimal, IsString } from 'class-validator';
 import { Competence } from '../competences/Competence';
-import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Level } from '../level/Level';
+
 
 @Entity()
 export class Mission {
@@ -27,7 +29,12 @@ export class Mission {
     @IsDate()
     endMission: Date;
 
+    @ManyToOne(() => Level )
+    level: Level;
+
     @ManyToMany(() => Competence)
     @JoinTable()
     competences: Competence[];
+
+
 }

@@ -12,6 +12,7 @@ import {
     CreateMissionRequest,
     UpdateMissionRequest,
   } from './dto/missions.request';
+  import { Level } from '../level/Level';
   
   @Injectable()
   export class MissionsService {
@@ -20,6 +21,8 @@ import {
       private readonly missionsRepository: Repository<Mission>,
       @InjectRepository(Competence)
       private readonly competencesRepository: Repository<Competence>,
+      @InjectRepository(Level)
+      private readonly levelsRepository: Repository<Level>,
     ) {}
   
     async createMission(
@@ -94,6 +97,8 @@ import {
       const competence2 = await this.competencesRepository.findOneBy({
         competence: 'Bon vivant le man !',
       });
+      const level = await this.levelsRepository.findOneBy({ level: 'Junior' });
+
 
 
       const missions1 = this.missionsRepository.create({
@@ -103,6 +108,7 @@ import {
         startMission: '2023-08-01',
         endMission: '2023-12-01',
         competences: [competence, competence2],
+        level: level,
       });
       await this.missionsRepository.save(missions1);
   

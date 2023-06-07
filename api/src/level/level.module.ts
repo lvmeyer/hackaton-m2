@@ -5,11 +5,13 @@ import { Level } from './Level';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from '../users/User';
 import { UsersService } from '../users/users.service';
+import { CompetencesService } from '../competences/competences.service';
+import { Competence } from '../competences/Competence';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Level, User])],
-  providers: [LevelsService, UsersService],
+  imports: [TypeOrmModule.forFeature([Level, User, Competence])],
+  providers: [LevelsService, UsersService, CompetencesService],
   controllers: [LevelController],
   exports: [LevelsService],
 })
-export class LevelModule {}
+export class LevelsModule {}
