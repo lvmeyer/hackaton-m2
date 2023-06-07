@@ -20,6 +20,7 @@ import {
   CreateUserRequest,
   UpdateProfileRequest,
   UpdateUserRequest,
+  UpdatePasswordRequest
 } from './dto/users.request';
 import {
   AuthenticationRequired,
@@ -49,19 +50,31 @@ export class UsersController {
     }
   }
 
-  @Patch('/profile')
+  @Patch('/updateemail')
   @AuthenticationRequired()
   updateProfile(
     @Req() req: Request,
     @Body(ValidationPipe) updateProfileRequest: UpdateProfileRequest,
-  ) {
-    if (!req?.cookies?.access_token) {
-      throw new BadRequestException('Internal error, please login');
-    }
-
+    @Headers() headers: any) {
+      const access_token = headers.authorization.split(' ')[1]
+ 
     return this.usersService.updateProfile(
-      req.cookies.access_token,
+      access_token,
       updateProfileRequest,
+    );
+  }  
+  
+  @Patch('/updatepassword')
+  @AuthenticationRequired()
+  updatePassword(
+    @Req() req: Request,
+    @Body(ValidationPipe) updatePasswordRequest: UpdatePasswordRequest,
+    @Headers() headers: any) {
+      const access_token = headers.authorization.split(' ')[1]
+      
+    return this.usersService.updatePassword(
+      access_token,
+      updatePasswordRequest,
     );
   }
 
