@@ -42,6 +42,8 @@ import { User } from '../users/User';
       const missions = await this.missionsRepository.find({
         relations: {
           competences: true,
+          level: true,
+          user: true,
         },
       });
       return missions;
