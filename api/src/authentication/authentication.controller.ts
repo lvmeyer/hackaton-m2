@@ -23,6 +23,7 @@ export class AuthenticationController {
     return {
       id: response.payload.id,
       email: response.payload.email,
+      role: response.payload.role,
       access_token: response.access_token,
     };
   }
