@@ -9,11 +9,13 @@ import { Mission } from '../missions/Mission';
 import { MissionsService } from '../missions/missions.service';
 import { Level } from '../level/Level';
 import { LevelsService } from '../level/level.service';
+import { BadgesService } from '../badges/badges.service';
+import { Badges } from '../badges/Badges';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Competence, User, Mission, Level])],
+  imports: [TypeOrmModule.forFeature([Competence, User, Mission, Level, Badges])],
   controllers: [CompetencesController],
-  providers: [CompetencesService, UsersService, MissionsService, LevelsService],
+  providers: [CompetencesService, UsersService, MissionsService, LevelsService, BadgesService],
   exports: [CompetencesService],
 })
 export class CompetencesModule {}

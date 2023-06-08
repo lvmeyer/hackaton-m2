@@ -11,6 +11,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { Competence } from '../competences/Competence';
+import { Badges } from '../badges/Badges';
 import { Mission } from '../missions/Mission';
 
 @Entity()
@@ -45,4 +46,8 @@ export class User {
   @ManyToMany(() => Competence)
   @JoinTable()
   competences: Competence[];
+
+  @ManyToMany(() => Badges)
+  @JoinTable()
+  Badges: Badges[]
 }
