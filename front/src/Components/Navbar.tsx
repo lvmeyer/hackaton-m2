@@ -25,6 +25,9 @@ const Navbar: React.FC = () => {
 						{userInfo ? (
 						<>
 						<li>
+							<Link className="nav-text" to="/Level">Niveau</Link>
+						</li>
+						<li>
 							<Link className='mission nav-text' to="/missions">Missions</Link>
 						</li>
 						<li>
@@ -32,11 +35,6 @@ const Navbar: React.FC = () => {
 						</li>
 						<li>
 							<Link className="nav-text" to="/users">Utilisateurs</Link>
-						</li>
-						<li>
-							<Link to="/profile" className='nav-text'>
-								Mon Profile
-							</Link>
 						</li>
 						<li>{userInfo.email}</li>
 						<li>

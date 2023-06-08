@@ -14,6 +14,7 @@ import { AuthenticationController } from './authentication/authentication.contro
 import { AuthenticationService } from './authentication/authentication.service';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { SeedService } from './seed/seed.service';
+import { LevelsModule } from './level/level.module';
 import { MissionsModule } from './missions/missions.module';
 
 @Module({
@@ -35,7 +36,7 @@ import { MissionsModule } from './missions/missions.module';
     CompetencesModule,
     MissionsModule,
     AuthenticationModule,
-    MissionsModule,
+    LevelsModule
   ],
   controllers: [AuthenticationController],
   providers: [AuthenticationService, SeedService],

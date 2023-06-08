@@ -100,3 +100,26 @@ ul > li {
 		#ff0000 100%
 	);
 }
+
+.carbon-btn {
+    background-color: #E53F49;
+    margin: 1em;
+}
+
+.titles-dashboard {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+}
+
+.form-missions{
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+}
+
+.btn-create{
+    width: 15%;
+    display: block;
+    text-align: center;
+}
