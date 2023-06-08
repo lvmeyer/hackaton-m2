@@ -1,18 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { logout } from '../slices/authSlice.ts';
+import { logout, setCredentials } from '../slices/authSlice.ts';
 import logo from '../../public/img/blanc-fond-gris.png';
 
 const Navbar: React.FC = () => {
 	const { userInfo } = useSelector((state) => state.auth);
-	
+
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
+	useEffect(() => {
+		const storedUserInfo = localStorage.getItem('userInfo');
+		const userInfo = storedUserInfo ? JSON.parse(storedUserInfo) : null;
+
+		dispatch(setCredentials(userInfo));
+	}, [dispatch]);
+
 	const logoutHandler = () => {
 		dispatch(logout());
-		navigate('/');
+		navigate('/login');
 	};
 
 	return (
@@ -60,25 +67,18 @@ const Navbar: React.FC = () => {
 						<li>{userInfo.email}</li>
 						<li>
 							<Link className="nav-text" to="/profile">
-								Profile 
+								Profile
 							</Link>
+						</li>
+						<li>
+							<button onClick={logoutHandler}>Logout</button>
 						</li>
 						<li>
 							<button onClick={logoutHandler}>Logout</button>
 						</li>
 					</>
 				) : (
-					<>
-						<li className="nav">
-							<Link className="nav-logo" to="/login">
-								Login
-							</Link>
-						</li>
-						
-						<li>
-							<button onClick={logoutHandler}>Logout</button>
-						</li>
-					</>
+					<></>
 				)}
 			</ul>
 		</nav>
