@@ -11,7 +11,7 @@ import {
   CreateUserRequest,
   UpdateProfileRequest,
   UpdateUserRequest,
-  UpdatePasswordRequest
+  UpdatePasswordRequest,
 } from './dto/users.request';
 import { hash } from 'bcryptjs';
 import { Role } from '../authentication/authentication.enum';
@@ -60,11 +60,10 @@ export class UsersService {
 
   async updatePassword(
     access_token: string,
-    updatePasswordRequest: UpdatePasswordRequest,   
+    updatePasswordRequest: UpdatePasswordRequest,
   ): Promise<any> {
     const user = await this.getMe(access_token);
     const NewPassword = await hash(updatePasswordRequest.password, 10);
-
 
     await this.usersRepository.update(user.id, {
       password: NewPassword,
@@ -97,7 +96,7 @@ export class UsersService {
 
     return user;
   }
-  
+
   async findUserCompetences(uuid: string) {
     const user = await this.usersRepository.findOne({
       where: {
@@ -153,7 +152,6 @@ export class UsersService {
       competence: 'JavaScript',
     });
 
-    
     const administrator = this.usersRepository.create({
       role: Role.ADMINISTRATOR,
       email: 'admin@admin.com',
@@ -162,14 +160,12 @@ export class UsersService {
     });
     await this.usersRepository.save(administrator);
 
-
     const user = this.usersRepository.create({
       role: Role.USER,
       email: 'user@user.com',
       password: userPassword,
-      competences: [competence]
+      competences: [competence],
     });
     return this.usersRepository.save(user);
-
   }
 }
