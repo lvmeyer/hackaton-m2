@@ -18,6 +18,7 @@ import { Role } from '../authentication/authentication.enum';
 import { JwtService } from '@nestjs/jwt';
 import { Competence } from '../competences/Competence';
 import { randomInt } from 'crypto';
+import { Badges } from '../badges/Badges';
 
 @Injectable()
 export class UsersService {
@@ -27,6 +28,8 @@ export class UsersService {
     @InjectRepository(Competence)
     private readonly competencesRepository: Repository<Competence>,
     private readonly jwtService: JwtService,
+    @InjectRepository(Badges)
+    private readonly badgesRepository: Repository<Badges>
   ) {}
 
   async getMe(access_token: string): Promise<User> {
@@ -107,6 +110,16 @@ export class UsersService {
     return user;
   }
 
+  // async findBadge(uuid: string) {
+  //   const badge = await this.badgesRepository.findOne({
+  //     where: {
+  //       id: uuid,
+  //       badge: 'Junior php'
+  //     },
+  //   });
+  //   return badge;
+  // }
+
   async update(
     uuid: string,
     updateUserRequest: UpdateUserRequest,
@@ -148,6 +161,9 @@ export class UsersService {
     const competence2 = await this.competencesRepository.findOneBy({
       competence: 'JavaScript',
     });
+    const badge1 = await this.badgesRepository.findOneBy({
+      badge: 'Junior php',
+    })
 
     
     const administrator = this.usersRepository.create({
@@ -163,7 +179,8 @@ export class UsersService {
       role: Role.USER,
       email: 'user@user.com',
       password: userPassword,
-      competences: [competence]
+      competences: [competence],
+      Badges: []
     });
     return this.usersRepository.save(user);
 

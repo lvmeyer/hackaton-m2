@@ -71,20 +71,20 @@ export class LevelsService {
     await this.levelsRepository.remove(level);
   }
 
-  public async seed() {
-    await this.levelsRepository.delete({});
+  // public async seed() {
+  //   await this.levelsRepository.delete({});
 
-    await this.levelsRepository.insert({
-      level: 'Junior',
-    });
-    await this.levelsRepository.insert({
-      level: 'Intermédiaire',
-    });
-    await this.levelsRepository.insert({
-      level: 'Expert',
-    });
-    return this.levelsRepository.insert({
-      level: 'Senior',
-    });
-  }
+  //   await this.levelsRepository.insert({
+  //     level: 'Junior',
+  //   });
+  //   await this.levelsRepository.insert({
+  //     level: 'Intermédiaire',
+  //   });
+  //   await this.levelsRepository.insert({
+  //     level: 'Expert',
+  //   });
+  //   return this.levelsRepository.insert({
+  //     level: 'Senior',
+  //   });
+  // }
 }

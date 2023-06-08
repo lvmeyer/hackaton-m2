@@ -16,6 +16,8 @@ import { AuthenticationModule } from './authentication/authentication.module';
 import { SeedService } from './seed/seed.service';
 import { LevelsModule } from './level/level.module';
 import { MissionsModule } from './missions/missions.module';
+import { BadgesController } from './badges/badges.controller';
+import { BadgesModule } from './badges/badges.module';
 
 @Module({
   imports: [
@@ -36,9 +38,10 @@ import { MissionsModule } from './missions/missions.module';
     CompetencesModule,
     MissionsModule,
     AuthenticationModule,
-    LevelsModule
+    LevelsModule,
+    BadgesModule
   ],
-  controllers: [AuthenticationController],
+  controllers: [AuthenticationController, BadgesController],
   providers: [AuthenticationService, SeedService],
   exports: [SeedService],
 })
