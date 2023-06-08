@@ -35,6 +35,12 @@ import {
     async createMission(
       @Body(ValidationPipe) createMissionRequest: CreateMissionRequest,
     ): Promise<Mission> {
+      createMissionRequest.startMission = new Date(
+        createMissionRequest.startMission,
+      );
+      createMissionRequest.endMission = new Date(
+        createMissionRequest.endMission,
+      );
       return await this.missionsService.createMission(
         createMissionRequest,
       );

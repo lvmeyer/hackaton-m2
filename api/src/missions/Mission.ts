@@ -27,11 +27,9 @@ export class Mission {
     entreprise: string;
 
     @Column()
-    @IsDate()
     startMission: Date;
 
     @Column()
-    @IsDate()
     endMission: Date;
 
     @ManyToOne(() => Level, {nullable: true} )

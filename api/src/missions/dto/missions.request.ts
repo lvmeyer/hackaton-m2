@@ -1,4 +1,5 @@
-import { IsDecimal, IsDefined, IsString, IsDate } from 'class-validator';
+import { IsDecimal, IsDefined, IsString, IsDate, IsDateString } from 'class-validator';
+import { Level } from '../../level/Level';
 
 export class CreateMissionRequest {
     @IsDefined()
@@ -18,12 +19,15 @@ export class CreateMissionRequest {
     public entreprise: string;
 
     @IsDefined()
-    @IsDate()
+    @IsDateString()
     startMission: Date;
 
     @IsDefined()
-    @IsDate()
+    @IsDateString()
     endMission: Date;
+
+    @IsDefined()
+    public level: Level;
 }
 
 export class UpdateMissionRequest {
