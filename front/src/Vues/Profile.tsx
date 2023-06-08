@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import TableauFormations from '../Components/DevPage/TableauFormations';
-import Badge from '../Components/DevPage/Badge';
+import Competence from '../Components/DevPage/Competence';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -10,6 +10,7 @@ const Profil: React.FC = () => {
 
 	const { userInfo } = useSelector((state) => state.auth);
   const [password, setPassword] = useState('');
+  const [competences, setCompetences] = useState([]);
 
   const handleUpdatePassword = async (e: any) => {
     
@@ -35,6 +36,24 @@ const Profil: React.FC = () => {
       position: toast.POSITION.TOP_RIGHT
   });
 };
+
+
+
+useEffect(() => {
+	const userId = JSON.parse(localStorage.getItem('userInfo')).id || "eeee";
+	console.log("userrrr",userId);
+    fetch(`http://localhost:3000/users/${userId}/competences`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('userInfo')).access_token}
+    })
+        .then(response => response.json())
+        .then(
+            data => (setCompetences(data.competences)));
+        
+    
+}, []);
 
   return (
     <section style={{ backgroundColor: '#eee'}}>
@@ -101,19 +120,28 @@ const Profil: React.FC = () => {
                 </div>
               </div>
             </div>
+            {userInfo && userInfo.role === 'USER' ? (
+
             <div className="row">
               <div className="col-md-12">
                 <div className="card mb-4 mb-md-0">
                   <div className="card-body">
                     <p className="mb-4"><span className="text-primary font-italic me-1">assigment</span> Project Status</p>
-                    <Badge />
-                    <Badge />
-                    <Badge />
-                    <Badge />
+                      {competences && competences.length > 0 ? (
+                        <>
+                          { competences.forEach((competences: any) => {
+                              return <Competence competences='20' />
+                            }
+                          )}
+                        </>
+                      ) : (
+                        <p className="text-muted mb-0">No project yet</p>
+                      ) }
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            ) : null}
           </div>
           <TableauFormations />
         </div>
