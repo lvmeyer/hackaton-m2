@@ -6,10 +6,9 @@ import logo from '../../public/img/blanc-fond-gris.png';
 
 const Navbar: React.FC = () => {
 	const { userInfo } = useSelector((state) => state.auth);
+	
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-
-	console.log('state userInfo:', JSON.parse(userInfo));
 
 	const logoutHandler = () => {
 		dispatch(logout());
@@ -24,8 +23,9 @@ const Navbar: React.FC = () => {
 						<img className="logo" src={logo} alt="logo" />
 					</Link>
 				</li>
-				{userInfo ? (
+				{userInfo && userInfo.role === 'ADMINISTRATOR' ? (
 					<>
+						<li>{userInfo.email}</li>
 						<li>
 							<Link className="nav-text" to="/Level">
 								Niveau
@@ -46,10 +46,21 @@ const Navbar: React.FC = () => {
 								Utilisateurs
 							</Link>
 						</li>
-						<li>{userInfo.email}</li>
 						<li>
 							<Link className="nav-text" to="/profile">
 								Profile
+							</Link>
+						</li>
+						<li>
+							<button onClick={logoutHandler}>Logout</button>
+						</li>
+					</>
+				) : userInfo && userInfo.role === 'USER' ? (
+					<>
+						<li>{userInfo.email}</li>
+						<li>
+							<Link className="nav-text" to="/profile">
+								Profile 
 							</Link>
 						</li>
 						<li>
@@ -62,6 +73,10 @@ const Navbar: React.FC = () => {
 							<Link className="nav-logo" to="/login">
 								Login
 							</Link>
+						</li>
+						
+						<li>
+							<button onClick={logoutHandler}>Logout</button>
 						</li>
 					</>
 				)}
