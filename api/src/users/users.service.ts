@@ -184,7 +184,7 @@ export class UsersService {
       email: 'user@user.com',
       password: userPassword,
       competences: [competence],
-      Badges: [badge1]
+      Badges: [badge1, badge2]
     });
     return this.usersRepository.save(user);
   }
