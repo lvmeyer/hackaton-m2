@@ -6,11 +6,13 @@ import {
   Entity,
   JoinTable,
   ManyToMany,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { Competence } from '../competences/Competence';
 import { Badges } from '../badges/Badges';
+import { Mission } from '../missions/Mission';
 
 @Entity()
 export class User {
@@ -37,6 +39,9 @@ export class User {
 
   @UpdateDateColumn()
   updatedDate: Date;
+
+  @OneToMany(() => Mission, (mission) => mission.user, { nullable: true })
+  missions: Mission[];
 
   @ManyToMany(() => Competence)
   @JoinTable()

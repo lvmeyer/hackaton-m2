@@ -17,9 +17,9 @@ export class SeedService {
 
   public async seed() { 
     await this.competencesService.seed();
-    await this.missionsService.seed();
     await this.usersService.seed();
     // await this.badgesService.seed();
-    // await this.levelsService.seed();
+    await this.levelsService.seed();
+    await this.missionsService.seed();
   }
 }

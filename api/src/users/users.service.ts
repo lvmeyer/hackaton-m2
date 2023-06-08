@@ -19,12 +19,15 @@ import { JwtService } from '@nestjs/jwt';
 import { Competence } from '../competences/Competence';
 import { randomInt } from 'crypto';
 import { Badges } from '../badges/Badges';
+import { Mission } from '../missions/Mission';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User)
     private readonly usersRepository: Repository<User>,
+    @InjectRepository(Mission)
+    private readonly missionsRepository: Repository<Mission>,
     @InjectRepository(Competence)
     private readonly competencesRepository: Repository<Competence>,
     private readonly jwtService: JwtService,
@@ -153,6 +156,7 @@ export class UsersService {
     const userPassword = await hash('password', 10);
     const administratorPassword = await hash('password', 10);
 
+    await this.missionsRepository.delete({});
     await this.usersRepository.delete({});
 
     const competence = await this.competencesRepository.findOneBy({

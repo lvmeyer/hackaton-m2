@@ -13,6 +13,7 @@ import {
     UpdateMissionRequest,
   } from './dto/missions.request';
   import { Level } from '../level/Level';
+import { User } from '../users/User';
   
   @Injectable()
   export class MissionsService {
@@ -23,6 +24,8 @@ import {
       private readonly competencesRepository: Repository<Competence>,
       @InjectRepository(Level)
       private readonly levelsRepository: Repository<Level>,
+      @InjectRepository(User)
+      private readonly usersRepository: Repository<User>,
     ) {}
   
     async createMission(
@@ -89,7 +92,6 @@ import {
     }
   
     public async seed() {
-      await this.missionsRepository.delete({});
 
       const competence = await this.competencesRepository.findOneBy({
         competence: 'PHP',
@@ -98,17 +100,18 @@ import {
         competence: 'Bon vivant le man !',
       });
       const level = await this.levelsRepository.findOneBy({ level: 'Junior' });
-
-
+      const user = await this.usersRepository.findOneBy({ email: 'user@user.com' });
 
       const missions1 = this.missionsRepository.create({
         title: 'Développeur Backend PHP',
         description: 'Développeur Backend PHP',
         points: 100,
+        entreprise: 'SNCF',
         startMission: '2023-08-01',
         endMission: '2023-12-01',
         competences: [competence, competence2],
         level: level,
+        user: user,
       });
       await this.missionsRepository.save(missions1);
   
@@ -118,9 +121,11 @@ import {
         title: 'Développeur Backend NodeJS',
         description: 'Développeur Backend NodeJS',
         points: 50,
+        entreprise: 'Thalès',
         startMission: '2023-08-01',
         endMission: '2023-12-01',
         competences: [competence2],
+        level: level,
       });
       await this.missionsRepository.save(missions2);
 
@@ -130,9 +135,11 @@ import {
         title: 'Développeur REACT',
         description: 'Développeur REACT',
         points: 20,
+        entreprise: 'Thalès',
         startMission: '2023-08-01',
         endMission: '2023-12-01',
         competences: [],
+        level: level,
       });
       await this.missionsRepository.save(missions3);
     }
