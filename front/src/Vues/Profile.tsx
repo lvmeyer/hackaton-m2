@@ -137,9 +137,8 @@ const Profil: React.FC = () => {
 										<div className="card-body">
 											<p className="mb-4">
 												<span className="text-primary font-italic me-1">
-													assigment
-												</span>{' '}
-												Project Status
+													Vos Compétences
+												</span>{' '} 
 											</p>
 
 											{competences.map((comp, index) => (
