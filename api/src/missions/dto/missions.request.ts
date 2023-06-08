@@ -14,6 +14,10 @@ export class CreateMissionRequest {
     public points: number;
 
     @IsDefined()
+    @IsString()
+    public entreprise: string;
+
+    @IsDefined()
     @IsDate()
     startMission: Date;
 
