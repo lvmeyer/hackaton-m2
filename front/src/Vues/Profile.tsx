@@ -11,7 +11,6 @@ const Profil: React.FC = () => {
 
   const handleUpdatePassword = async (e: any) => {
     
-    console.log(JSON.parse(localStorage.getItem('userInfo')));
 	e.preventDefault();
 
 	try {
@@ -34,16 +33,6 @@ const Profil: React.FC = () => {
   return (
     <section style={{ backgroundColor: '#eee'}}>
       <div className="container py-5">
-        <div className="row">
-          <div className="col">
-            <nav aria-label="breadcrumb" className="bg-light rounded-3 p-3 mb-4">
-              <ol className="breadcrumb mb-0">
-                <li className="breadcrumb-item"><a href="#">Home</a></li>
-                <li className="breadcrumb-item active" aria-current="page">User Profile</li>
-              </ol>
-            </nav>
-          </div>
-        </div>
 
         <div className="row">
           <div className="col-lg-4">
@@ -73,7 +62,7 @@ const Profil: React.FC = () => {
                     <p className="mb-0">Email</p>
                   </div>
                   <div className="col-sm-9">
-                    <p className="text-muted mb-0">example@example.com</p>
+                    <p className="text-muted mb-0">{userInfo.email}</p>
                   </div>
                 </div>
                 <hr />

@@ -17,13 +17,13 @@ const Navbar: React.FC = () => {
 	return (
 		<nav className="nav-bg-color">
 			<ul>
-						<li className="nav">
-							<Link to="/home">
-								<img className="logo" src={logo} alt="logo" />
-							</Link>
-						</li>
-						{userInfo ? (
-						<>
+					<li className="nav">
+						<Link to="/home">
+							<img className="logo" src={logo} alt="logo" />
+						</Link>
+					</li>
+				{userInfo ? (
+					<>
 						<li>
 							<Link className="nav-text" to="/Level">Niveau</Link>
 						</li>
