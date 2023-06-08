@@ -1,7 +1,62 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 function CreateMission() {
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+    const [entreprise, setEntreprise] = useState('');
+    const [startMission, setStartMission] = useState('');
+    const [endMission, setEndMission] = useState('');
+    const [points, setPoints] = useState('');
+    const [niveau, setNiveau] = useState('');
+    const [utilisateur, setUtilisateur] = useState('');
+
+
+    const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const data = {};
+
+    if (niveau !== '') {
+      data.niveau = niveau;
+    }
+
+    if (utilisateur !== '') {
+        data.utilisateur = utilisateur;
+    }
+  
+
+    
+    data.title = title
+    data.description = description
+    data.entreprise = entreprise
+    data.startMission = startMission
+    data.endMission = endMission
+    data.points = points
+    data.niveau = niveau
+    data.utilisateur = utilisateur
+
+
+    fetch('http://localhost:3000/missions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+        'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('userInfo')).access_token}
+      },
+      body: JSON.stringify(data)
+    })
+      .then(response => response.json())
+      .then(responseData => {
+        // Traitez la réponse de l'API ici
+        console.log(responseData);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
+
+
     return (
         <>
             <div className="titles-dashboard">
