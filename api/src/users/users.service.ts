@@ -167,6 +167,9 @@ export class UsersService {
     const badge1 = await this.badgesRepository.findOneBy({
       badge: 'Junior php',
     })
+    const badge2 = await this.badgesRepository.findOneBy({
+      badge: 'Expert php',
+    })
 
     const administrator = this.usersRepository.create({
       role: Role.ADMINISTRATOR,
@@ -181,7 +184,7 @@ export class UsersService {
       email: 'user@user.com',
       password: userPassword,
       competences: [competence],
-      Badges: []
+      Badges: [badge1]
     });
     return this.usersRepository.save(user);
   }
