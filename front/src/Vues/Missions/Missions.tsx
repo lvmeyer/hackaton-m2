@@ -1,7 +1,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 function Missions() {
+
+//get all missions with fetch
+const [missions, setMissions] = useState([]);
+useEffect(() => {
+    fetch('http://localhost:3000/missions', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('userInfo')).access_token}
+    })
+        .then(response => response.json())
+        .then(
+            data => (setMissions(data)));
+        
+    
+}, []);
+
+
     return (
         <>
             <div className="titles-dashboard">
@@ -13,42 +32,25 @@ function Missions() {
                     <tr>
                         <th scope="col">Titre</th>
                         <th scope="col">Description</th>
-                        <th scope="col">Entreprise</th>
                         <th scope="col">Date de début</th>
                         <th scope="col">Date de fin</th>
                         <th scope="col">Points</th>
-                        <th scope="col">Niveau</th>
-                        <th scope="col">Utilisateur</th>
-                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">Développeur fulstack</th>
-                        <td>Fiche de poste: developpeur gngngngn nodejs gngngn </td>
-                        <td>Google</td>
-                        <td>01/01/2021</td>
-                        <td>01/01/2023</td>
-                        <td>150</td>
-                        <td>Junior</td>
-                        <td>Pierre Boitelle</td>
-                        <td>edit mission</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Developpeur Angular</th>
-                        <td>Fiche de poste</td>
-                        <td>ESGI</td>
-                        <td>01/01/2024</td>
-                        <td>01/02/2021</td>
-                        <td>100</td>
-                        <td>Confirmé</td>
-                        <td>Dan Levy</td>
-                        <td>edit mission</td>
-                        <td><Link to="/missions/create"></Link></td>
-                    </tr>
+                {missions.map(mission => (
+            <tr key={mission.id}>
+              <td>{mission.title}</td>
+              <td>{mission.description}</td>
+              <td>{mission.startMission}</td>
+              <td>{mission.endMission}</td>
+              <td>{mission.points}</td>
+            </tr>
+          ))}
                 </tbody>
             </table>
         </>
+
     );
 }
 
