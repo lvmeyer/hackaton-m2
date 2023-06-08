@@ -7,10 +7,12 @@ import { User } from '../users/User';
 import { UsersService } from '../users/users.service';
 import { CompetencesService } from '../competences/competences.service';
 import { Competence } from '../competences/Competence';
+import { MissionsService } from '../missions/missions.service';
+import { Mission } from '../missions/Mission';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Level, User, Competence])],
-  providers: [LevelsService, UsersService, CompetencesService],
+  imports: [TypeOrmModule.forFeature([Level, User, Competence, Mission])],
+  providers: [LevelsService, UsersService, CompetencesService, MissionsService],
   controllers: [LevelController],
   exports: [LevelsService],
 })
