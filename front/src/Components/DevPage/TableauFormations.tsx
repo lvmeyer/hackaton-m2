@@ -16,7 +16,7 @@ const TableauFormations: React.FC = () => {
       <div className="row">
         <div className="col">
           <button
-            className={`btn btn-primary me-2 ${
+            className={`btn carbon-btn me-2 ${
               tabIndex === 0 ? 'active' : ''
             }`}
             onClick={() => switchTab(0)}
@@ -24,7 +24,7 @@ const TableauFormations: React.FC = () => {
             Formations à venir
           </button>
           <button
-            className={`btn btn-primary ${
+            className={`btn carbon-btn ${
               tabIndex === 1 ? 'active' : ''
             }`}
             onClick={() => switchTab(1)}

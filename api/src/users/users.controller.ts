@@ -20,7 +20,7 @@ import {
   CreateUserRequest,
   UpdateProfileRequest,
   UpdateUserRequest,
-  UpdatePasswordRequest
+  UpdatePasswordRequest,
 } from './dto/users.request';
 import {
   AuthenticationRequired,
@@ -55,23 +55,22 @@ export class UsersController {
   updateProfile(
     @Req() req: Request,
     @Body(ValidationPipe) updateProfileRequest: UpdateProfileRequest,
-    @Headers() headers: any) {
-      const access_token = headers.authorization.split(' ')[1]
- 
-    return this.usersService.updateProfile(
-      access_token,
-      updateProfileRequest,
-    );
-  }  
-  
+    @Headers() headers: any,
+  ) {
+    const access_token = headers.authorization.split(' ')[1];
+
+    return this.usersService.updateProfile(access_token, updateProfileRequest);
+  }
+
   @Patch('/updatepassword')
   @AuthenticationRequired()
   updatePassword(
     @Req() req: Request,
     @Body(ValidationPipe) updatePasswordRequest: UpdatePasswordRequest,
-    @Headers() headers: any) {
-      const access_token = headers.authorization.split(' ')[1]
-      
+    @Headers() headers: any,
+  ) {
+    const access_token = headers.authorization.split(' ')[1];
+
     return this.usersService.updatePassword(
       access_token,
       updatePasswordRequest,
