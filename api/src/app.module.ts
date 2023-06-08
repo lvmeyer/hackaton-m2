@@ -41,7 +41,7 @@ import { BadgesModule } from './badges/badges.module';
     LevelsModule,
     BadgesModule
   ],
-  controllers: [AuthenticationController, BadgesController],
+  controllers: [AuthenticationController],
   providers: [AuthenticationService, SeedService],
   exports: [SeedService],
 })
