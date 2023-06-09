@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+
 
 function CreateMission() {
     const [title, setTitle] = useState('');
@@ -12,49 +14,55 @@ function CreateMission() {
     const [niveau, setNiveau] = useState('');
     const [utilisateur, setUtilisateur] = useState('');
 
+    const handleSubmit = async(e: any) => {
+        e.preventDefault();
+        const mission = { title, description, entreprise, startMission, endMission, points, niveau, utilisateur };
+        console.log(mission);
 
-    const handleSubmit = (event) => {
-    event.preventDefault();
 
-    const data = {};
+        try {
+			const res = await fetch('http://localhost:8000/missions', {
+		 	mode: 'cors',
+		 	method: 'POST',
+		 	headers: {
+		 		'Content-Type': 'application/json',
+				'Authorization': `Bearer ${JSON.parse(localStorage.getItem('userInfo')).access_token}`
+		 	},
+		 	body: JSON.stringify({mission}),
+		});
 
-    if (niveau !== '') {
-      data.niveau = niveau;
-    }
+		// navigate('/home');
+	} catch (error: any) {
+    toast.error(error.data.message);
+    console.error(error);
+  }
+        try {
+            const res = await fetch('http://localhost:8000/missions', {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('userInfo')).access_token
+              },
+              body: JSON.stringify(mission),
+            });
+        } catch (error: any) {
+            console.error(error);
+        }
+        const data = await res.json();
 
-    if (utilisateur !== '') {
-        data.utilisateur = utilisateur;
-    }
-  
+        const result = {
+            title: data.title,
+            description: data.description,
+            entreprise: data.entreprise,
+            startMission: data.startMission,
+            endMission: data.endMission,
+            points: data.points,
+            niveau: data.niveau,
+            utilisateur: data.utilisateur,
+        };         
+    };
 
     
-    data.title = title
-    data.description = description
-    data.entreprise = entreprise
-    data.startMission = startMission
-    data.endMission = endMission
-    data.points = points
-    data.niveau = niveau
-    data.utilisateur = utilisateur
-
-
-    fetch('http://localhost:3000/missions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-        'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('userInfo')).access_token}
-      },
-      body: JSON.stringify(data)
-    })
-      .then(response => response.json())
-      .then(responseData => {
-        // Traitez la réponse de l'API ici
-        console.log(responseData);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  };
 
 
     return (
@@ -63,7 +71,7 @@ function CreateMission() {
                 <h1>Nouvelle mission (côté RH)</h1>
                 <Link className="btn carbon-btn" to="/missions">Retour</Link>
             </div>
-            <form className="form-missions">
+            <form className="form-missions" onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="title">Titre</label>
                     <input type="text" className="form-control" placeholder="Titre de la mission" />
