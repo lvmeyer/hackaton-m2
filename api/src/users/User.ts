@@ -59,4 +59,8 @@ export class User {
   @ManyToMany(() => Badges)
   @JoinTable()
   Badges: Badges[]
+
+  @ManyToMany(() => Formations, (formation) => formation.users)
+  @JoinTable()
+  formations: Formations[]
 }

@@ -75,37 +75,27 @@ import {
   
       await this.formationsRepository.remove(formations);
     }
-  
-    public async seed() {
-      await this.formationsRepository.delete({});
+      
+      public async seed() {
+        await this.formationsRepository.delete({});
+        
+        const formation = this.formationsRepository.create({
+          title: 'Expert JAVA',
+          former: 'jean',
+        });
+        const formationJAVA = await this.formationsRepository.save(formation);
+        
 
-      const user = await this.usersRepository.findOneBy({
-        email: 'user@user.com',
+
+        const user = this.usersRepository.create({
+        email: 'user1@user.com',
+        password: 'user1',
+        firstname: 'jean',
+        lastname: 'jaeaje',
+        formations: [formationJAVA]
       })
-      const user2 = await this.usersRepository.findOneBy({
-        email: 'admin@admin.com',
-      })
-      const formation = this.formationsRepository.create({
-        title: 'Expert JAVA',
-        former: 'jean',
-        users: [user, user2]
-      });
-      await this.formationsRepository.save(formation);
+      await this.usersRepository.save(user)
 
-  
-      // await this.formationsRepository.insert({
-      //   title: 'Expert php',
-      //   former: 'jean',
-      //   // users: [user, user2]
-      // });
-      // await this.formationsRepository.insert({
-      //   title: 'Intermédiaire php',
-      // });
-
-      // const usersFormation = await this.formationsRepository.find({
-      //   relations: { users: true}
-      // })
-      // console.log(usersFormation);
     }
   }
   

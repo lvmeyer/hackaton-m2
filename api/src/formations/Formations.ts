@@ -18,7 +18,10 @@ import { User } from '../users/User';
     @Column({nullable: true})
     former: string;
   
-    @ManyToMany(() => User)
+    // @ManyToMany(() => User)
+    // users: User[]
+
+    @ManyToMany(() => User, (user) => user.formations)
     users: User[]
   }
   

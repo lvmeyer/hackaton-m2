@@ -22,7 +22,7 @@ export class SeedService {
     await this.competencesService.seed();
     await this.badgesService.seed();
     await this.usersService.seed();
-    // await this.formationsService.seed();
+    await this.formationsService.seed();
     await this.levelsService.seed();
     await this.missionsService.seed();
   }
