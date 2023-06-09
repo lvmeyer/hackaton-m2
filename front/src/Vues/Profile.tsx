@@ -4,6 +4,7 @@ import TableauFormations from '../Components/DevPage/TableauFormations';
 import Competence from '../Components/DevPage/Competence';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Badge } from 'react-bootstrap';
 
 const Profil: React.FC = () => {
 	const isAvailable = true; // Remplacez par la variable de disponibilité réelle du développeur
@@ -11,6 +12,7 @@ const Profil: React.FC = () => {
 	const { userInfo } = useSelector((state) => state.auth);
 	const [password, setPassword] = useState('');
 	const [competences, setCompetences] = useState<any[]>([]);
+  const [badges, setBadges] = useState<any[]>([]);
 
 	const handleUpdatePassword = async (e: any) => {
 		e.preventDefault();
@@ -39,8 +41,7 @@ const Profil: React.FC = () => {
 	};
 
 	useEffect(() => {
-		const userId = JSON.parse(localStorage.getItem('userInfo')).id || 'eeee';
-		console.log('userrrr', userId);
+		const userId = JSON.parse(localStorage.getItem('userInfo')).id ;
 		fetch(`http://localhost:3000/users/${userId}/competences`, {
 			method: 'GET',
 			headers: {
@@ -53,7 +54,26 @@ const Profil: React.FC = () => {
 			.then(
 				(data) => (
 					setCompetences(data.competences),
-					console.log('DATAS:', data.competences)
+          console.log('DATA compétence:', data)
+				)
+			);
+	}, []);
+
+  useEffect(() => {
+		const userId = JSON.parse(localStorage.getItem('userInfo')).id ;
+		fetch(`http://localhost:3000/users/${userId}/badges`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization:
+					'Bearer ' + JSON.parse(localStorage.getItem('userInfo')).access_token,
+			},
+		})
+			.then((response) => response.json())
+			.then(
+				(data) => (
+					setBadges(data.badges),
+					console.log('DATA badges:', data)
 				)
 			);
 	}, []);
@@ -76,6 +96,28 @@ const Profil: React.FC = () => {
 								<p className="text-muted mb-4">{userInfo.role}</p>
 							</div>
 						</div>
+            <div className="card mb-4 mb-lg-0">
+              <div className="card-body p-0">
+                <ul className="list-group list-group-flush rounded-3">
+                  <li className="list-group-item d-flex justify-content-between align-items-center p-3">
+                    <p className="mb-0">
+											{badges && badges.map((badge, index) => (
+												<Badge key={index} badge={badge} />
+											))}
+                    </p>
+                  </li>
+                  {/* <li className="list-group-item d-flex justify-content-between align-items-center p-3">
+                    <p className="mb-0">mdbootstrap</p>
+                  </li>
+                  <li className="list-group-item d-flex justify-content-between align-items-center p-3">
+                    <p className="mb-0">@mdbootstrap</p>
+                  </li>
+                  <li className="list-group-item d-flex justify-content-between align-items-center p-3">
+                    <p className="mb-0">mdbootstrap</p>
+                  </li> */}
+                </ul>
+              </div>
+            </div>
 					</div>
 					<div className="col-lg-8">
 						<div className="card mb-4">

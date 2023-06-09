@@ -72,9 +72,6 @@ const Navbar: React.FC = () => {
 						<li>
 							<button onClick={logoutHandler}>Logout</button>
 						</li>
-						<li>
-							<button onClick={logoutHandler}>Logout</button>
-						</li>
 					</>
 				) : (
 					<></>
