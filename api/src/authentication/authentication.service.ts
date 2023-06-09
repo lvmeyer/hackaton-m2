@@ -52,6 +52,8 @@ export class AuthenticationService {
     const newUser = await this.usersService.createUser({
       email: registerRequest.email,
       password: hashedPassword,
+      firstname: registerRequest.firstname,
+      lastname: registerRequest.lastname,
     });
 
     return newUser;
