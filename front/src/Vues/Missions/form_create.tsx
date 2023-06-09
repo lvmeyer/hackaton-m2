@@ -21,8 +21,7 @@ function CreateMission() {
 
     const handleSubmit = async(e: any) => {
         e.preventDefault();
-        const mission = { title, description, entreprise, startMission, endMission, points, level:'cea80ffb-fe0b-4d0c-955a-33c164083224' };
-        
+        const mission = { title, description, entreprise, startMission, endMission, points, level:'432a985b-80c9-4cff-a33f-dc1c39006cdf' };
 
         try {
             const res = await fetch('http://localhost:3000/missions', {
@@ -94,7 +93,6 @@ function CreateMission() {
                 </div>
                 <button type="submit" className="btn carbon-btn btn-create">Créer la mission</button>
             </form>
-
 
         </>
     );
