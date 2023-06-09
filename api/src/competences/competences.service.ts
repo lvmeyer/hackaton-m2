@@ -108,10 +108,5 @@ export class CompetencesService {
       competence: 'Vue.js',
       type: true
     });
-
-    return this.competencesRepository.insert({
-      competence: 'Bon vivant le man !',
-      type: false
-    });
   }
 }

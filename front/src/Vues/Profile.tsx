@@ -28,7 +28,6 @@ const Profil: React.FC = () => {
 				body: JSON.stringify({ password }),
 			});
 
-			// navigate('/');
 		} catch (error: any) {
 			toast.error(error.data.message);
 			console.error(error);
@@ -40,7 +39,6 @@ const Profil: React.FC = () => {
 
 	useEffect(() => {
 		const userId = JSON.parse(localStorage.getItem('userInfo')).id || 'eeee';
-		console.log('userrrr', userId);
 		fetch(`http://localhost:3000/users/${userId}/competences`, {
 			method: 'GET',
 			headers: {
@@ -51,11 +49,11 @@ const Profil: React.FC = () => {
 		})
 			.then((response) => response.json())
 			.then(
-				(data) => (
-					setCompetences(data.competences),
-					console.log('DATAS:', data.competences)
-				)
-			);
+				(data) => {
+					setCompetences(data.userCompetences)
+        })
+        .catch((error) => {
+        });
 	}, []);
 
 	return (
@@ -76,6 +74,20 @@ const Profil: React.FC = () => {
 								<p className="text-muted mb-4">{userInfo.role}</p>
 							</div>
 						</div>
+            <div className="card mb-4">
+              <div className='card-body'>
+                <div className="card-body p-0">
+                  <span className="text-primary font-italic me-1">
+                    Mes Badges
+                  </span>{' '}                
+                  <ul className="list-group list-group-flush rounded-3">
+                    <li className="list-group-item d-flex justify-content-between align-items-center p-3">
+                      <p className="mb-0">https://mdbootstrap.com</p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
 					</div>
 					<div className="col-lg-8">
 						<div className="card mb-4">
@@ -137,12 +149,12 @@ const Profil: React.FC = () => {
 										<div className="card-body">
 											<p className="mb-4">
 												<span className="text-primary font-italic me-1">
-													Vos Compétences
+													Mes Compétences
 												</span>{' '}
 											</p>
 
-											{competences.map((comp, index) => (
-												<Competence key={index} competence={comp} />
+											{competences.map((data, index) => (
+												<Competence key={index} competences={data} />
 											))}
 										</div>
 									</div>
