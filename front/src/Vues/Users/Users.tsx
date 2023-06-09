@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 
 function Users() {
 
-//get all missions with fetch
 const [users, setUsers] = useState([]);
 useEffect(() => {
     fetch('http://localhost:3000/users', {
@@ -22,7 +21,7 @@ useEffect(() => {
     return (
         <>
             <div className="titles-dashboard">
-                <h1>Missions (côté RH)</h1>
+                <h1>Utilisateurs </h1>
                 <Link className="btn carbon-btn" to="/users/create">Ajouter un nouvel utilisateur</Link>
             </div>
             <table className="table table-hover">

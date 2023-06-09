@@ -23,12 +23,14 @@ import Formation from './Vues/Formation.tsx';
 import Level from './Vues/Level.tsx';
 import Users from './Vues/Users/Users.tsx';
 import CreateUser from './Vues/Users/form_create.tsx';
+import Home from './Vues/Homepage.tsx';
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
 		<Route path="/" element={<App />}>
 			<Route path="/" element={<Homepage />} />
 			<Route index={true} path="/login" element={<Login />} />
+			<Route path="/home" element={<Home />} />
 			<Route path="/register" element={<Register />} />
 			<Route path="/profile" element={<Profile />} />
 			<Route path="/formation" element={<Formation />} />

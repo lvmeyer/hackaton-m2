@@ -37,8 +37,11 @@ const Navbar: React.FC = () => {
 				{userInfo && userInfo.role === 'ADMINISTRATOR' ? (
 					<>
 						<li>{userInfo.email}</li>
+						<Link className="nav-text" to="/home">
+								Accueil
+						</Link>
 						<li>
-							<Link className="mission nav-text" to="/missions">
+							<Link className="nav-text" to="/missions">
 								Missions
 							</Link>
 						</li>
@@ -54,23 +57,26 @@ const Navbar: React.FC = () => {
 						</li>
 						<li>
 							<Link className="nav-text" to="/profile">
-								Profile
+								Profil
 							</Link>
 						</li>
 						<li>
-							<button onClick={logoutHandler}>Logout</button>
+							<button onClick={logoutHandler}>Déconnexion</button>
 						</li>
 					</>
 				) : userInfo && userInfo.role === 'USER' ? (
 					<>
 						<li>{userInfo.email}</li>
+						<Link className="nav-text" to="/home">
+								Accueil
+							</Link>
 						<li>
 							<Link className="nav-text" to="/profile">
-								Profile
+								Profil
 							</Link>
 						</li>
 						<li>
-							<button onClick={logoutHandler}>Logout</button>
+							<button onClick={logoutHandler}>Déconnexion</button>
 						</li>
 					</>
 				) : (
