@@ -24,7 +24,7 @@ useEffect(() => {
     return (
         <>
             <div className="titles-dashboard">
-                <h1>Missions (côté RH)</h1>
+                <h1>Missions</h1>
                 <Link className="btn carbon-btn" to="/missions/create">Créer une mission</Link>
             </div>
             <table className="table table-hover">

@@ -91,7 +91,7 @@ const Profil: React.FC = () => {
 								<hr />
 								<div className="row">
 									<div className="col-sm-3">
-										<p className="mb-0">Modifier mon Mot de Passe</p>
+										<p className="mb-0">Modifier mon mot de Passe</p>
 									</div>
 									<div className="col-sm-9">
 										<p className="text-muted mb-0">
