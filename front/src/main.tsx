@@ -23,7 +23,6 @@ import Formation from './Vues/Formation.tsx';
 import Level from './Vues/Level.tsx';
 import Users from './Vues/Users.tsx';
 
-
 const router = createBrowserRouter(
 	createRoutesFromElements(
 		<Route path="/" element={<App />}>
