@@ -69,25 +69,25 @@ import {
       await this.badgesRepository.remove(badges);
     }
   
-    // public async seed() {
-    //   await this.badgesRepository.delete({});
+    public async seed() {
+      await this.badgesRepository.delete({});
   
-    //   await this.badgesRepository.insert({
-    //     badge: 'Junior php',
-    //     nb_point: 10,
-    //   });
-    //   await this.badgesRepository.insert({
-    //     badge: 'Intermédiaire php',
-    //     nb_point: 30,
-    //   });
-    //   await this.badgesRepository.insert({
-    //     badge: 'Expert php',
-    //     nb_point: 100,
-    //   });
-    //   return this.badgesRepository.insert({
-    //     badge: 'Senior php',
-    //     nb_point: 300,
-    //   });
-    // }
+      await this.badgesRepository.insert({
+        badge: 'Junior php',
+        nb_point: 10,
+      });
+      await this.badgesRepository.insert({
+        badge: 'Intermédiaire php',
+        nb_point: 30,
+      });
+      await this.badgesRepository.insert({
+        badge: 'Expert php',
+        nb_point: 100,
+      });
+      return this.badgesRepository.insert({
+        badge: 'Senior php',
+        nb_point: 300,
+      });
+    }
   }
   

@@ -16,8 +16,10 @@ import { AuthenticationModule } from './authentication/authentication.module';
 import { SeedService } from './seed/seed.service';
 import { LevelsModule } from './level/level.module';
 import { MissionsModule } from './missions/missions.module';
-import { BadgesController } from './badges/badges.controller';
 import { BadgesModule } from './badges/badges.module';
+
+import { UserCompetencesModule } from './user-competences/user-competences.module';
+import { UserCompetences } from './user-competences/UserCompetences';
 
 @Module({
   imports: [
@@ -33,13 +35,14 @@ import { BadgesModule } from './badges/badges.module';
       envFilePath: './.env',
     }),
     TypeOrmCustomModule.register(),
-    TypeOrmModule.forFeature([User, Competence]),
+    TypeOrmModule.forFeature([User, Competence, UserCompetences]),
     UsersModule,
     CompetencesModule,
     MissionsModule,
     AuthenticationModule,
     LevelsModule,
-    BadgesModule
+    BadgesModule,
+    UserCompetencesModule,
   ],
   controllers: [AuthenticationController],
   providers: [AuthenticationService, SeedService],
