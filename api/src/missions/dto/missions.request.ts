@@ -22,12 +22,8 @@ export class CreateMissionRequest {
     @IsDateString()
     startMission: Date;
 
-    @IsDefined()
     @IsDateString()
     endMission: Date;
-
-    @IsDefined()
-    public level: Level;
 }
 
 export class UpdateMissionRequest {

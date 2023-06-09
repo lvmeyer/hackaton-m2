@@ -19,6 +19,9 @@ import { MissionsModule } from './missions/missions.module';
 import { BadgesModule } from './badges/badges.module';
 import { FormationsModule } from './formations/formations.module';
 
+import { UserCompetencesModule } from './user-competences/user-competences.module';
+import { UserCompetences } from './user-competences/UserCompetences';
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -33,14 +36,15 @@ import { FormationsModule } from './formations/formations.module';
       envFilePath: './.env',
     }),
     TypeOrmCustomModule.register(),
-    TypeOrmModule.forFeature([User, Competence]),
+    TypeOrmModule.forFeature([User, Competence, UserCompetences]),
     UsersModule,
     CompetencesModule,
     MissionsModule,
     AuthenticationModule,
     LevelsModule,
     BadgesModule,
-    FormationsModule
+    FormationsModule,
+    UserCompetencesModule,
   ],
   controllers: [AuthenticationController],
   providers: [AuthenticationService, SeedService],

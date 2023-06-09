@@ -26,8 +26,8 @@ import Users from './Vues/Users.tsx';
 const router = createBrowserRouter(
 	createRoutesFromElements(
 		<Route path="/" element={<App />}>
+			<Route path="/" element={<Homepage />} />
 			<Route index={true} path="/login" element={<Login />} />
-			<Route path="/home" element={<Homepage />} />
 			<Route path="/register" element={<Register />} />
 			<Route path="/profile" element={<Profile />} />
 			<Route path="/formation" element={<Formation />} />

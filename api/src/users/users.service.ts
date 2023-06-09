@@ -17,6 +17,7 @@ import { hash } from 'bcryptjs';
 import { Role } from '../authentication/authentication.enum';
 import { JwtService } from '@nestjs/jwt';
 import { Competence } from '../competences/Competence';
+import { UserCompetences } from '../user-competences/UserCompetences';
 import { randomInt } from 'crypto';
 import { Badges } from '../badges/Badges';
 import { Mission } from '../missions/Mission';
@@ -30,6 +31,8 @@ export class UsersService {
     private readonly missionsRepository: Repository<Mission>,
     @InjectRepository(Competence)
     private readonly competencesRepository: Repository<Competence>,
+    @InjectRepository(UserCompetences)
+    private readonly usercompetencesRepository: Repository<UserCompetences>,
     private readonly jwtService: JwtService,
     @InjectRepository(Badges)
     private readonly badgesRepository: Repository<Badges>
@@ -106,7 +109,7 @@ export class UsersService {
         id: uuid,
       },
       relations: {
-        competences: true,
+        userCompetences: true
       },
     });
     return user;
@@ -145,6 +148,7 @@ export class UsersService {
     const userPassword = await hash('password', 10);
     const administratorPassword = await hash('password', 10);
 
+    await this.usercompetencesRepository.delete({});
     await this.missionsRepository.delete({});
     await this.usersRepository.delete({});
 
@@ -176,7 +180,7 @@ export class UsersService {
     const administrator = this.usersRepository.create({
       role: Role.ADMINISTRATOR,
       email: 'admin@admin.com',
-      password: administratorPassword,
+      password: administratorPassword
     });
     await this.usersRepository.save(administrator);
 
@@ -184,9 +188,23 @@ export class UsersService {
       role: Role.USER,
       email: 'user@user.com',
       password: userPassword,
-      competences: [competence, competence2, competence3],
       Badges: [badge1, badge2]
     });
-    return this.usersRepository.save(user);
+    await this.usersRepository.save(user);
+
+
+    const userCompetences = this.usercompetencesRepository.create({
+      user: user,
+      competence: competence,
+      points: randomInt(1, 100)
+    });
+    await this.usercompetencesRepository.save(userCompetences);
+
+    const userCompetences2 = this.usercompetencesRepository.create({
+      user: user,
+      competence: competence2,
+      points: randomInt(1, 100)
+    });
+    await this.usercompetencesRepository.save(userCompetences2);
   }
 }
