@@ -11,6 +11,7 @@ const Profil: React.FC = () => {
 	const { userInfo } = useSelector((state) => state.auth);
 	const [password, setPassword] = useState('');
 	const [competences, setCompetences] = useState<any[]>([]);
+  const [user, setUser] = useState<any[]>([]);
 
 	const handleUpdatePassword = async (e: any) => {
 		e.preventDefault();
@@ -28,7 +29,6 @@ const Profil: React.FC = () => {
 				body: JSON.stringify({ password }),
 			});
 
-			// navigate('/');
 		} catch (error: any) {
 			toast.error(error.data.message);
 			console.error(error);
@@ -38,9 +38,25 @@ const Profil: React.FC = () => {
 		});
 	};
 
+  useEffect(() => {
+    const userId = JSON.parse(localStorage.getItem('userInfo')).id;
+    fetch(`http://localhost:3000/users/${userId}` , {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('userInfo')).access_token,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setUser(data);
+      });
+  }, []);
+
+
 	useEffect(() => {
-		const userId = JSON.parse(localStorage.getItem('userInfo')).id || 'eeee';
-		console.log('userrrr', userId);
+		const userId = JSON.parse(localStorage.getItem('userInfo')).id;
 		fetch(`http://localhost:3000/users/${userId}/competences`, {
 			method: 'GET',
 			headers: {
@@ -51,11 +67,9 @@ const Profil: React.FC = () => {
 		})
 			.then((response) => response.json())
 			.then(
-				(data) => (
-					setCompetences(data.competences),
-					console.log('DATAS:', data.competences)
-				)
-			);
+				(data) => {
+					setCompetences(data.userCompetences)
+        });
 	}, []);
 
 	return (
@@ -71,15 +85,46 @@ const Profil: React.FC = () => {
 									className="rounded-circle img-fluid"
 									style={{ width: '150px' }}
 								/>
-								<h5 className="my-3">{userInfo.email}</h5>
+								<h5 className="my-3">{user.firstname} {user.lastname}</h5>
 								<p className="text-muted mb-1">Full Stack Developer</p>
-								<p className="text-muted mb-4">{userInfo.role}</p>
 							</div>
 						</div>
+						{userInfo && userInfo.role === 'USER' ? (
+              <div className="card mb-4">
+                <div className='card-body'>
+                  <div className="card-body p-0">
+                    <span className="text-primary font-italic me-1">
+                      Mes Badges :
+                    </span>{' '}                
+                    <ul className="list-group list-group-flush rounded-3">
+
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            ) : null}
 					</div>
 					<div className="col-lg-8">
 						<div className="card mb-4">
 							<div className="card-body">
+								<div className="row">
+									<div className="col-sm-3">
+										<p className="mb-0">Prénom</p>
+									</div>
+									<div className="col-sm-9">
+										<p className="text-muted mb-0">{user.firstname}</p>
+									</div>
+								</div>
+								<hr />
+								<div className="row">
+									<div className="col-sm-3">
+										<p className="mb-0">Nom</p>
+									</div>
+									<div className="col-sm-9">
+										<p className="text-muted mb-0">{user.lastname}</p>
+									</div>
+								</div>
+								<hr />
 								<div className="row">
 									<div className="col-sm-3">
 										<p className="mb-0">Email</p>
@@ -137,12 +182,12 @@ const Profil: React.FC = () => {
 										<div className="card-body">
 											<p className="mb-4">
 												<span className="text-primary font-italic me-1">
-													Vos Compétences
+													Mes Compétences
 												</span>{' '}
 											</p>
 
-											{competences.map((comp, index) => (
-												<Competence key={index} competence={comp} />
+											{competences.map((data, index) => (
+												<Competence key={index} competences={data} />
 											))}
 										</div>
 									</div>
