@@ -59,24 +59,23 @@ const Profil: React.FC = () => {
 			);
 	}, []);
 
-  useEffect(() => {
-		const userId = JSON.parse(localStorage.getItem('userInfo')).id ;
-		fetch(`http://localhost:3000/users/${userId}/badges`, {
-			method: 'GET',
-			headers: {
-				'Content-Type': 'application/json',
-				Authorization:
-					'Bearer ' + JSON.parse(localStorage.getItem('userInfo')).access_token,
-			},
-		})
-			.then((response) => response.json())
-			.then(
-				(data) => (
-					setBadges(data.badges),
-					console.log('DATA badges:', data)
-				)
-			);
-	}, []);
+  // useEffect(() => {
+	// 	const userId = JSON.parse(localStorage.getItem('userInfo')).id ;
+	// 	fetch(`http://localhost:3000/users/${userId}/badges`, {
+	// 		method: 'GET',
+	// 		headers: {
+	// 			'Content-Type': 'application/json',
+	// 			Authorization:
+	// 				'Bearer ' + JSON.parse(localStorage.getItem('userInfo')).access_token,
+	// 		},
+	// 	})
+	// 		.then((response) => response.json())
+	// 		.then(
+	// 			(data) => (
+	// 				setBadges(data.badges)
+	// 			)
+	// 		);
+	// }, []);
 
 	return (
 		<section style={{ backgroundColor: '#eee' }}>
