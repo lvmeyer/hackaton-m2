@@ -46,24 +46,49 @@ function Login() {
 
 	return (
 		<>
-			<h1>Login</h1>
-			<form onSubmit={handleSubmitLogin}>
-				<input
+			<form className="login_form" onSubmit={handleSubmitLogin}>
+				<h1>Login</h1>
+				<div className="form-outline mb-4">
+					<input
 					type="email"
-					placeholder="Enter your email"
+					placeholder="Entrez votre email"
 					value={email}
 					onChange={(e) => setEmail(e.target.value)}
-				/>
-				<input
+					className="form-control"
+					/>
+				</div>
+
+				<div className="form-outline mb-4">
+					<input
 					type="password"
-					placeholder="Enter your password"
+					placeholder="Entrez votre mot de passe"
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}
-				/>
+					className="form-control"
+					/>
+				</div>
 
-				<button type="submit">Sign in</button>
+				<div className="row mb-4">
+					<div className="col d-flex justify-content-center">
+					<div className="form-check">
+						<input
+						className="form-check-input"
+						type="checkbox"
+						value=""
+						id="form2Example34"
+						checked
+						/>
+						<label className="form-check-label">Se souvenir de moi</label>
+					</div>
+					</div>
+				</div>
+
+				<button type="submit" className="btn btn-primary btn-block mb-4">
+					Se connecter
+				</button>
 				{isLoading && <h2>Loading...</h2>}
 			</form>
+
 		</>
 	);
 }

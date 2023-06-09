@@ -94,12 +94,10 @@ const Profil: React.FC = () => {
                 <div className='card-body'>
                   <div className="card-body p-0">
                     <span className="text-primary font-italic me-1">
-                      Mes Badges
+                      Mes Badges :
                     </span>{' '}                
                     <ul className="list-group list-group-flush rounded-3">
-                      <li className="list-group-item d-flex justify-content-between align-items-center p-3">
-                        <p className="mb-0">https://mdbootstrap.com</p>
-                      </li>
+
                     </ul>
                   </div>
                 </div>
