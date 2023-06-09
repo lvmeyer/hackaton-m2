@@ -108,9 +108,7 @@ export class UsersService {
       where: {
         id: uuid,
       },
-      relations: {
-        userCompetences: true
-      },
+      relations: ['userCompetences', 'userCompetences.competence'],
     });
     return user;
   }
