@@ -1,4 +1,4 @@
-import { IsEmail } from 'class-validator';
+import { IsEmail, IsString } from 'class-validator';
 import { Role } from '../authentication/authentication.enum';
 import {
   Column,
@@ -26,6 +26,14 @@ export class User {
 
   @Column()
   password: string;
+
+  @Column()
+  @IsString()
+  firstname: string;
+
+  @Column()
+  @IsString()
+  lastname: string;
 
   @Column({
     nullable: false,

@@ -9,6 +9,14 @@ export class CreateUserRequest {
   @IsDefined()
   @IsString()
   public password: string;
+
+  @IsDefined()
+  @IsString()
+  firstname: string;
+
+  @IsDefined()
+  @IsString()
+  lastname: string;
 }
 
 export class UpdateUserRequest {
