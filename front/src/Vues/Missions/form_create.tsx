@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+
 
 
 function CreateMission() {
@@ -13,6 +15,9 @@ function CreateMission() {
     const [points, setPoints] = useState('');
     const [level, setLevel] = useState('');
     const [utilisateur, setUtilisateur] = useState('');
+    
+    const navigate = useNavigate();
+
 
     const handleSubmit = async(e: any) => {
         e.preventDefault();
@@ -28,6 +33,7 @@ function CreateMission() {
             'Authorization': `Bearer ${JSON.parse(localStorage.getItem('userInfo')).access_token}`
             },
             body: JSON.stringify({...mission}),
+            
 		});
 		// navigate('/home');
 	    } catch (error: any) {
@@ -36,7 +42,7 @@ function CreateMission() {
         }      
         
         // set data
-       
+        navigate("/missions");
 
     };
 
