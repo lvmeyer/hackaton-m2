@@ -2,7 +2,10 @@ import {
     Column,
     Entity,
     PrimaryGeneratedColumn,
+    ManyToMany,
+    JoinTable
   } from 'typeorm';
+import { User } from '../users/User';
   
   @Entity()
   export class Formations {
@@ -12,8 +15,12 @@ import {
     @Column()
     title: string;
   
-    @Column()
-    former: string;
+    @ManyToMany(() => User)
+    @JoinTable()
+    former: User;
   
+    @ManyToMany(() => User)
+    @JoinTable()
+    user: User[]
   }
   

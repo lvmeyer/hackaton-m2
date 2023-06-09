@@ -7,6 +7,7 @@ import {
   import { InjectRepository } from '@nestjs/typeorm';
   import { Formations } from './Formations';
   import { Repository } from 'typeorm';
+  import { User } from '../users/User';
   import {
     CreateFormationRequest,
     UpdateFormationRequest,
@@ -17,6 +18,8 @@ import {
     constructor(
       @InjectRepository(Formations)
       private readonly formationsRepository: Repository<Formations>,
+      @InjectRepository(User)
+      private readonly usersRepository: Repository<User>,
     ) {}
   
     async createFormation(createFormationRequest: CreateFormationRequest): Promise<any> {
@@ -71,14 +74,18 @@ import {
   
     public async seed() {
       await this.formationsRepository.delete({});
+
+      const user = await this.usersRepository.findOneBy({
+        email: 'user@user.com',
+      })
   
       await this.formationsRepository.insert({
         title: 'Junior php',
-        former: 'Don',
+        former: user,
       });
       await this.formationsRepository.insert({
         title: 'Intermédiaire php',
-        former: 'Joe',
+        // former: user2,
       });
     }
   }
