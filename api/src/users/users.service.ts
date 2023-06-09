@@ -154,10 +154,22 @@ export class UsersService {
     await this.usersRepository.delete({});
 
     const competence = await this.competencesRepository.findOneBy({
-      competence: 'PHP',
+      competence: 'Java',
     });
     const competence2 = await this.competencesRepository.findOneBy({
-      competence: 'JavaScript',
+      competence: '.NET',
+    });
+    const competence3 = await this.competencesRepository.findOneBy({
+      competence: 'Node.js',
+    });
+    const competence4 = await this.competencesRepository.findOneBy({
+      competence: 'Angular',
+    });
+    const competence5 = await this.competencesRepository.findOneBy({
+      competence: 'React.js',
+    });
+    const competence6 = await this.competencesRepository.findOneBy({
+      competence: 'Vue.js',
     });
     const badge1 = await this.badgesRepository.findOneBy({
       badge: 'Junior php',
