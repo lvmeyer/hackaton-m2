@@ -17,7 +17,7 @@ function Login() {
 	const { userInfo } = useSelector((state) => state.auth);
 	useEffect(() => {
 		if (userInfo) {
-			navigate('/');
+			navigate('/profile');
 		}
 	}, [navigate, userInfo]);
 
@@ -37,7 +37,7 @@ function Login() {
 			const res = await login({ email, password }).unwrap();
 
 			dispatch(setCredentials({ ...res }));
-			navigate('/');
+			navigate('/profile');
 		} catch (error: any) {
 			toast.error(error.data.message);
 			console.error(error);

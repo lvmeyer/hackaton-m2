@@ -22,7 +22,6 @@ export class CreateMissionRequest {
     @IsDateString()
     startMission: Date;
 
-    @IsDefined()
     @IsDateString()
     endMission: Date;
 }
