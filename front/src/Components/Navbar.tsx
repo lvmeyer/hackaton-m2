@@ -38,18 +38,13 @@ const Navbar: React.FC = () => {
 					<>
 						<li>{userInfo.email}</li>
 						<li>
-							<Link className="nav-text" to="/Level">
-								Niveau
-							</Link>
-						</li>
-						<li>
 							<Link className="mission nav-text" to="/missions">
 								Missions
 							</Link>
 						</li>
 						<li>
 							<Link className="nav-text" to="/formation">
-								Formation
+								Formations
 							</Link>
 						</li>
 						<li>

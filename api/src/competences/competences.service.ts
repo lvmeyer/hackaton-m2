@@ -6,6 +6,7 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Competence } from './Competence';
+import { UserCompetences } from '../user-competences/UserCompetences';
 import { Repository } from 'typeorm';
 import {
   CreateCompetenceRequest,
@@ -15,6 +16,8 @@ import {
 @Injectable()
 export class CompetencesService {
   constructor(
+    @InjectRepository(UserCompetences)
+    private readonly usercompetencesRepository: Repository<UserCompetences>,
     @InjectRepository(Competence)
     private readonly competencesRepository: Repository<Competence>,
   ) {}
@@ -77,6 +80,8 @@ export class CompetencesService {
   }
 
   public async seed() {
+
+    await this.usercompetencesRepository.delete({});
     await this.competencesRepository.delete({});
 
     await this.competencesRepository.insert({

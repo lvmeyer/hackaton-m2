@@ -21,7 +21,8 @@ import Homepage from './Vues/Homepage.tsx';
 import Profile from './Vues/Profile.tsx';
 import Formation from './Vues/Formation.tsx';
 import Level from './Vues/Level.tsx';
-import Users from './Vues/Users.tsx';
+import Users from './Vues/Users/Users.tsx';
+import CreateUser from './Vues/Users/form_create.tsx';
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -35,6 +36,7 @@ const router = createBrowserRouter(
 			<Route path="/missions/create" element={<CreateMission />} />
 			<Route path="/level" element={<Level />} />
 			<Route path="/users" element={<Users />} />
+			<Route path="/users/create" element={<CreateUser />} />
 		</Route>
 	)
 );
