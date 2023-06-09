@@ -21,9 +21,6 @@ export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
-  firstName: string;
-
   @Column({ unique: true, nullable: true})
   @IsEmail()
   email: string;

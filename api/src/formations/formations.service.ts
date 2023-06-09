@@ -31,7 +31,11 @@ import {
     }
   
     public getFormations(): Promise<Formations[]> {
-      return this.formationsRepository.find();
+      return this.formationsRepository.find({
+        relations: {
+          users: true
+        }
+      });
     }
   
     async getFormationById(uuid: string): Promise<Formations> {
@@ -86,22 +90,22 @@ import {
         former: 'jean',
         users: [user, user2]
       });
-      await this.usersRepository.save(formation);
+      await this.formationsRepository.save(formation);
 
   
-      await this.formationsRepository.insert({
-        title: 'Expert php',
-        former: 'jean',
-        users: [user, user2]
-      });
-      await this.formationsRepository.insert({
-        title: 'Intermédiaire php',
-      });
+      // await this.formationsRepository.insert({
+      //   title: 'Expert php',
+      //   former: 'jean',
+      //   // users: [user, user2]
+      // });
+      // await this.formationsRepository.insert({
+      //   title: 'Intermédiaire php',
+      // });
 
-      const usersFormation = await this.formationsRepository.find({
-        relations: { users: true}
-      })
-      console.log(usersFormation);
+      // const usersFormation = await this.formationsRepository.find({
+      //   relations: { users: true}
+      // })
+      // console.log(usersFormation);
     }
   }
   
