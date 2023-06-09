@@ -108,9 +108,7 @@ export class UsersService {
       where: {
         id: uuid,
       },
-      relations: {
-        userCompetences: true
-      },
+      relations: ['userCompetences', 'userCompetences.competence'],
     });
     return user;
   }
@@ -179,6 +177,8 @@ export class UsersService {
     const administrator = this.usersRepository.create({
       role: Role.ADMINISTRATOR,
       email: 'admin@admin.com',
+      firstname: 'Pierre',
+      lastname: 'Boitelle',
       password: administratorPassword
     });
     await this.usersRepository.save(administrator);
@@ -186,6 +186,8 @@ export class UsersService {
     const user = this.usersRepository.create({
       role: Role.USER,
       email: 'user@user.com',
+      firstname: 'Odessa',
+      lastname: 'Chesneau',
       password: userPassword,
       Badges: [badge1, badge2]
     });
