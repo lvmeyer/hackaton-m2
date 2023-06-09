@@ -18,4 +18,12 @@ export class RegisterRequest {
   @IsDefined()
   @IsString()
   public password: string;
+
+  @IsDefined()
+  @IsString()
+  firstname: string;
+
+  @IsDefined()
+  @IsString()
+  lastname: string;
 }
