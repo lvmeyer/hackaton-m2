@@ -78,15 +78,30 @@ import {
       const user = await this.usersRepository.findOneBy({
         email: 'user@user.com',
       })
+      const user2 = await this.usersRepository.findOneBy({
+        email: 'admin@admin.com',
+      })
+      const formation = this.formationsRepository.create({
+        title: 'Expert JAVA',
+        former: 'jean',
+        users: [user, user2]
+      });
+      await this.usersRepository.save(formation);
+
   
       await this.formationsRepository.insert({
-        title: 'Junior php',
-        former: user,
+        title: 'Expert php',
+        former: 'jean',
+        users: [user, user2]
       });
       await this.formationsRepository.insert({
         title: 'Intermédiaire php',
-        // former: user2,
       });
+
+      const usersFormation = await this.formationsRepository.find({
+        relations: { users: true}
+      })
+      console.log(usersFormation);
     }
   }
   

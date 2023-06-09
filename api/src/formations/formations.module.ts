@@ -14,10 +14,12 @@ import { Level } from '../level/Level';
 import { FormationsController } from './formations.controller';
 import { FormationsService } from './formations.service';
 import { Formations } from './Formations';
+import { UserCompetencesService } from '../user-competences/user-competences.service';
+import { UserCompetences } from '../user-competences/UserCompetences';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Formations, Badges, User, Competence, Mission, Level])],
-  providers: [FormationsService, BadgesService, UsersService, CompetencesService, MissionsService, LevelsService],
+  imports: [TypeOrmModule.forFeature([Formations, Badges, User, Competence, Mission, Level, UserCompetences])],
+  providers: [FormationsService, BadgesService, UsersService, CompetencesService, MissionsService, LevelsService, UserCompetencesService],
   controllers: [FormationsController],
   exports: [FormationsService],
 })

@@ -14,13 +14,17 @@ import { Competence } from '../competences/Competence';
 import { UserCompetences } from '../user-competences/UserCompetences';
 import { Badges } from '../badges/Badges';
 import { Mission } from '../missions/Mission';
+import { Formations } from '../formations/Formations';
 
 @Entity()
 export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ unique: true })
+  @Column()
+  firstName: string;
+
+  @Column({ unique: true, nullable: true})
   @IsEmail()
   email: string;
 

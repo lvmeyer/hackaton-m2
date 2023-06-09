@@ -11,12 +11,15 @@ import {
     CreateBadgeRequest,
     UpdateBadgeRequest,
   } from './dto/badges.request';
+import { User } from '../users/User';
   
   @Injectable()
   export class BadgesService {
     constructor(
       @InjectRepository(Badges)
       private readonly badgesRepository: Repository<Badges>,
+      @InjectRepository(User)
+      private readonly usersRepository: Repository<User>,
     ) {}
   
     async createBadge(createBadgeRequest: CreateBadgeRequest): Promise<any> {
@@ -68,13 +71,26 @@ import {
   
       await this.badgesRepository.remove(badges);
     }
+
+    async getBadgesWithUsers(): Promise<Badges[]> {
+      return this.badgesRepository
+        .createQueryBuilder('badge')
+        .leftJoinAndSelect('badge.users', 'user')
+        .getMany();
+    }
   
+    
     public async seed() {
       await this.badgesRepository.delete({});
-  
-      await this.badgesRepository.insert({
+      
+      const user1 = await this.usersRepository.findOneBy({
+        email: 'user@user.com',
+      })
+      
+      const badge1 =  this.badgesRepository.insert({
         badge: 'Junior php',
         nb_point: 10,
+        // users: [user1]
       });
       await this.badgesRepository.insert({
         badge: 'Intermédiaire php',

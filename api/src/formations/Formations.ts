@@ -14,13 +14,11 @@ import { User } from '../users/User';
   
     @Column()
     title: string;
+
+    @Column({nullable: true})
+    former: string;
   
     @ManyToMany(() => User)
-    @JoinTable()
-    former: User;
-  
-    @ManyToMany(() => User)
-    @JoinTable()
-    user: User[]
+    users: User[]
   }
   
