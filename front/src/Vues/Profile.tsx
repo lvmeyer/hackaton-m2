@@ -11,6 +11,7 @@ const Profil: React.FC = () => {
 	const { userInfo } = useSelector((state) => state.auth);
 	const [password, setPassword] = useState('');
 	const [competences, setCompetences] = useState<any[]>([]);
+  const [user, setUser] = useState<any[]>([]);
 
 	const handleUpdatePassword = async (e: any) => {
 		e.preventDefault();
@@ -37,8 +38,25 @@ const Profil: React.FC = () => {
 		});
 	};
 
+  useEffect(() => {
+    const userId = JSON.parse(localStorage.getItem('userInfo')).id;
+    fetch(`http://localhost:3000/users/${userId}` , {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('userInfo')).access_token,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setUser(data);
+      });
+  }, []);
+
+
 	useEffect(() => {
-		const userId = JSON.parse(localStorage.getItem('userInfo')).id || 'eeee';
+		const userId = JSON.parse(localStorage.getItem('userInfo')).id;
 		fetch(`http://localhost:3000/users/${userId}/competences`, {
 			method: 'GET',
 			headers: {
@@ -51,8 +69,6 @@ const Profil: React.FC = () => {
 			.then(
 				(data) => {
 					setCompetences(data.userCompetences)
-        })
-        .catch((error) => {
         });
 	}, []);
 
@@ -69,29 +85,48 @@ const Profil: React.FC = () => {
 									className="rounded-circle img-fluid"
 									style={{ width: '150px' }}
 								/>
-								<h5 className="my-3">{userInfo.email}</h5>
+								<h5 className="my-3">{user.firstname} {user.lastname}</h5>
 								<p className="text-muted mb-1">Full Stack Developer</p>
-								<p className="text-muted mb-4">{userInfo.role}</p>
 							</div>
 						</div>
-            <div className="card mb-4">
-              <div className='card-body'>
-                <div className="card-body p-0">
-                  <span className="text-primary font-italic me-1">
-                    Mes Badges
-                  </span>{' '}                
-                  <ul className="list-group list-group-flush rounded-3">
-                    <li className="list-group-item d-flex justify-content-between align-items-center p-3">
-                      <p className="mb-0">https://mdbootstrap.com</p>
-                    </li>
-                  </ul>
+						{userInfo && userInfo.role === 'USER' ? (
+              <div className="card mb-4">
+                <div className='card-body'>
+                  <div className="card-body p-0">
+                    <span className="text-primary font-italic me-1">
+                      Mes Badges
+                    </span>{' '}                
+                    <ul className="list-group list-group-flush rounded-3">
+                      <li className="list-group-item d-flex justify-content-between align-items-center p-3">
+                        <p className="mb-0">https://mdbootstrap.com</p>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
-            </div>
+            ) : null}
 					</div>
 					<div className="col-lg-8">
 						<div className="card mb-4">
 							<div className="card-body">
+								<div className="row">
+									<div className="col-sm-3">
+										<p className="mb-0">Prénom</p>
+									</div>
+									<div className="col-sm-9">
+										<p className="text-muted mb-0">{user.firstname}</p>
+									</div>
+								</div>
+								<hr />
+								<div className="row">
+									<div className="col-sm-3">
+										<p className="mb-0">Nom</p>
+									</div>
+									<div className="col-sm-9">
+										<p className="text-muted mb-0">{user.lastname}</p>
+									</div>
+								</div>
+								<hr />
 								<div className="row">
 									<div className="col-sm-3">
 										<p className="mb-0">Email</p>
