@@ -112,16 +112,6 @@ export class UsersService {
     return user;
   }
 
-  // async findBadge(uuid: string) {
-  //   const badge = await this.badgesRepository.findOne({
-  //     where: {
-  //       id: uuid,
-  //       badge: 'Junior php'
-  //     },
-  //   });
-  //   return badge;
-  // }
-
   async update(
     uuid: string,
     updateUserRequest: UpdateUserRequest,
