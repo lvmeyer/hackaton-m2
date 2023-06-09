@@ -13,8 +13,7 @@ const Navbar: React.FC = () => {
 	useEffect(() => {
 		const storedUserInfo = localStorage.getItem('userInfo');
 		const userInfo = storedUserInfo ? JSON.parse(storedUserInfo) : null;
-
-		dispatch(setCredentials(userInfo));
+		if (userInfo) dispatch(setCredentials(userInfo));
 	}, [dispatch]);
 
 	const logoutHandler = () => {
