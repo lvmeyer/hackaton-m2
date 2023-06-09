@@ -11,9 +11,10 @@ import { Level } from '../level/Level';
 import { LevelsService } from '../level/level.service';
 import { BadgesService } from '../badges/badges.service';
 import { Badges } from '../badges/Badges';
+import { UserCompetences } from '../user-competences/UserCompetences';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Competence, User, Mission, Level, Badges])],
+  imports: [TypeOrmModule.forFeature([Competence, User, Mission, Level, Badges, UserCompetences])],
   controllers: [CompetencesController],
   providers: [CompetencesService, UsersService, MissionsService, LevelsService, BadgesService],
   exports: [CompetencesService],

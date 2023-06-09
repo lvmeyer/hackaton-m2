@@ -30,7 +30,7 @@ const Profil: React.FC = () => {
 				body: JSON.stringify({ password }),
 			});
 
-			// navigate('/home');
+			// navigate('/');
 		} catch (error: any) {
 			toast.error(error.data.message);
 			console.error(error);
@@ -180,7 +180,7 @@ const Profil: React.FC = () => {
 											<p className="mb-4">
 												<span className="text-primary font-italic me-1">
 													Vos Compétences
-												</span>{' '} 
+												</span>{' '}
 											</p>
 
 											{competences.map((comp, index) => (
