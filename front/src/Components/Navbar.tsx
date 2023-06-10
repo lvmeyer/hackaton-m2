@@ -61,7 +61,7 @@ const Navbar: React.FC = () => {
 							</Link>
 						</li>
 						<li>
-							<button onClick={logoutHandler}>Déconnexion</button>
+							<button onClick={logoutHandler} className='btn carbon-btn'>Déconnexion</button>
 						</li>
 					</>
 				) : userInfo && userInfo.role === 'USER' ? (
@@ -76,7 +76,7 @@ const Navbar: React.FC = () => {
 							</Link>
 						</li>
 						<li>
-							<button onClick={logoutHandler}>Déconnexion</button>
+							<button onClick={logoutHandler} className='btn carbon-btn'>Déconnexion</button>
 						</li>
 					</>
 				) : (
