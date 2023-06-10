@@ -8,6 +8,7 @@ import './index.css';
 import Login from './Vues/Login.tsx';
 import Mission from './Vues/Missions/Missions.tsx';
 import CreateMission from './Vues/Missions/form_create.tsx';
+import CreateFormation from './Components/Create_Formation.tsx';
 // import Formation from './Vues/Formation.tsx';
 
 import {
@@ -32,6 +33,7 @@ const router = createBrowserRouter(
 			<Route path="/register" element={<Register />} />
 			<Route path="/profile" element={<Profile />} />
 			<Route path="/formation" element={<Formation />} />
+			<Route path="/formations/create" element={<CreateFormation />} />
 			<Route path="/missions" element={<Mission />} />
 			<Route path="/missions/create" element={<CreateMission />} />
 			<Route path="/level" element={<Level />} />

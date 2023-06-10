@@ -11,7 +11,9 @@ const Profil: React.FC = () => {
 	const { userInfo } = useSelector((state) => state.auth);
 	const [password, setPassword] = useState('');
 	const [competences, setCompetences] = useState<any[]>([]);
-  const [user, setUser] = useState<any[]>([]);
+  	const [user, setUser] = useState<any[]>([]);
+	const [formations, setFormations] = useState<any[]>([]);
+	const [badges, setBadges] = useState<any[]>([]);
 
 	const handleUpdatePassword = async (e: any) => {
 		e.preventDefault();
@@ -38,21 +40,20 @@ const Profil: React.FC = () => {
 		});
 	};
 
-  useEffect(() => {
-    const userId = JSON.parse(localStorage.getItem('userInfo')).id;
-    fetch(`http://localhost:3000/users/${userId}` , {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('userInfo')).access_token,
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setUser(data);
-      });
-  }, []);
+	useEffect(() => {
+		const userId = JSON.parse(localStorage.getItem('userInfo')).id;
+		fetch(`http://localhost:3000/users/${userId}` , {
+		method: 'GET',
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('userInfo')).access_token,
+		},
+		})
+		.then((response) => response.json())
+		.then((data) => {
+        	setUser(data);
+		});
+	}, []);
 
 
 	useEffect(() => {
@@ -72,6 +73,28 @@ const Profil: React.FC = () => {
         });
 	}, []);
 
+
+	
+	// useEffect(() => {
+	// 	const userId = JSON.parse(localStorage.getItem('userInfo')).id;
+	// 	fetch(`http://localhost:3000/badges/5ced3aa2-86e4-4105-9784-f35590990b98`, {
+	// 		method: 'GET',
+	// 		headers: {	
+	// 			'Content-Type': 'application/json',
+	// 			Authorization:
+	// 				'Bearer ' + JSON.parse(localStorage.getItem('userInfo')).access_token,
+	// 		},
+	// 	})
+	// 		.then((response) => response.json())
+	// 		.then(
+	// 			(data) => {
+	// 				console.log(data)
+	// 				setBadges(data)
+    //     });
+	// }, []);
+	
+
+
 	return (
 		<section style={{ backgroundColor: '#eee' }}>
 			<div className="container py-5">
@@ -89,20 +112,20 @@ const Profil: React.FC = () => {
 								<p className="text-muted mb-1">Full Stack Developer</p>
 							</div>
 						</div>
-						{userInfo && userInfo.role === 'USER' ? (
-              <div className="card mb-4">
-                <div className='card-body'>
-                  <div className="card-body p-0">
-                    <span className="text-primary font-italic me-1">
-                      Mes Badges :
-                    </span>{' '}                
-                    <ul className="list-group list-group-flush rounded-3">
+					{userInfo && userInfo.role === 'USER' ? (
+						<div className="card mb-4">
+							<div className='card-body'>
+							<div className="card-body p-0">
+								<span className="text-primary font-italic me-1">
+								Mes Badges :
+								</span>{' '}                
+								<ul className="list-group list-group-flush rounded-3">
 
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            ) : null}
+								</ul>
+							</div>
+							</div>
+						</div>
+					) : null}
 					</div>
 					<div className="col-lg-8">
 						<div className="card mb-4">
@@ -194,7 +217,8 @@ const Profil: React.FC = () => {
 								</div>
 							</div>
 						) : null}
-					</div>
+					</div>	
+					
 					<TableauFormations />
 				</div>
 			</div>
