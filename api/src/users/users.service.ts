@@ -35,7 +35,7 @@ export class UsersService {
     private readonly usercompetencesRepository: Repository<UserCompetences>,
     private readonly jwtService: JwtService,
     @InjectRepository(Badges)
-    private readonly badgesRepository: Repository<Badges>
+    private readonly badgesRepository: Repository<Badges>,
   ) {}
 
   async getMe(access_token: string): Promise<User> {
@@ -113,7 +113,6 @@ export class UsersService {
     return user;
   }
 
-
   async update(
     uuid: string,
     updateUserRequest: UpdateUserRequest,
@@ -173,9 +172,8 @@ export class UsersService {
       badge: 'Junior php',
     })
     const badge2 = await this.badgesRepository.findOneBy({
-      badge: 'Expert php',
+      badge: 'Expert JAVA',
     })
-
     const administrator = this.usersRepository.create({
       role: Role.ADMINISTRATOR,
       email: 'admin@admin.com',

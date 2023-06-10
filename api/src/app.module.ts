@@ -17,6 +17,7 @@ import { SeedService } from './seed/seed.service';
 import { LevelsModule } from './level/level.module';
 import { MissionsModule } from './missions/missions.module';
 import { BadgesModule } from './badges/badges.module';
+import { FormationsModule } from './formations/formations.module';
 
 import { UserCompetencesModule } from './user-competences/user-competences.module';
 import { UserCompetences } from './user-competences/UserCompetences';
@@ -42,6 +43,7 @@ import { UserCompetences } from './user-competences/UserCompetences';
     AuthenticationModule,
     LevelsModule,
     BadgesModule,
+    FormationsModule,
     UserCompetencesModule,
   ],
   controllers: [AuthenticationController],
