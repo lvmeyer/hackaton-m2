@@ -2,7 +2,9 @@ import {
   Column,
   Entity,
   PrimaryGeneratedColumn,
+  ManyToMany
 } from 'typeorm';
+import { User } from '../users/User';
 
 @Entity()
 export class Badges {
@@ -15,4 +17,6 @@ export class Badges {
   @Column()
   nb_point: number;
 
+  @ManyToMany(() => User, (user) => user.formations)
+  users: User[]
 }

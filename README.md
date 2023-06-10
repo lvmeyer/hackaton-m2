@@ -47,5 +47,5 @@ make seed
 | Pierre BOITELLE   | CRUD Missions, liste des missions possible, création de la route de création d'une mission  |
 | Pierre BOITELLE   | Listing des compétences d'un utilsateur en leur assignant un nombre de points d'expérience   |
 | Odessa CHESNEAU   |    |
-| Victor VALEE   |    |
+| Victor VALEE   | CRUD Formations, Badges, Level, + relationships   |
 | Ulysse MF   |    |
