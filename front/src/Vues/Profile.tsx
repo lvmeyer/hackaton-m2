@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import TableauFormations from '../Components/DevPage/TableauFormations';
 import Competence from '../Components/DevPage/Competence';
+import Badge from '../Components/DevPage/Badge';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -97,7 +98,7 @@ const Profil: React.FC = () => {
                       Mes Badges :
                     </span>{' '}                
                     <ul className="list-group list-group-flush rounded-3">
-
+						<Badge />
                     </ul>
                   </div>
                 </div>
