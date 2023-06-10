@@ -12,7 +12,7 @@ const Profil: React.FC = () => {
 	const { userInfo } = useSelector((state) => state.auth);
 	const [password, setPassword] = useState('');
 	const [competences, setCompetences] = useState<any[]>([]);
-  const [user, setUser] = useState<any[]>([]);
+  	const [user, setUser] = useState<any[]>([]);
 
 	const handleUpdatePassword = async (e: any) => {
 		e.preventDefault();
@@ -50,7 +50,6 @@ const Profil: React.FC = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setUser(data);
       });
   }, []);
@@ -90,7 +89,7 @@ const Profil: React.FC = () => {
 								<p className="text-muted mb-1">Full Stack Developer</p>
 							</div>
 						</div>
-						{userInfo && userInfo.role === 'USER' ? (
+						{/* {userInfo && userInfo.role === 'ADMINISTRATOR' ? ( */}
               <div className="card mb-4">
                 <div className='card-body'>
                   <div className="card-body p-0">
@@ -103,7 +102,7 @@ const Profil: React.FC = () => {
                   </div>
                 </div>
               </div>
-            ) : null}
+            {/* ) : null} */}
 					</div>
 					<div className="col-lg-8">
 						<div className="card mb-4">
