@@ -166,6 +166,11 @@ ul > li {
     margin: 1em;
 }
 
+.carbon-btn-vert {
+	background-color: #00BB7E;
+	margin: 1em;
+}
+
 .titles-dashboard {
     display: flex;
     justify-content: space-between;
@@ -206,3 +211,32 @@ ul > li {
 	margin-bottom: 8px;
   }
   
+.news-img {
+	width: 70%;
+	border-radius: 10%;
+	height: auto;
+}
+
+.news-content {
+	padding: 0 5%;
+	
+}
+
+.bg-news {
+	background-color: #aaafb3;
+	padding: 1em;
+	color: white;
+}
+
+.blog {
+	padding: 1em;
+	display: flex;
+}
+
+/* ########### CAROUSSEL ############# */
+.img-arrival{
+	border-radius: 50%;
+	width: 100px; /* Ajustez la taille des images selon vos besoins */
+	height: 100px;
+}
+
