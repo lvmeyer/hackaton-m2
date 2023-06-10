@@ -28,7 +28,7 @@ import {
   
   
   @Controller('formations')
-export class FormationsController {
+    export class FormationsController {
     constructor(private readonly formationsService: FormationsService) {}
   
   
