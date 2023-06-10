@@ -44,14 +44,14 @@ const hundleDeleteFormation = async (userId) => {
     return (
         <>
             <div className="titles-dashboard">
-                <h1>Utilisateurs </h1>
+                <h1>Nos développeurs</h1>
                 <Link className="btn carbon-btn" to="/users/create">Ajouter un nouvel utilisateur</Link>
             </div>
             <table className="table table-hover">
                 <thead>
                     <tr>
-                        <th scope="col">Prénom</th>
                         <th scope="col">Nom</th>
+                        <th scope="col"></th>
                         <th scope="col">Email</th>
                         <th scope="col">Actions</th>
                     </tr>
@@ -59,14 +59,19 @@ const hundleDeleteFormation = async (userId) => {
                 <tbody>
                 {users.map(user => (
             <tr key={user.id}>
-                <td>{user.firstname}</td>
-                <td>{user.lastname}</td>
+                <td><img
+									src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+									alt="avatar"
+									className="rounded-circle img-fluid"
+									style={{ width: '75px' }}
+								/>{user.firstname} {user.lastname}</td>
+                <td></td>
                 <td>{user.email}</td>
                 <td>
                             <button
                             type="button"
                             onClick={() => hundleDeleteFormation(user.id)}
-                            className="btn btn-danger"
+                            className="btn carbon-btn"
                             >
                             Supprimer
                             </button>
@@ -75,6 +80,11 @@ const hundleDeleteFormation = async (userId) => {
           ))}
                 </tbody>
             </table>
+
+
+
+         
+
         </>
 
     );
