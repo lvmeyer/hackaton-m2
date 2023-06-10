@@ -33,7 +33,7 @@ import {
   
   
     @AuthenticationRequired()
-    @HasRole(Role.ADMINISTRATOR)
+    @HasRole(Role.ADMINISTRATOR || Role.USER)
     @Get()
     @HttpCode(HttpStatus.OK)
     public getFormations() {

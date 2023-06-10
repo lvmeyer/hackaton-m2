@@ -113,6 +113,18 @@ export class UsersService {
     return user;
   }
 
+  async findUserBadges(uuid: string) {
+    const user = await this.usersRepository.findOne({
+      where: {
+        id: uuid,
+      },
+      relations: {
+        badges: true,
+      }
+    });
+    return user;
+  }
+
   async update(
     uuid: string,
     updateUserRequest: UpdateUserRequest,
