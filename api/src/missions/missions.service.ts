@@ -96,22 +96,25 @@ import { User } from '../users/User';
     public async seed() {
 
       const competence = await this.competencesRepository.findOneBy({
-        competence: 'PHP',
+        competence: 'Java',
       });
       const competence2 = await this.competencesRepository.findOneBy({
-        competence: 'Bon vivant le man !',
+        competence: 'Node.js',
+      });
+      const competence3 = await this.competencesRepository.findOneBy({
+        competence: 'React.js',
       });
       const level = await this.levelsRepository.findOneBy({ level: 'Junior' });
       const user = await this.usersRepository.findOneBy({ email: 'user@user.com' });
 
       const missions1 = this.missionsRepository.create({
-        title: 'Développeur Backend PHP',
-        description: 'Développeur Backend PHP',
+        title: 'Développeur Backend Java',
+        description: 'Développeur Backend Java',
         points: 100,
         entreprise: 'SNCF',
         startMission: '2023-08-01',
         endMission: '2023-12-01',
-        competences: [competence, competence2],
+        competences: [competence],
         level: level,
         user: user,
       });
@@ -140,7 +143,7 @@ import { User } from '../users/User';
         entreprise: 'Thalès',
         startMission: '2023-08-01',
         endMission: '2023-12-01',
-        competences: [],
+        competences: [competence3],
         level: level,
       });
       await this.missionsRepository.save(missions3);
