@@ -14,7 +14,6 @@ const Profil: React.FC = () => {
 	const [password, setPassword] = useState('');
 	const [competences, setCompetences] = useState<any[]>([]);
   	const [user, setUser] = useState<any[]>([]);
-	const [formations, setFormations] = useState<any[]>([]);
 	const [badges, setBadges] = useState<any[]>([]);
 
 	const handleUpdatePassword = async (e: any) => {

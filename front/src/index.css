@@ -243,3 +243,112 @@ ul > li {
 	width: 100px; /* Ajustez la taille des images selon vos besoins */
 	height: 100px;
 }
+
+/* Import de la police de caractères */
+@import url('https://fonts.googleapis.com/css2?family=Larsseit:wght@400;700&display=swap');
+
+/* Couleurs */
+:root {
+  --primary-color: #282B2A;
+  --secondary-color: #E53F49;
+  --tertiary-color: #00BB7E;
+  --text-color: #FDFDFD;
+  --accent-color: #5B98D2;
+}
+
+/* Typographie */
+body {
+  font-family: 'Larsseit', sans-serif;
+  color: var(--text-color);
+}
+
+/* Navbar */
+.nav-bg-color {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  height: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 200px;
+}
+
+.nav-logo {
+  width: 150px;
+  height: auto;
+}
+
+.nav-app {
+  display: flex;
+}
+
+.content {
+  flex-grow: 1;
+  margin-left: 200px;
+}
+
+.nav-text {
+  padding: 10px;
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+ul {
+  list-style-type: none;
+}
+
+ul > li {
+  padding-bottom: 1em;
+}
+
+.logo {
+  width: 125px;
+  height: auto;
+}
+
+.carbon-btn {
+  background-color: var(--secondary-color);
+  margin: 1em;
+}
+
+.carbon-btn-vert {
+  background-color: var(--tertiary-color);
+  margin: 1em;
+}
+
+/* Actualités */
+.news-img {
+  width: 70%;
+  border-radius: 10%;
+  height: auto;
+}
+
+.news-content {
+  padding: 0 5%;
+}
+
+.bg-news {
+  background-color: var(--accent-color);
+  padding: 1em;
+  color: var(--text-color);
+}
+
+/* Carrousel */
+.img-arrival {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+
+.bg-team {
+	margin: 5%;
+	text-align: center;
+	color: black;
+}
+
+.new-carbon{
+	font-size: 2em;
+}
