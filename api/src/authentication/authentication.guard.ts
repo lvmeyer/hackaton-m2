@@ -36,7 +36,6 @@ export class AuthenticationGuard implements CanActivate {
     if (!token) {
       throw new BadRequestException('Token is missing');
     }
-    console.log('token', token);
 
     try {
       const role = this.reflector.get<string | undefined>(
@@ -49,7 +48,6 @@ export class AuthenticationGuard implements CanActivate {
 
       const user = await this.usersService.getUserById(id);
 
-      console.log(user);
 
       if (!user) {
         throw new BadRequestException('Invalid user');

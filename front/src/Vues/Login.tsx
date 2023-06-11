@@ -47,7 +47,7 @@ function Login() {
 	return (
 		<>
 			<form className="login_form" onSubmit={handleSubmitLogin}>
-				<h1>Login</h1>
+				<h1 className="h1-carbon">Login</h1>
 				<div className="form-outline mb-4">
 					<input
 					type="email"
@@ -78,7 +78,7 @@ function Login() {
 						id="form2Example34"
 						checked
 						/>
-						<label className="form-check-label">Se souvenir de moi</label>
+						<label className="form-check-label h1-carbon">Se souvenir de moi</label>
 					</div>
 					</div>
 				</div>

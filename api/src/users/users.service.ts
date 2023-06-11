@@ -39,7 +39,6 @@ export class UsersService {
   ) {}
 
   async getMe(access_token: string): Promise<User> {
-    console.log('access_token', access_token);
     const email = this.jwtService.verify(access_token, {
       secret: process.env.JWT_SECRET,
     }).email;

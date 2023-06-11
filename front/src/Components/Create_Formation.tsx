@@ -45,7 +45,7 @@ function CreateFormation() {
     return (
         <>
             <div className="titles-dashboard">
-                <h1>Nouvelle Formation (côté RH)</h1>
+                <h1 className="h1-carbon">Nouvelle Formation (côté RH)</h1>
                 <Link className="btn carbon-btn" to="/formation">Retour</Link>
             </div>
             <form className="form-missions" onSubmit={handleSubmit}>

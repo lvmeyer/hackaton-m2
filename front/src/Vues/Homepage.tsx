@@ -33,7 +33,7 @@ function Homepage() {
   return (
     <>
       <div className="bg-news">
-        <h1>Actualités</h1>
+        <h1 className="h1-news">Actualités</h1>
         <div className="news news-content">
           <div className="row gx-5">
             <div className="col-md-6 mb-4">
@@ -59,13 +59,13 @@ function Homepage() {
       </div>
       <div className="bg-team">
         <p className="new-carbon">Nouveaux arrivants au sein de Carbon</p>
-        <div className="carousel">
+        <div className="d-flex align-items-center">
           <button className="carousel-control btn carbon-btn" onClick={previousSlide}>
             Previous
           </button>
           <div className="d-flex flex-column">
             <img src={images[currentSlide]} alt={`Slide ${currentSlide}`} className="slide img-arrival" />
-            <p>{namedev[currentSlide]}</p>
+            <p className="namedev">{namedev[currentSlide]}</p>
           </div>
           <button className="carousel-control btn carbon-btn" onClick={nextSlide}>
             Next

@@ -32,7 +32,6 @@ export default function Level() {
 		}
 		// Envoyer les données du formulaire à la table "level"
 		// Exécutez ici votre logique pour enregistrer les données dans votre base de données ou effectuer toute autre action souhaitée
-		console.log('Données envoyées :', level);
 	  };
 	
 

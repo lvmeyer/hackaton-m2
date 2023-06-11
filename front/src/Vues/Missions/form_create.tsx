@@ -48,7 +48,7 @@ function CreateMission() {
     return (
         <>
             <div className="titles-dashboard">
-                <h1>Nouvelle mission (côté RH)</h1>
+                <h1 className="h1-carbon">Nouvelle mission (côté RH)</h1>
                 <Link className="btn carbon-btn" to="/missions">Retour</Link>
             </div>
             <form className="form-missions" onSubmit={handleSubmit}>
