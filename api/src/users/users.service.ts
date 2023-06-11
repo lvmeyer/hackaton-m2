@@ -160,6 +160,7 @@ export class UsersService {
     await this.usercompetencesRepository.delete({});
     await this.missionsRepository.delete({});
     await this.usersRepository.delete({});
+    await this.badgesRepository.delete({});
 
     const competence = await this.competencesRepository.findOneBy({
       competence: 'Java',
@@ -180,6 +181,12 @@ export class UsersService {
       competence: 'Vue.js',
     });
 
+    const badgeExpertJs = this.badgesRepository.create({
+      badge: 'Intermediaire JS',
+      nb_point: 30,
+    });
+    const InteJs = await this.badgesRepository.save(badgeExpertJs);
+
     const administrator = this.usersRepository.create({
       role: Role.ADMINISTRATOR,
       email: 'admin@admin.com',
@@ -194,6 +201,7 @@ export class UsersService {
       email: 'user@user.com',
       firstname: 'Odessa',
       lastname: 'Chesneau',
+      badges: [InteJs],
       password: userPassword,
     });
     await this.usersRepository.save(user);

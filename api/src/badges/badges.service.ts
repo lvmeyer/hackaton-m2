@@ -83,7 +83,6 @@ import { hash } from 'bcryptjs';
     
     public async seed() {
       const userPassword = await hash('password', 10);
-      await this.badgesRepository.delete({});
       
       // const user1 = await this.usersRepository.findOneBy({
       //   email: 'user@user.com',
@@ -101,21 +100,16 @@ import { hash } from 'bcryptjs';
       });
       await this.badgesRepository.save(badgeIntermediaireNest);
 
-      const badgeExpertJs = this.badgesRepository.create({
-        badge: 'Intermediaire JS',
-        nb_point: 30,
-      });
-      const InteJs = await this.badgesRepository.save(badgeExpertJs);
 
       const badgeExpertNest = this.badgesRepository.create({
         badge: 'Expert Nest',
-        nb_point: 100,
+        nb_point: 200,
       });
       const expertNest = await this.badgesRepository.save(badgeExpertNest);
 
       const badgeSeniortNest = this.badgesRepository.create({
         badge: 'Senior Nest',
-        nb_point: 300,
+        nb_point: 100,
       });
       const seniorNest = await this.badgesRepository.save(badgeSeniortNest);
 
@@ -125,7 +119,7 @@ import { hash } from 'bcryptjs';
         firstname: 'Victor',
         lastname: 'Valée',
         password: userPassword,
-        badges: [seniorNest, InteJs]
+        badges: [seniorNest, expertNest]
       });
       await this.usersRepository.save(user);
           }
