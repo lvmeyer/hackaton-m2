@@ -52,7 +52,7 @@ make seed
 | Odessa CHESNEAU | Front CRUD Utilisateurs côté RH/Admin                                                                                         |
 | Odessa CHESNEAU | Front CRUD Missions côté RH/Admin                                                                                             |
 | Odessa CHESNEAU | Front Navbar & Homepage                                                                                                       |
-| Victor VALEE    |                                                                                                                               |
+| Victor VALEE   | CRUD Formations, Badges, Level, + relationships   |
 | Ulysse MF       | Front Profile, mise en page des différents visuels : compétences / badges / formations / profil / update password par rôle et |
 | Ulysse MF       | Front Crétion & Suppression Formation coté RH                                                                                 |
 | Ulysse MF       | Front Login                                                                                                                   |
