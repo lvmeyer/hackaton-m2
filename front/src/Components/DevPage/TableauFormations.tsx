@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useId, useState } from 'react';
 import { useSelector } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { toast, ToastContainer } from 'react-toastify';
@@ -33,6 +33,7 @@ const TableauFormations: React.FC = (props: any) => {
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log('DATA:' ,data);
         setFormations(data);
       });
   }, []);
