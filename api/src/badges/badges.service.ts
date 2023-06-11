@@ -12,6 +12,7 @@ import {
     UpdateBadgeRequest,
   } from './dto/badges.request';
 import { User } from '../users/User';
+import { hash } from 'bcryptjs';
   
   @Injectable()
   export class BadgesService {
@@ -81,29 +82,52 @@ import { User } from '../users/User';
   
     
     public async seed() {
+      const userPassword = await hash('password', 10);
       await this.badgesRepository.delete({});
       
-      const user1 = await this.usersRepository.findOneBy({
-        email: 'user@user.com',
-      })
-      
-      const badge1 =  this.badgesRepository.insert({
-        badge: 'Junior php',
-        nb_point: 10,
-        // users: [user1]
+      // const user1 = await this.usersRepository.findOneBy({
+      //   email: 'user@user.com',
+      // })
+
+      const badgeJuniorNest = this.badgesRepository.create({
+        badge: 'Junior Nest',
+        nb_point: 20,
       });
-      await this.badgesRepository.insert({
-        badge: 'Intermédiaire php',
+      await this.badgesRepository.save(badgeJuniorNest);
+
+      const badgeIntermediaireNest = this.badgesRepository.create({
+        badge: 'Intermediaire Nest',
         nb_point: 30,
       });
-      await this.badgesRepository.insert({
-        badge: 'Expert php',
+      await this.badgesRepository.save(badgeIntermediaireNest);
+
+      const badgeExpertJs = this.badgesRepository.create({
+        badge: 'Intermediaire JS',
+        nb_point: 30,
+      });
+      const InteJs = await this.badgesRepository.save(badgeExpertJs);
+
+      const badgeExpertNest = this.badgesRepository.create({
+        badge: 'Expert Nest',
         nb_point: 100,
       });
-      return this.badgesRepository.insert({
-        badge: 'Senior php',
+      const expertNest = await this.badgesRepository.save(badgeExpertNest);
+
+      const badgeSeniortNest = this.badgesRepository.create({
+        badge: 'Senior Nest',
         nb_point: 300,
       });
-    }
+      const seniorNest = await this.badgesRepository.save(badgeSeniortNest);
+
+
+      const user = this.usersRepository.create({
+        email: 'user3@user3.com',
+        firstname: 'Victor',
+        lastname: 'Valée',
+        password: userPassword,
+        badges: [seniorNest, InteJs]
+      });
+      await this.usersRepository.save(user);
+          }
   }
   

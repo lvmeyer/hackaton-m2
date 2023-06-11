@@ -108,6 +108,14 @@ export class UsersController {
     return this.usersService.findUserCompetences(uuid);
   }
 
+  @Get(':uuid/badges')
+  @HttpCode(HttpStatus.OK)
+  async findUserBadges(
+    @Param('uuid', ParseUUIDPipe) uuid: string,
+  ): Promise<User> {
+    return this.usersService.findUserBadges(uuid);
+  }
+
   @Patch(':uuid')
   @AuthenticationRequired()
   @HasRole(Role.ADMINISTRATOR)

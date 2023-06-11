@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import TableauFormations from '../Components/DevPage/TableauFormations';
-import Competence from '../Components/DevPage/Competence';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+import TableauFormations from '../Components/DevPage/TableauFormations';
+import Competence from '../Components/DevPage/Competence';
+import Badge from '../Components/DevPage/Badge';
 
 const Profil: React.FC = () => {
 	const isAvailable = true; // Remplacez par la variable de disponibilité réelle du développeur
@@ -12,7 +14,6 @@ const Profil: React.FC = () => {
 	const [password, setPassword] = useState('');
 	const [competences, setCompetences] = useState<any[]>([]);
   	const [user, setUser] = useState<any[]>([]);
-	const [formations, setFormations] = useState<any[]>([]);
 	const [badges, setBadges] = useState<any[]>([]);
 
 	const handleUpdatePassword = async (e: any) => {
@@ -75,23 +76,22 @@ const Profil: React.FC = () => {
 
 
 	
-	// useEffect(() => {
-	// 	const userId = JSON.parse(localStorage.getItem('userInfo')).id;
-	// 	fetch(`http://localhost:3000/badges/5ced3aa2-86e4-4105-9784-f35590990b98`, {
-	// 		method: 'GET',
-	// 		headers: {	
-	// 			'Content-Type': 'application/json',
-	// 			Authorization:
-	// 				'Bearer ' + JSON.parse(localStorage.getItem('userInfo')).access_token,
-	// 		},
-	// 	})
-	// 		.then((response) => response.json())
-	// 		.then(
-	// 			(data) => {
-	// 				console.log(data)
-	// 				setBadges(data)
-    //     });
-	// }, []);
+	useEffect(() => {
+		const userId = JSON.parse(localStorage.getItem('userInfo')).id;
+		fetch(`http://localhost:3000/users/${userId}/badges`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization:
+					'Bearer ' + JSON.parse(localStorage.getItem('userInfo')).access_token,
+			},
+		})
+			.then((response) => response.json())
+			.then(
+				(data) => {
+					setBadges(data.badges)
+        });
+	}, []);
 	
 
 
@@ -118,10 +118,10 @@ const Profil: React.FC = () => {
 							<div className="card-body p-0">
 								<span className="text-primary font-italic me-1">
 								Mes Badges :
-								</span>{' '}                
-								<ul className="list-group list-group-flush rounded-3">
-
-								</ul>
+								</span>{' '}                 
+									{badges.map((data, index) => (
+										<Badge key={index} badges={data} />
+									))}
 							</div>
 							</div>
 						</div>

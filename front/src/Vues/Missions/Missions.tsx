@@ -50,7 +50,7 @@ const hundleDeleteFormation = async (missionId) => {
     return (
         <>
             <div className="titles-dashboard">
-                <h1>Missions</h1>
+                <h1 className="h1-carbon">Missions</h1>
                 <Link className="btn carbon-btn" to="/missions/create">Créer une mission</Link>
             </div>
             <table className="table table-hover">

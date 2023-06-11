@@ -42,7 +42,7 @@ function CreateUser() {
     return (
         <>
             <div className="titles-dashboard">
-                <h1>Nouvel utilisateur</h1>
+                <h1 className="h1-carbon">Nouvel utilisateur</h1>
                 <Link className="btn carbon-btn" to="/users">Retour</Link>
             </div>
             <form className="form-missions" onSubmit={handleSubmit}>

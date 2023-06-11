@@ -47,7 +47,7 @@ function Formation() {
     return (
         <>
             <div className="titles-dashboard">
-                <h1>Formations</h1>
+                <h1 className="h1-carbon">Formations</h1>
                 <Link className="btn carbon-btn" to="/formations/create">Créer une formation</Link>
             </div>
             <table className="table table-hover">

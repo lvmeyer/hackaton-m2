@@ -44,7 +44,7 @@ const hundleDeleteFormation = async (userId) => {
     return (
         <>
             <div className="titles-dashboard">
-                <h1>Nos développeurs</h1>
+                <h1 className="h1-carbon">Nos développeurs</h1>
                 <Link className="btn carbon-btn" to="/users/create">Ajouter un nouvel utilisateur</Link>
             </div>
             <table className="table table-hover">

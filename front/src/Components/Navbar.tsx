@@ -37,9 +37,12 @@ const Navbar: React.FC = () => {
 				{userInfo && userInfo.role === 'ADMINISTRATOR' ? (
 					<>
 						<li>{userInfo.email}</li>
+						<li>
 						<Link className="nav-text" to="/home">
 								Accueil
 						</Link>
+
+						</li>
 						<li>
 							<Link className="nav-text" to="/missions">
 								Missions
@@ -67,9 +70,11 @@ const Navbar: React.FC = () => {
 				) : userInfo && userInfo.role === 'USER' ? (
 					<>
 						<li>{userInfo.email}</li>
-						<Link className="nav-text" to="/home">
+						<li>
+							<Link className="nav-text" to="/home">
 								Accueil
 							</Link>
+						</li>
 						<li>
 							<Link className="nav-text" to="/profile">
 								Profil

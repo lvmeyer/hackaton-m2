@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useId, useState } from 'react';
 import { useSelector } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const TableauFormations: React.FC = (props: any) => {
+const TableauFormations: React.FC = () => {
   const [tabIndex, setTabIndex] = useState(0);
   const [formations, setFormations] = useState<any[]>([]);
   const { userInfo } = useSelector((state) => state.auth);
 
 
-  const formationsAVenir = [props.formations];
   const formationsTerminees = [
     ['Formation A', 'Formateur A'],
     ['Formation B', 'Formateur B'],
@@ -79,27 +78,22 @@ const TableauFormations: React.FC = (props: any) => {
                   </div>
                 </div>
               </li>
-              {userInfo && userInfo.role === 'ADMINISTRATOR' ? (
-                <>
-                {formations.map((formation, index) => (
-                  <li className="list-group-item" key={index}>
-                    <div className="row">
-                      <div className="col">{formation.title}</div>
-                      <div className="col">{formation.former}</div>
-                      <div className="col">
-                        <button
-                          className="btn btn-primary"
-                          onClick={() => rejoindreFormation(index)}
-                        >
-                          Rejoindre
-                        </button>
-                      </div>
+              {formations.map((formation, index) => (
+                <li className="list-group-item" key={index}>
+                  <div className="row">
+                    <div className="col">{formation.title}</div>
+                    <div className="col">{formation.former}</div>
+                    <div className="col">
+                      <button
+                        className="btn btn-primary"
+                        onClick={() => rejoindreFormation(index)}
+                      >
+                        Rejoindre
+                      </button>
                     </div>
-                  </li>
-                ))}
-                
-                </>
-              ) : null}
+                  </div>
+                </li>
+              ))}
             </ul>
           ) : (
             <ul className="list-group">

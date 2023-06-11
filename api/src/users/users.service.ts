@@ -39,7 +39,6 @@ export class UsersService {
   ) {}
 
   async getMe(access_token: string): Promise<User> {
-    console.log('access_token', access_token);
     const email = this.jwtService.verify(access_token, {
       secret: process.env.JWT_SECRET,
     }).email;
@@ -113,6 +112,18 @@ export class UsersService {
     return user;
   }
 
+  async findUserBadges(uuid: string) {
+    const user = await this.usersRepository.findOne({
+      where: {
+        id: uuid,
+      },
+      relations: {
+        badges: true,
+      }
+    });
+    return user;
+  }
+
   async update(
     uuid: string,
     updateUserRequest: UpdateUserRequest,
@@ -168,12 +179,7 @@ export class UsersService {
     const competence6 = await this.competencesRepository.findOneBy({
       competence: 'Vue.js',
     });
-    const badge1 = await this.badgesRepository.findOneBy({
-      badge: 'Junior php',
-    })
-    const badge2 = await this.badgesRepository.findOneBy({
-      badge: 'Expert JAVA',
-    })
+
     const administrator = this.usersRepository.create({
       role: Role.ADMINISTRATOR,
       email: 'admin@admin.com',
@@ -189,7 +195,6 @@ export class UsersService {
       firstname: 'Odessa',
       lastname: 'Chesneau',
       password: userPassword,
-      Badges: [badge1, badge2]
     });
     await this.usersRepository.save(user);
 
