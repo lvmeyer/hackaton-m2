@@ -42,10 +42,12 @@ make seed
 |-------------|----------------|
 | All   | MCD, Maquette  |
 | Dan LEVY   | Toute la partie authentification   |
-| Dan LEVY   | Gestion des utilisateurs et dess rôles   |
+| Dan LEVY   | Gestion des utilisateurs et des rôles   |
 | Pierre BOITELLE   | CRUD Compétence   |
 | Pierre BOITELLE   | CRUD Missions, liste des missions possible, création de la route de création d'une mission  |
 | Pierre BOITELLE   | Listing des compétences d'un utilsateur en leur assignant un nombre de points d'expérience   |
 | Odessa CHESNEAU   |    |
 | Victor VALEE   | CRUD Formations, Badges, Level, + relationships   |
-| Ulysse MF   |    |
+| Ulysse MF   | Front Profile, mise en page des différents visuels : compétences / badges / formations / profil / update password par rôle et |
+| Ulysse MF   | Front Crétion & Suppression Formation coté RH   |
+| Ulysse MF   | Front Login  |

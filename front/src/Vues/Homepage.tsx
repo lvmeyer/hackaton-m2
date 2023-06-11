@@ -48,25 +48,20 @@ function Homepage() {
                             <button type="button" className="btn carbon-btn-vert">Détails</button>
                         </div>
                     </div>
-                </div>
-                </div>
+                </div>     
                 <div className="bg-team">
-                
-                
-                <div className="carousel">
-                <button className="carousel-control" onClick={previousSlide}>
-                    Previous
-                </button>
-                <img src={images[currentSlide]} alt={`Slide ${currentSlide}`} className="slide" />
-                <button className="carousel-control" onClick={nextSlide}>
-                    Next
-                </button>
+                    Nouveaux arrivants au sein de Carbon
+                    <div className="carousel">
+                    <button className="carousel-control btn carbon-btn" onClick={previousSlide}>
+                            Previous
+                    </button>
+                    <img src={images[currentSlide]} alt={`Slide ${currentSlide}`} className="slide img-arrival" />
+                    <button className="carousel-control btn carbon-btn" onClick={nextSlide}>
+                        Next
+                    </button>
                 </div>
-                </div>
-
-
-               
-               
+            </div>
+        </div>
         </>
     );
 }
