@@ -38,6 +38,16 @@ cd hackaton-m2
 make seed
 ```
 
+## Logs
+
+ADMIN
+email : admin@admin.com
+password : password
+
+USER :
+email : user@user.com 
+password: password
+
 ## Liste des fonctionnalitées
 
 
