@@ -18,8 +18,11 @@ import {
 	createRoutesFromElements,
 } from 'react-router-dom';
 import Register from './Vues/Register.tsx';
+import RegisterWebMaster from './Vues/RegisterWebMaster.tsx';
 import Homepage from './Vues/Homepage.tsx';
 import Profile from './Vues/Profile.tsx';
+import WebAnalytics from './Vues/WebAnalytics.tsx';
+import WebMasters from './Vues/Users/WebMasters.tsx';
 import Formation from './Vues/Formation.tsx';
 import Level from './Vues/Level.tsx';
 import Users from './Vues/Users/Users.tsx';
@@ -34,6 +37,9 @@ const router = createBrowserRouter(
 			<Route path="/home" element={<Home />} />
 			<Route path="/register" element={<Register />} />
 			<Route path="/profile" element={<Profile />} />
+			<Route path="/web-analytics" element={<WebAnalytics />} />
+			<Route path="/webmasters" element={<WebMasters />} />
+			<Route path="/register-webmaster" element={<RegisterWebMaster />} />
 			<Route path="/formation" element={<Formation />} />
 			<Route path="/formations/create" element={<CreateFormation />} />
 			<Route path="/missions" element={<Mission />} />

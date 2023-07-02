@@ -21,6 +21,7 @@ import {
   UpdateProfileRequest,
   UpdateUserRequest,
   UpdatePasswordRequest,
+  CreateWebMasterRequest,
 } from './dto/users.request';
 import {
   AuthenticationRequired,
@@ -77,6 +78,8 @@ export class UsersController {
     );
   }
 
+
+
   @Post()
   @HttpCode(HttpStatus.CREATED)
   async createUser(
@@ -84,6 +87,19 @@ export class UsersController {
   ): Promise<User> {
     return await this.usersService.createUser(createUserRequest);
   }
+
+
+
+  @Post()
+  @HttpCode(HttpStatus.CREATED)
+  async createWebMaster(
+    @Body(ValidationPipe) createWebMasterRequest: CreateWebMasterRequest,
+  ): Promise<User> {
+    createWebMasterRequest.role = Role.WEBMASTER;
+    return await this.usersService.createWebMaster(createWebMasterRequest);
+  }
+
+
 
   @AuthenticationRequired()
   @HasRole(Role.ADMINISTRATOR)
@@ -93,12 +109,26 @@ export class UsersController {
     return this.usersService.getUsers();
   }
 
+
+
+  @AuthenticationRequired()
+  @HasRole(Role.ADMINISTRATOR)
+  @Get('/webmasters')
+  @HttpCode(HttpStatus.OK)
+  public getWebMasters() {
+    return this.usersService.getWebMasters();
+  }
+
+
+
   @Get(':uuid')
   @AuthenticationRequired()
   @HttpCode(HttpStatus.OK)
   async findById(@Param('uuid', ParseUUIDPipe) uuid: string): Promise<User> {
     return this.usersService.getUserById(uuid);
   }
+
+
 
   @Get(':uuid/competences')
   @HttpCode(HttpStatus.OK)
@@ -108,6 +138,8 @@ export class UsersController {
     return this.usersService.findUserCompetences(uuid);
   }
 
+
+
   @Get(':uuid/badges')
   @HttpCode(HttpStatus.OK)
   async findUserBadges(
@@ -115,6 +147,18 @@ export class UsersController {
   ): Promise<User> {
     return this.usersService.findUserBadges(uuid);
   }
+
+
+
+  @Get(':uuid/sites')
+  @HttpCode(HttpStatus.OK)
+  async findWebMasterSites(
+    @Param('uuid', ParseUUIDPipe) uuid: string,
+  ): Promise<User> {
+    return this.usersService.findWebMasterSites(uuid);
+  }
+
+
 
   @Patch(':uuid')
   @AuthenticationRequired()

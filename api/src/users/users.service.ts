@@ -12,6 +12,7 @@ import {
   UpdateProfileRequest,
   UpdateUserRequest,
   UpdatePasswordRequest,
+  CreateWebMasterRequest
 } from './dto/users.request';
 import { hash } from 'bcryptjs';
 import { Role } from '../authentication/authentication.enum';
@@ -79,19 +80,42 @@ export class UsersService {
 
   async createUser(createUserRequest: CreateUserRequest): Promise<any> {
     try {
+
       return await this.usersRepository.save(createUserRequest);
     } catch (err) {
       throw new InternalServerErrorException(err.driverError.message);
     }
   }
 
+
+
+  async createWebMaster(createWebMasterRequest: CreateWebMasterRequest): Promise<any> {
+    try {
+      return await this.usersRepository.save(createWebMasterRequest);
+    } catch (err) {
+      throw new InternalServerErrorException(err.driverError.message);
+    }
+  }
+
+
+
   public getUsers(): Promise<User[]> {
     return this.usersRepository.find();
   }
 
+
+
+  public getWebMasters(): Promise<User[]> {
+    return this.usersRepository.find({ where: { role: Role.WEBMASTER } });
+  }
+
+
+
   public getUserByEmail(email: string): Promise<User> {
     return this.usersRepository.findOneBy({ email });
   }
+
+
 
   async getUserById(uuid: string): Promise<User> {
     const user = await this.usersRepository.findOneBy({ id: uuid });
@@ -102,6 +126,8 @@ export class UsersService {
     return user;
   }
 
+
+
   async findUserCompetences(uuid: string) {
     const user = await this.usersRepository.findOne({
       where: {
@@ -111,6 +137,8 @@ export class UsersService {
     });
     return user;
   }
+
+
 
   async findUserBadges(uuid: string) {
     const user = await this.usersRepository.findOne({
@@ -123,6 +151,22 @@ export class UsersService {
     });
     return user;
   }
+
+
+
+  async findWebMasterSites(uuid: string) {
+    const user = await this.usersRepository.findOne({
+      where: {
+        id: uuid,
+      },
+      relations: {
+        sites: true,
+      }
+    });
+    return user;
+  }
+
+
 
   async update(
     uuid: string,
@@ -144,6 +188,8 @@ export class UsersService {
     }
   }
 
+
+
   async delete(uuid: string): Promise<any> {
     const user = await this.usersRepository.findOneBy({ id: uuid });
     if (!user) {
@@ -152,6 +198,8 @@ export class UsersService {
 
     await this.usersRepository.remove(user);
   }
+
+
 
   public async seed() {
     const userPassword = await hash('password', 10);

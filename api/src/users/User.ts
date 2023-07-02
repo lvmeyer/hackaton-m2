@@ -1,4 +1,4 @@
-import { IsEmail, IsString } from 'class-validator';
+import { IsBoolean, IsEmail, IsString } from 'class-validator';
 import { Role } from '../authentication/authentication.enum';
 import {
   Column,
@@ -6,6 +6,7 @@ import {
   Entity,
   JoinTable,
   ManyToMany,
+  ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -15,6 +16,7 @@ import { UserCompetences } from '../user-competences/UserCompetences';
 import { Badges } from '../badges/Badges';
 import { Mission } from '../missions/Mission';
 import { Formations } from '../formations/Formations';
+import { Sites } from 'src/WebAnalytics/sites/Sites';
 
 @Entity()
 export class User {
@@ -44,6 +46,10 @@ export class User {
   })
   public role: Role;
 
+  @Column({ default: false })
+  @IsBoolean()
+  isValid: boolean;
+
   @CreateDateColumn()
   createdDate: Date;
 
@@ -59,6 +65,9 @@ export class User {
   // @ManyToMany(() => Badges)
   // @JoinTable()
   // Badges: Badges[]
+
+  @OneToMany(() => Sites, (site) => site.user)
+  sites: Sites[]
 
   @ManyToMany(() => Badges, (badge) => badge.users)
   @JoinTable()

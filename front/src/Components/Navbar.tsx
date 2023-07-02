@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { logout, setCredentials } from '../slices/authSlice.ts';
@@ -7,12 +7,26 @@ import logo from '../../public/img/blanc-fond-gris.png';
 const Navbar: React.FC = () => {
 	const { userInfo } = useSelector((state) => state.auth);
 
+	const [user, setUser] = useState([]);
+
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		const storedUserInfo = localStorage.getItem('userInfo');
-		const userInfo = storedUserInfo ? JSON.parse(storedUserInfo) : null;
+
+		fetch('http://localhost:3000/users/me', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('userInfo')).access_token}
+        })
+		.then(response => response.json())
+		.then(
+			data => (setUser(data))
+		);
+
+		const storeduserInfo = localStorage.getItem('userInfo');
+		const userInfo = storeduserInfo ? JSON.parse(storeduserInfo) : null;
 		if (userInfo) {
 			dispatch(setCredentials(userInfo));
 		} else {
@@ -63,6 +77,60 @@ const Navbar: React.FC = () => {
 								Profil
 							</Link>
 						</li>
+						<li>Web analytics</li>
+						<li>
+							<Link className="nav-text" to="/webmasters">
+								Webmasters
+							</Link>
+						</li>
+						<li>
+							<Link className="nav-text" to="/tags">
+								Tags
+							</Link>
+						</li>
+						<li>
+							<Link className="nav-text" to="/tunnels">
+								Tunnels de conversion
+							</Link>
+						</li>
+						<li>
+							<button onClick={logoutHandler} className='btn carbon-btn'>Déconnexion</button>
+						</li>
+					</>
+				) : userInfo && userInfo.role === 'WEBMASTER' ? (
+					<>
+						<li>{userInfo.email}</li>
+						<li>
+							<Link className="nav-text" to="/home">
+								Accueil
+							</Link>
+						</li>
+						<li>
+							<Link className="nav-text" to="/profile">
+								Profil
+							</Link>
+						</li>
+						{user.isValid ? (
+							<>
+								<li>Web analytics</li>
+								<li>
+									<Link className="nav-text" to="/web-analytics">
+										Mes sites
+									</Link>
+								</li>
+								<li>
+									<Link className="nav-text" to="/tags">
+										Tags
+									</Link>
+								</li>
+								<li>
+									<Link className="nav-text" to="/tunnels">
+										Tunnels de conversion
+									</Link>
+								</li>
+							</>
+						): ''}
+						
 						<li>
 							<button onClick={logoutHandler} className='btn carbon-btn'>Déconnexion</button>
 						</li>
@@ -85,7 +153,20 @@ const Navbar: React.FC = () => {
 						</li>
 					</>
 				) : (
-					<></>
+					<>
+						<li>Interne</li>
+						<li>
+							<Link className="nav-text" to="/login">
+								Connexion
+							</Link>
+						</li>
+						<li>Web analytics</li>
+						<li>
+							<Link className="nav-text" to="/register-webmaster">
+								Devenir web master
+							</Link>
+						</li>
+					</>
 				)}
 			</ul>
 		</nav>

@@ -13,11 +13,13 @@ import { BadgesService } from '../badges/badges.service';
 import { Badges } from '../badges/Badges';
 import { UserCompetences } from '../user-competences/UserCompetences';
 import { UserCompetencesService } from '../user-competences/user-competences.service';
+import { Sites } from '../WebAnalytics/sites/Sites';
+import { SitesService } from '../WebAnalytics/sites/sites.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User, Competence, Mission, Level, Badges, UserCompetences])],
+  imports: [TypeOrmModule.forFeature([User, Competence, Mission, Level, Badges, UserCompetences, Sites])],
   controllers: [UsersController],
-  providers: [UsersService, CompetencesService, MissionsService, LevelsService, BadgesService, UserCompetencesService],
+  providers: [UsersService, CompetencesService, MissionsService, LevelsService, BadgesService, UserCompetencesService, SitesService],
   exports: [UsersService],
 })
 export class UsersModule {}
