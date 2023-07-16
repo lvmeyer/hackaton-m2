@@ -83,6 +83,12 @@ const Navbar: React.FC = () => {
 								Webmasters
 							</Link>
 						</li>
+						
+						<li>
+							<Link className="nav-text" to="/web-analytics">
+								Mes sites
+							</Link>
+						</li>
 						<li>
 							<Link className="nav-text" to="/tags">
 								Tags
@@ -110,26 +116,22 @@ const Navbar: React.FC = () => {
 								Profil
 							</Link>
 						</li>
-						{user.isValid ? (
-							<>
-								<li>Web analytics</li>
-								<li>
-									<Link className="nav-text" to="/web-analytics">
-										Mes sites
-									</Link>
-								</li>
-								<li>
-									<Link className="nav-text" to="/tags">
-										Tags
-									</Link>
-								</li>
-								<li>
-									<Link className="nav-text" to="/tunnels">
-										Tunnels de conversion
-									</Link>
-								</li>
-							</>
-						): ''}
+						<li>Web analytics</li>
+						<li>
+							<Link className="nav-text" to="/web-analytics">
+								Mes sites
+							</Link>
+						</li>
+						<li>
+							<Link className="nav-text" to="/tags">
+								Tags
+							</Link>
+						</li>
+						<li>
+							<Link className="nav-text" to="/tunnels">
+								Tunnels de conversion
+							</Link>
+						</li>
 						
 						<li>
 							<button onClick={logoutHandler} className='btn carbon-btn'>Déconnexion</button>

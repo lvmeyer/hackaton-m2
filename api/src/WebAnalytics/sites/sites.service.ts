@@ -19,6 +19,15 @@ export class SitesService {
   ) {}
 
 
+  async getSiteById(uuid: string): Promise<Sites> {
+    const Site = await this.SitesRepository.findOneBy({ id: uuid });
+    if (!Site) {
+      throw new NotFoundException('Site not found');
+    }
+
+    return Site;
+  }
+
 
   async createSite(
     createSiteRequest: CreateSiteRequest,
@@ -30,19 +39,6 @@ export class SitesService {
     }
   }
 
-
-
-  async getSiteById(uuid: string): Promise<Sites> {
-    const Site = await this.SitesRepository.findOneBy({ id: uuid });
-    if (!Site) {
-      throw new NotFoundException('Site not found');
-    }
-
-    return Site;
-  }
-
-
-
   async delete(uuid: string): Promise<any> {
     const Site = await this.SitesRepository.findOneBy({ id: uuid });
     if (!Site) {
@@ -50,6 +46,10 @@ export class SitesService {
     }
 
     await this.SitesRepository.remove(Site);
+  }
+
+  public async seed() {
+    await this.SitesRepository.delete({});
   }
 
 }

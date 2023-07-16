@@ -28,6 +28,7 @@ import Level from './Vues/Level.tsx';
 import Users from './Vues/Users/Users.tsx';
 import CreateUser from './Vues/Users/form_create.tsx';
 import Home from './Vues/Homepage.tsx';
+import TagView from './Vues/TagView.tsx';
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -40,6 +41,8 @@ const router = createBrowserRouter(
 			<Route path="/web-analytics" element={<WebAnalytics />} />
 			<Route path="/webmasters" element={<WebMasters />} />
 			<Route path="/register-webmaster" element={<RegisterWebMaster />} />
+			<Route path="/tags" element={<TagView />} />
+			{/* <Route path="/tunnels" element={<WebAnalytics />} /> */}
 			<Route path="/formation" element={<Formation />} />
 			<Route path="/formations/create" element={<CreateFormation />} />
 			<Route path="/missions" element={<Mission />} />

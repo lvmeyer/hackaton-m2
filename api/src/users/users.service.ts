@@ -166,6 +166,17 @@ export class UsersService {
     return user;
   }
 
+  async findWebMasterTags(uuid: string) {
+    const user = await this.usersRepository.findOne({
+      where: {
+        id: uuid,
+      },
+      relations: {
+        tags: true,
+      }
+    });
+    return user;
+  }
 
 
   async update(

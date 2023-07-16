@@ -158,6 +158,14 @@ export class UsersController {
     return this.usersService.findWebMasterSites(uuid);
   }
 
+  @Get(':uuid/tags')
+  @HttpCode(HttpStatus.OK)
+  async findWebMasterTags(
+    @Param('uuid', ParseUUIDPipe) uuid: string,
+  ): Promise<User> {
+    return this.usersService.findWebMasterTags(uuid);
+  }
+
 
 
   @Patch(':uuid')

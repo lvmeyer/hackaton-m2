@@ -16,7 +16,9 @@ import { UserCompetences } from '../user-competences/UserCompetences';
 import { Badges } from '../badges/Badges';
 import { Mission } from '../missions/Mission';
 import { Formations } from '../formations/Formations';
-import { Sites } from 'src/WebAnalytics/sites/Sites';
+import { Sites } from '../WebAnalytics/sites/Sites';
+import { TagsController } from '../tags/tags.controller';
+import { Tag } from '../tags/Tag';
 
 @Entity()
 export class User {
@@ -68,6 +70,9 @@ export class User {
 
   @OneToMany(() => Sites, (site) => site.user)
   sites: Sites[]
+
+  @OneToMany(() => Tag, (tag) => tag.user)
+  tags: Tag[]
 
   @ManyToMany(() => Badges, (badge) => badge.users)
   @JoinTable()

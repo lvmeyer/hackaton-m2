@@ -15,11 +15,15 @@ import { UserCompetences } from '../user-competences/UserCompetences';
 import { UserCompetencesService } from '../user-competences/user-competences.service';
 import { Sites } from '../WebAnalytics/sites/Sites';
 import { SitesService } from '../WebAnalytics/sites/sites.service';
+import { Tag } from '../tags/Tag';
+import { Tunnel } from '../tunnels/Tunnel';
+import { TagsModule } from '../tags/tags.module';
+import { TunnelsModule } from '../tunnels/tunnels.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User, Competence, Mission, Level, Badges, UserCompetences, Sites])],
+  imports: [TypeOrmModule.forFeature([User, Competence, Mission, Level, Badges, UserCompetences, Sites, Tag, Tunnel])],
   controllers: [UsersController],
-  providers: [UsersService, CompetencesService, MissionsService, LevelsService, BadgesService, UserCompetencesService, SitesService],
+  providers: [UsersService, CompetencesService, MissionsService, LevelsService, BadgesService, UserCompetencesService, SitesService, TagsModule, TunnelsModule],
   exports: [UsersService],
 })
 export class UsersModule {}
