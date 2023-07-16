@@ -1,19 +1,16 @@
-import React from "react";
-import { Link } from "react-router-dom";
+
 import { useState, useEffect } from "react";
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
 
 
 function TagView() {
-    const { userInfo } = useSelector((state) => state.auth);
+  const { userInfo } = useSelector((state) => state.auth);
 
    const [comments, setComments] = useState([]);
    const [newComments, setNewComments] = useState([]);
 
   useEffect(() => {
-
-    const userId = JSON.parse(localStorage.getItem('userInfo')).id;
 
     fetch('http://localhost:3000/tags/', {
         method: 'GET',
@@ -22,9 +19,9 @@ function TagView() {
             'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('userInfo')).access_token}
     })
     .then(response => response.json())
-    .then(
-        data => (setComments(data))
-    );
+    .then((data) => {
+        setComments(data);
+  });
 }, []);
 
   const handleSubmitNewTag = async (e: any) => {
@@ -36,9 +33,8 @@ function TagView() {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('userInfo')).access_token,
           },
-          body: JSON.stringify({ newComments, user: userInfo }),
+          body: JSON.stringify({ comments : newComments }),
         });
 
         if (res.status === 201) {
@@ -57,6 +53,54 @@ function TagView() {
     }
 };
 
+const handleEditComment = async (commentId: string) => {
+  try {
+    const res = await fetch(`http://localhost:3000/tags/${commentId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('userInfo')).access_token,
+      },
+      body: JSON.stringify({ comment: 'Nouveau commentaire' }),
+    });
+
+    if (res.status === 200) {
+      toast.success('Commentaire mis à jour !', {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
+  } catch (error: any) {
+    toast.error(error.data.message);
+    console.error(error);
+  }
+}
+
+const handleDeleteComment = async (commentId: string) => {
+  try {
+    const res = await fetch(`http://localhost:3000/tags/${commentId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('userInfo')).access_token,
+      },
+    });
+
+    if (res.status === 204) {
+      toast.success('Commentaire supprimé !', {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    } else {
+      toast.error('Erreur lors de la suppression du commentaire', {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
+  } catch (error: any) {
+    toast.error(error.data.message);
+    console.error(error);
+  }
+}
+
+
   return (
     <div className="h1-carbon">
       <div className="titles-dashboard">
@@ -71,20 +115,21 @@ function TagView() {
           </tr>
         </thead>
         <tbody>
-        {comments.length === 0 ? (
+        {Array.isArray(comments) && comments.length === 0 ? (
           <tr>
-            <td colSpan={2}>Aucun commentaire encore</td>
+            <td colSpan={4}>No commentaire encore</td>
           </tr>
         ) : (
           comments.map((comment: any) => (
             <tr key={comment.id}>
               <td>{comment.id}</td>
               <td>{comment.comment}</td>
-              <td>modifier</td>
-              <td>supprimer</td>
+              <td><button onClick={() => handleEditComment(comment.id)} className="btn btn-primary">Modifier</button></td>
+              <td><button onClick={() => handleDeleteComment(comment.id)} className="btn btn-primary">Supprimer</button></td>
             </tr>
           ))
         )}
+
         </tbody>
       </table>
       <h1>Ajouter un tag</h1>

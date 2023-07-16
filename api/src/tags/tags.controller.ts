@@ -55,7 +55,6 @@ export class TagsController {
 
   @Patch(':uuid')
   @AuthenticationRequired()
-  @HasRole(Role.WEBMASTER)
   @HttpCode(HttpStatus.NO_CONTENT)
   async updateTag(
     @Param('uuid', ParseUUIDPipe) uuid: string,
@@ -66,7 +65,6 @@ export class TagsController {
 
   @Delete(':uuid')
   @AuthenticationRequired()
-  @HasRole(Role.WEBMASTER)
   @HttpCode(HttpStatus.NO_CONTENT)
   async deleteTag(
     @Param('uuid', ParseUUIDPipe) uuid: string

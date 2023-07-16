@@ -6,7 +6,6 @@ import { toast } from 'react-toastify';
 
 function Missions() {
 
-//get all missions with fetch
 const [missions, setMissions] = useState([]);
 useEffect(() => {
     fetch('http://localhost:3000/missions', {

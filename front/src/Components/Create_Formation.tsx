@@ -1,6 +1,5 @@
-import React from "react";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
@@ -28,7 +27,6 @@ function CreateFormation() {
             body: JSON.stringify({...mission}),
             
 		});
-		// navigate('/home');
 	    } catch (error: any) {
         toast.error(error.data.message);
         console.error(error);
@@ -37,7 +35,6 @@ function CreateFormation() {
 			position: toast.POSITION.TOP_RIGHT,
 		});
         
-        // set data
         navigate("/formation");
 
     };

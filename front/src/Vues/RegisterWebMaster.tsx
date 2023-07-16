@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import emailjs from '@emailjs/browser';
 
 function RegisterWebMaster() {
 	const [firstname, setFirstname] = useState('');
@@ -27,6 +28,7 @@ function RegisterWebMaster() {
 			});
 
             if (res.status === 201) {
+				handleSubmitMail(email);
                 toast.success('Votre demande a bien été prise en compte ! Un administrateur validera vos accès à la plateforme d\'ici peu. Vous pouvez déjà vous connecter et accéder au reste du site.', {
                     position: toast.POSITION.TOP_RIGHT,
                 });
@@ -40,6 +42,23 @@ function RegisterWebMaster() {
 			toast.error(error.data.message);
 			console.error(error);
 		}
+	};
+
+	const handleSubmitMail = (email : string) => {
+		const content =
+			'Bonjour, heureux de vous savoir parmis nous, un admin va approuver votre demande de webmaster';
+
+		const templateParams = {
+			to_email: email,
+			message: content,
+		};
+
+		emailjs.send(
+			'service_s6zattj',
+			'template_5166t5v',
+			templateParams,
+			'yo9yoU4Ew7UcO8d8p'
+		);
 	};
 
 	return (

@@ -48,7 +48,6 @@ export class TunnelsController {
 
   @Patch(':uuid')
   @AuthenticationRequired()
-  @HasRole(Role.WEBMASTER)
   @HttpCode(HttpStatus.NO_CONTENT)
   async updateTunnel(
     @Param('uuid', ParseUUIDPipe) uuid: string,
@@ -59,7 +58,6 @@ export class TunnelsController {
   
   @Delete(':uuid')
   @AuthenticationRequired()
-  @HasRole(Role.WEBMASTER)
   @HttpCode(HttpStatus.NO_CONTENT)
   async deleteTag(
     @Param('uuid', ParseUUIDPipe) uuid: string

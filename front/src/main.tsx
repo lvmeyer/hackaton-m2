@@ -9,7 +9,6 @@ import Login from './Vues/Login.tsx';
 import Mission from './Vues/Missions/Missions.tsx';
 import CreateMission from './Vues/Missions/form_create.tsx';
 import CreateFormation from './Components/Create_Formation.tsx';
-// import Formation from './Vues/Formation.tsx';
 
 import {
 	Route,
@@ -29,6 +28,7 @@ import Users from './Vues/Users/Users.tsx';
 import CreateUser from './Vues/Users/form_create.tsx';
 import Home from './Vues/Homepage.tsx';
 import TagView from './Vues/TagView.tsx';
+import TunnelView from './Vues/TunnelView.tsx';
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -42,7 +42,7 @@ const router = createBrowserRouter(
 			<Route path="/webmasters" element={<WebMasters />} />
 			<Route path="/register-webmaster" element={<RegisterWebMaster />} />
 			<Route path="/tags" element={<TagView />} />
-			{/* <Route path="/tunnels" element={<WebAnalytics />} /> */}
+			<Route path="/tunnels" element={<TunnelView />} />
 			<Route path="/formation" element={<Formation />} />
 			<Route path="/formations/create" element={<CreateFormation />} />
 			<Route path="/missions" element={<Mission />} />

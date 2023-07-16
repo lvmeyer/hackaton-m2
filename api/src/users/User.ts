@@ -64,9 +64,7 @@ export class User {
   @OneToMany(() => UserCompetences, (userCompetence) => userCompetence.user)
   userCompetences: UserCompetences[];
 
-  // @ManyToMany(() => Badges)
-  // @JoinTable()
-  // Badges: Badges[]
+
 
   @OneToMany(() => Sites, (site) => site.user)
   sites: Sites[]

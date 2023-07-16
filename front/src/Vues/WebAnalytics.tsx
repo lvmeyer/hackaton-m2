@@ -37,29 +37,6 @@ function WebAnalytics() {
     }, []);
 
 
-// const hundleDeleteFormation = async (userId) => {
-//     try {
-//         const res = await fetch(`http://localhost:3000/users/${userId}`, {
-//             mode: 'cors',
-//             method: 'DELETE',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//                 Authorization: `Bearer ${
-//                     JSON.parse(localStorage.getItem('userInfo')).access_token
-//                 }`,
-//             },
-//             body: JSON.stringify({ users }),
-//         });
-//     } catch (error: any) {
-//         console.error(error);
-//     }
-//     toast.success('Mission Supprimée avec succès !', {
-//         position: toast.POSITION.TOP_RIGHT,
-//     });
-//     setUsers(users.filter((user) => user.id !== userId));
-
-// };
-
     const handleSubmitNewSite = async (e: any) => {
 		e.preventDefault();
 
