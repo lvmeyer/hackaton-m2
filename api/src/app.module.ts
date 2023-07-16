@@ -21,6 +21,9 @@ import { FormationsModule } from './formations/formations.module';
 
 import { UserCompetencesModule } from './user-competences/user-competences.module';
 import { UserCompetences } from './user-competences/UserCompetences';
+import { SitesModule } from './WebAnalytics/sites/sites.module';
+import { TagsModule } from './tags/tags.module';
+import { TunnelsModule } from './tunnels/tunnels.module';
 
 @Module({
   imports: [
@@ -45,6 +48,9 @@ import { UserCompetences } from './user-competences/UserCompetences';
     BadgesModule,
     FormationsModule,
     UserCompetencesModule,
+    SitesModule,
+    TagsModule,
+    TunnelsModule,
   ],
   controllers: [AuthenticationController],
   providers: [AuthenticationService, SeedService],

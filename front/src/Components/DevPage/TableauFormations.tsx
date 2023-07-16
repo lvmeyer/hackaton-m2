@@ -37,7 +37,6 @@ const TableauFormations: React.FC = () => {
   }, []);
 
   const rejoindreFormation = (index: number) => {
-    // Logique pour rejoindre la formation
     toast.success('Vous avez rejoint la formation avec succès !');
   };
 

@@ -84,9 +84,6 @@ import { hash } from 'bcryptjs';
     public async seed() {
       const userPassword = await hash('password', 10);
       
-      // const user1 = await this.usersRepository.findOneBy({
-      //   email: 'user@user.com',
-      // })
 
       const badgeJuniorNest = this.badgesRepository.create({
         badge: 'Junior Nest',

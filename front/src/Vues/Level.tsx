@@ -22,16 +22,11 @@ export default function Level() {
 				},
 				body: JSON.stringify({ level }),
 			});
-			// const res = await level({ level }).unwrap();
 
 			dispatch(setCredentials({ ...res }));
-			// navigate('/home');
 		} catch (error: any) {
-			// toast.error(error.data.message);
 			console.error(error);
 		}
-		// Envoyer les données du formulaire à la table "level"
-		// Exécutez ici votre logique pour enregistrer les données dans votre base de données ou effectuer toute autre action souhaitée
 	  };
 	
 
@@ -46,4 +41,3 @@ export default function Level() {
 	);
 }
 
-// export default Level;

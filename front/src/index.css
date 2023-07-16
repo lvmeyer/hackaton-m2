@@ -223,14 +223,12 @@ ul > li {
 /* ########### CAROUSSEL ############# */
 .img-arrival{
 	border-radius: 50%;
-	width: 100px; /* Ajustez la taille des images selon vos besoins */
+	width: 100px; 
 	height: 100px;
 }
 
-/* Import de la police de caractères */
 @import url('https://fonts.googleapis.com/css2?family=Larsseit:wght@400;700&display=swap');
 
-/* Couleurs */
 :root {
   --primary-color: #282B2A;
   --secondary-color: #E53F49;
@@ -239,13 +237,11 @@ ul > li {
   --accent-color: #5B98D2;
 }
 
-/* Typographie */
 body {
   font-family: 'Larsseit', sans-serif;
   color: var(--text-color);
 }
 
-/* Navbar */
 .nav-bg-color {
   background-color: var(--primary-color);
   color: var(--text-color);

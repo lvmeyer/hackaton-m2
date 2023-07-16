@@ -34,13 +34,11 @@ function CreateMission() {
             body: JSON.stringify({...mission}),
             
 		});
-		// navigate('/home');
 	    } catch (error: any) {
         toast.error(error.data.message);
         console.error(error);
         }      
         
-        // set data
         navigate("/missions");
 
     };

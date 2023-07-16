@@ -21,19 +21,11 @@ function Login() {
 		}
 	}, [navigate, userInfo]);
 
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const handleSubmitLogin = async (e: any) => {
 		e.preventDefault();
 
 		try {
-			// const res = await fetch('http://localhost:3000/authentication/login', {
-			// 	mode: 'cors',
-			// 	method: 'POST',
-			// 	headers: {
-			// 		'Content-Type': 'application/json',
-			// 	},
-			// 	body: JSON.stringify({ email, password }),
-			// });
+
 			const res = await login({ email, password }).unwrap();
 
 			dispatch(setCredentials({ ...res }));

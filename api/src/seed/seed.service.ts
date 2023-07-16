@@ -5,6 +5,8 @@ import { MissionsService } from '../missions/missions.service';
 import { LevelsService } from '../level/level.service';
 import { BadgesService } from '../badges/badges.service';
 import { FormationsService } from '../formations/formations.service';
+import { SitesService } from '../WebAnalytics/sites/sites.service';
+import { TagsService } from '../tags/tags.service';
 
 @Injectable()
 export class SeedService {
@@ -15,7 +17,8 @@ export class SeedService {
     private readonly levelsService: LevelsService,
     private readonly badgesService: BadgesService,
     private readonly formationsService: FormationsService,
-
+    private readonly sitesService: SitesService,
+    private readonly tagsService: TagsService,
   ) {}
 
   public async seed() { 
@@ -25,5 +28,7 @@ export class SeedService {
     await this.formationsService.seed();
     await this.levelsService.seed();
     await this.missionsService.seed();
+    await this.sitesService.seed();
+    await this.tagsService.seed();
   }
 }

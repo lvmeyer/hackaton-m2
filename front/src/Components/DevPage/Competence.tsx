@@ -1,6 +1,5 @@
 const Competence = (props: any) => {
 
-	// Création du style CSS pour le dégradé de couleurs
 	const progressStyle = {
 		width: `${props.competences.points}%`,
 		background: `linear-gradient(

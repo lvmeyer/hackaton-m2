@@ -6,8 +6,9 @@ import {
   Post,
   ValidationPipe,
 } from '@nestjs/common';
-import { LoginRequest, RegisterRequest } from './dto/authentication.request';
+import { LoginRequest, RegisterRequest, RegisterWebMasterRequest } from './dto/authentication.request';
 import { AuthenticationService } from './authentication.service';
+import { Role } from '../authentication/authentication.enum';
 
 @Controller('authentication')
 export class AuthenticationController {
@@ -24,13 +25,25 @@ export class AuthenticationController {
       id: response.payload.id,
       email: response.payload.email,
       role: response.payload.role,
+      isValid: response.payload.isValid,
       access_token: response.access_token,
     };
   }
+
+
 
   @Post('register')
   @HttpCode(HttpStatus.CREATED)
   public register(@Body(ValidationPipe) registerRequest: RegisterRequest) {
     return this.authenticationService.register(registerRequest);
+  }
+
+
+
+  @Post('register-webmaster')
+  @HttpCode(HttpStatus.CREATED)
+  public registerWebMaster(@Body(ValidationPipe) registerWebMasterRequest: RegisterWebMasterRequest) {
+    registerWebMasterRequest.role = Role.WEBMASTER;
+    return this.authenticationService.registerWebMaster(registerWebMasterRequest);
   }
 }
