@@ -48,6 +48,22 @@ USER :
 email : user@user.com 
 password: password
 
+## api/.env
+#Application
+PORT=3000
+
+#Database
+POSTGRES_USER=hackaton
+POSTGRES_PASSWORD=hackaton
+POSTGRES_DB=hackaton
+POSTGRES_HOST=database
+POSTGRES_PORT=5432
+
+NODE_ENV=development
+
+#JWT
+JWT_SECRET=randoms
+
 ## Liste des fonctionnalitées
 
 
