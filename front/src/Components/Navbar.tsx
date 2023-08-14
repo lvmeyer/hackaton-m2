@@ -11,7 +11,7 @@ const Navbar: React.FC = () => {
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-g
+
 	useEffect(() => {
 
 		fetch('http://localhost:3000/users/me', {
@@ -77,6 +77,24 @@ g
 								Profil
 							</Link>
 						</li>
+						<li>
+							<button onClick={logoutHandler} className='btn carbon-btn'>Déconnexion</button>
+						</li>
+					</>
+				) : userInfo && userInfo.role === 'WEBMASTER' ? (
+					<>
+						<li>{userInfo.email}</li>
+						<li>
+							<Link className="nav-text" to="/home">
+								Accueil
+							</Link>
+						</li>
+						<li>
+							<Link className="nav-text" to="/profile">
+								Profil
+							</Link>
+						</li>
+						
 						<li>
 							<button onClick={logoutHandler} className='btn carbon-btn'>Déconnexion</button>
 						</li>
