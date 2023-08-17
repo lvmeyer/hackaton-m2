@@ -77,28 +77,6 @@ const Navbar: React.FC = () => {
 								Profil
 							</Link>
 						</li>
-						<li>Web analytics</li>
-						<li>
-							<Link className="nav-text" to="/webmasters">
-								Webmasters
-							</Link>
-						</li>
-						
-						<li>
-							<Link className="nav-text" to="/web-analytics">
-								Mes sites
-							</Link>
-						</li>
-						<li>
-							<Link className="nav-text" to="/tags">
-								Tags
-							</Link>
-						</li>
-						<li>
-							<Link className="nav-text" to="/tunnels">
-								Tunnels de conversion
-							</Link>
-						</li>
 						<li>
 							<button onClick={logoutHandler} className='btn carbon-btn'>Déconnexion</button>
 						</li>
@@ -114,22 +92,6 @@ const Navbar: React.FC = () => {
 						<li>
 							<Link className="nav-text" to="/profile">
 								Profil
-							</Link>
-						</li>
-						<li>Web analytics</li>
-						<li>
-							<Link className="nav-text" to="/web-analytics">
-								Mes sites
-							</Link>
-						</li>
-						<li>
-							<Link className="nav-text" to="/tags">
-								Tags
-							</Link>
-						</li>
-						<li>
-							<Link className="nav-text" to="/tunnels">
-								Tunnels de conversion
 							</Link>
 						</li>
 						
@@ -160,12 +122,6 @@ const Navbar: React.FC = () => {
 						<li>
 							<Link className="nav-text" to="/login">
 								Connexion
-							</Link>
-						</li>
-						<li>Web analytics</li>
-						<li>
-							<Link className="nav-text" to="/register-webmaster">
-								Devenir web master
 							</Link>
 						</li>
 					</>
