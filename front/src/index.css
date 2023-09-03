@@ -9,6 +9,7 @@
 	left: 0;
 	bottom: 0;
 	width: 200px;
+  z-index: 1;
 }
 .nav-logo {
 	width: 150px;
@@ -206,7 +207,6 @@ ul > li {
 }
 
 .bg-news {
-	background-color: #aaafb3;
 	padding: 1em;
 	color: white;
 }
@@ -316,7 +316,6 @@ ul > li {
 }
 
 .bg-news {
-  background-color: var(--accent-color);
   padding: 1em;
   color: var(--text-color);
 }

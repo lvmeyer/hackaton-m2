@@ -18,7 +18,8 @@ const Navbar: React.FC = () => {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('userInfo')).access_token}
+                //'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('userInfo')).access_token}
+			},
         })
 		.then(response => response.json())
 		.then(
@@ -48,7 +49,7 @@ const Navbar: React.FC = () => {
 						<img className="logo" src={logo} alt="logo" />
 					</Link>
 				</li>
-				{userInfo && userInfo.role === 'ADMINISTRATOR' ? (
+				{userInfo && userInfo.role === 'USER' ? (
 					<>
 						<li>{userInfo.email}</li>
 						<li>

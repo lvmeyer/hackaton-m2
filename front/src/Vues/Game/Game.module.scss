@@ -1,0 +1,69 @@
+div.container {
+    display: flex;
+    padding: 2vh 0;
+    overflow: hidden;
+  
+    div.itemsF {
+      animation: slide1 20s linear infinite;
+    }
+    div.itemsS {
+      animation: slide2 20s linear infinite;
+    }
+  
+    div.itemsT {
+      animation: slide3 20s linear infinite;
+    }
+  
+    div.itemsS,
+    div.itemsF,
+    div.itemsT {
+      display: flex;
+      div.item {
+        margin: auto 1vh;
+        width: 300px;
+      }
+  
+      div.item:last-child {
+        margin-right: 0;
+      }
+  
+      div.item:first-child {
+        margin-left: 0;
+      }
+  
+      img {
+        width: 100%;
+      }
+    }
+  
+    @keyframes slide1 {
+      0% {
+        transform: translateX(0);
+      }
+  
+      to {
+        transform: translateX(-100vw);
+      }
+    }
+  
+    @keyframes slide2 {
+      0% {
+        transform: translateX(100vw);
+      }
+  
+      to {
+        transform: translateX(0);
+      }
+    }
+  
+    @keyframes slide3 {
+      0% {
+        transform: translateX(200vw);
+      }
+  
+      to {
+        transform: translateX(0);
+      }
+    }
+  }
+  
