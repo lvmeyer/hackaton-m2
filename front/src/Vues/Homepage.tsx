@@ -5,6 +5,8 @@ import newsImage from '../../public/img/news.jpg';
 import jonathanImage from '../../public/img/jonathan.png';
 import sylvieImage from '../../public/img/sylvie.png';
 import valentinImage from '../../public/img/valentin.png';
+import Game from "../Vues/Game/Game"
+
 
 function Homepage() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -32,7 +34,9 @@ function Homepage() {
 
   return (
     <>
+    
       <div className="bg-news">
+        <Game />
         <h1 className="h1-news">Actualités</h1>
         <div className="news news-content">
           <div className="row gx-5">
