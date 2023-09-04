@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ModalInfo from '../ModalInfo';
 
 const TableauFormations: React.FC = () => {
   const [tabIndex, setTabIndex] = useState(0);
@@ -11,9 +12,11 @@ const TableauFormations: React.FC = () => {
 
 
   const formationsTerminees = [
-    ['Formation A', 'Formateur A'],
-    ['Formation B', 'Formateur B'],
-    ['Formation C', 'Formateur C'],
+    ['Javascript, niveau 1', 'Jean Dupont'],
+    ['Javascript, niveau 2', 'Jean Dupont'],
+    ['Javascript, niveau 3', 'Jean Dupont'],
+    ['Javascript, niveau 4', 'Jean Dupont'],
+    ['Javascript, niveau 5', 'Jean Dupont'],
   ];
 
   const switchTab = (index: number) => {
@@ -43,6 +46,7 @@ const TableauFormations: React.FC = () => {
   return (
     <div className="container mt-5">
       <div className="row">
+      <ModalInfo />
         <div className="col">
           <button
             className={`btn carbon-btn me-2 ${tabIndex === 0 ? 'active' : ''}`}
@@ -73,7 +77,9 @@ const TableauFormations: React.FC = () => {
                   </div>
                   <div className="col">
                     <strong>Rejoindre</strong>
-
+                  </div>
+                  <div className="col">
+                    <strong>Date</strong>
                   </div>
                 </div>
               </li>
@@ -90,6 +96,7 @@ const TableauFormations: React.FC = () => {
                         Rejoindre
                       </button>
                     </div>
+                    <div className="col">12/10</div>
                   </div>
                 </li>
               ))}
