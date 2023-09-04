@@ -12,7 +12,7 @@ import {
   UpdateProfileRequest,
   UpdateUserRequest,
   UpdatePasswordRequest,
-  CreateWebMasterRequest
+  CreateWebMasterRequest,
 } from './dto/users.request';
 import { hash } from 'bcryptjs';
 import { Role } from '../authentication/authentication.enum';
@@ -80,16 +80,15 @@ export class UsersService {
 
   async createUser(createUserRequest: CreateUserRequest): Promise<any> {
     try {
-
       return await this.usersRepository.save(createUserRequest);
     } catch (err) {
       throw new InternalServerErrorException(err.driverError.message);
     }
   }
 
-
-
-  async createWebMaster(createWebMasterRequest: CreateWebMasterRequest): Promise<any> {
+  async createWebMaster(
+    createWebMasterRequest: CreateWebMasterRequest,
+  ): Promise<any> {
     try {
       return await this.usersRepository.save(createWebMasterRequest);
     } catch (err) {
@@ -97,25 +96,17 @@ export class UsersService {
     }
   }
 
-
-
   public getUsers(): Promise<User[]> {
     return this.usersRepository.find();
   }
 
-
-
   public getWebMasters(): Promise<User[]> {
-    return this.usersRepository.find({ where: { role: Role.WEBMASTER } });
+    return this.usersRepository.find({ where: { role: Role.ADMINISTRATOR } });
   }
-
-
 
   public getUserByEmail(email: string): Promise<User> {
     return this.usersRepository.findOneBy({ email });
   }
-
-
 
   async getUserById(uuid: string): Promise<User> {
     const user = await this.usersRepository.findOneBy({ id: uuid });
@@ -125,8 +116,6 @@ export class UsersService {
 
     return user;
   }
-
-
 
   async findUserCompetences(uuid: string) {
     const user = await this.usersRepository.findOne({
@@ -138,8 +127,6 @@ export class UsersService {
     return user;
   }
 
-
-
   async findUserBadges(uuid: string) {
     const user = await this.usersRepository.findOne({
       where: {
@@ -147,12 +134,10 @@ export class UsersService {
       },
       relations: {
         badges: true,
-      }
+      },
     });
     return user;
   }
-
-
 
   async findWebMasterSites(uuid: string) {
     const user = await this.usersRepository.findOne({
@@ -161,7 +146,7 @@ export class UsersService {
       },
       relations: {
         sites: true,
-      }
+      },
     });
     return user;
   }
@@ -173,11 +158,10 @@ export class UsersService {
       },
       relations: {
         tags: true,
-      }
+      },
     });
     return user;
   }
-
 
   async update(
     uuid: string,
@@ -199,8 +183,6 @@ export class UsersService {
     }
   }
 
-
-
   async delete(uuid: string): Promise<any> {
     const user = await this.usersRepository.findOneBy({ id: uuid });
     if (!user) {
@@ -209,8 +191,6 @@ export class UsersService {
 
     await this.usersRepository.remove(user);
   }
-
-
 
   public async seed() {
     const userPassword = await hash('password', 10);
@@ -240,18 +220,18 @@ export class UsersService {
       competence: 'Vue.js',
     });
 
-    const badgeExpertJs = this.badgesRepository.create({
-      badge: 'Intermediaire JS',
-      nb_point: 30,
-    });
-    const InteJs = await this.badgesRepository.save(badgeExpertJs);
+    // const badgeExpertJs = this.badgesRepository.create({
+    //   badge: 'Intermediaire JS',
+    //   nb_point: 30,
+    // });
+    // const InteJs = await this.badgesRepository.save(badgeExpertJs);
 
     const administrator = this.usersRepository.create({
       role: Role.ADMINISTRATOR,
       email: 'admin@admin.com',
       firstname: 'Pierre',
       lastname: 'Boitelle',
-      password: administratorPassword
+      password: administratorPassword,
     });
     await this.usersRepository.save(administrator);
 
@@ -260,24 +240,33 @@ export class UsersService {
       email: 'user@user.com',
       firstname: 'Odessa',
       lastname: 'Chesneau',
-      badges: [InteJs],
+      badges: [],
       password: userPassword,
     });
     await this.usersRepository.save(user);
 
-
     const userCompetences = this.usercompetencesRepository.create({
       user: user,
       competence: competence,
-      points: randomInt(1, 100)
+      points: randomInt(1, 100),
     });
     await this.usercompetencesRepository.save(userCompetences);
 
     const userCompetences2 = this.usercompetencesRepository.create({
       user: user,
       competence: competence2,
-      points: randomInt(1, 100)
+      points: randomInt(1, 100),
     });
     await this.usercompetencesRepository.save(userCompetences2);
+
+    const rh = this.usersRepository.create({
+      role: Role.RH,
+      email: 'rh@rh.com',
+      firstname: 'Jean',
+      lastname: 'Bauche',
+      badges: [],
+      password: userPassword,
+    });
+    await this.usersRepository.save(rh);
   }
 }

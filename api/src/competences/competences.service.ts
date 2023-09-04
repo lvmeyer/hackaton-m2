@@ -80,38 +80,37 @@ export class CompetencesService {
   }
 
   public async seed() {
-
     await this.usercompetencesRepository.delete({});
     await this.competencesRepository.delete({});
 
     await this.competencesRepository.insert({
       competence: 'Java',
-      type: true
+      type: true,
     });
 
     await this.competencesRepository.insert({
       competence: '.NET',
-      type: true
+      type: true,
     });
-    
+
     await this.competencesRepository.insert({
       competence: 'Node.js',
-      type: true
+      type: true,
     });
-    
+
     await this.competencesRepository.insert({
       competence: 'Angular',
-      type: true
+      type: true,
     });
-    
+
     await this.competencesRepository.insert({
       competence: 'React.js',
-      type: true
+      type: true,
     });
-    
+
     await this.competencesRepository.insert({
       competence: 'Vue.js',
-      type: true
+      type: true,
     });
   }
 }

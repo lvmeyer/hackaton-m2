@@ -21,7 +21,7 @@ export class SeedService {
     private readonly tagsService: TagsService,
   ) {}
 
-  public async seed() { 
+  public async seed() {
     await this.competencesService.seed();
     await this.usersService.seed();
     await this.badgesService.seed();
