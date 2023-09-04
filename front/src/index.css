@@ -158,10 +158,6 @@ ul > li {
 }
 
 
-.carbon-btn-vert {
-	background-color: #00BB7E;
-	margin: 1em;
-}
 
 .titles-dashboard {
     display: flex;
@@ -239,7 +235,7 @@ ul > li {
 
 body {
   font-family: 'Larsseit', sans-serif;
-  color: var(--text-color);
+  color: #282B2A;
 }
 
 .nav-bg-color {
@@ -302,6 +298,12 @@ ul > li {
 .carbon-btn-vert {
   background-color: var(--tertiary-color);
   margin: 1em;
+  color: var(--text-color);
+  
+  &:hover {
+    background-color: var(--tertiary-color);
+    color: var(--text-color);
+  }
 }
 
 /* Actualités */
@@ -317,7 +319,7 @@ ul > li {
 
 .bg-news {
   padding: 1em;
-  color: var(--text-color);
+  color: #282B2A;
 }
 
 /* Carrousel */

@@ -40,7 +40,7 @@ const TableauFormations: React.FC = () => {
   }, []);
 
   const rejoindreFormation = (index: number) => {
-    toast.success('Vous avez rejoint la formation avec succès !');
+    toast.success('Vous recevrez un mail avec le lien de la formation la veille de la formation!');
   };
 
   return (
