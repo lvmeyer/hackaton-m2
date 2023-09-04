@@ -34,9 +34,8 @@ function Homepage() {
 
   return (
     <>
-    
+      <Game />
       <div className="bg-news">
-        <Game />
         <h1 className="h1-news">Actualités</h1>
         <div className="news news-content">
           <div className="row gx-5">
