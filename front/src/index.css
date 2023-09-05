@@ -348,7 +348,7 @@ ul > li {
 
 .h1-news {
   text-align: center;
-  padding: 30px;
+  padding: 0.5em;
 }
 
 .namedev {
@@ -358,4 +358,12 @@ ul > li {
 
 .center {
   text-align: center;
+}
+
+.banner-bar{
+  background-color: #dadada;
+}
+
+.content-news{
+  padding: 2em;
 }

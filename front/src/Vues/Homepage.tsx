@@ -9,20 +9,24 @@ function Homepage() {
 	
 	return (
 		<>
-			<Game />
-			<div className='bg-news'>
+      <div className='bg-news'>
 				<h1 className='h1-news'>Nos Actualités</h1>
-        <hr/>
 			</div>
-      <span className='badge carbon-btn px-2 py-1 shadow-1-strong mb-3 center'>
-								Nouveautés
-							</span>
-							<h4>
-								<strong>Nouveaux Locaux !</strong>
-							</h4>
-							<p className='text-muted'>
-								Voici un petit aperçu de nos nouveaux locaux ! Nous avons hâte de vous y accueillir !
-							</p>
+      <div className='banner-bar'>
+			  <Game />
+      </div>
+      
+      <div className='center content-news'>
+        <span className='badge carbon-btn px-2 py-1 shadow-1-strong mb-3 '>
+          Nouveautés
+        </span>
+        <h4>
+          <strong>Nouveaux Locaux !</strong>
+				</h4>
+        <div className='text-muted'>
+					Voici un petit aperçu de nos nouveaux locaux ! Nous avons hâte de vous y accueillir !
+				</div>
+      </div>
       <MyCarousel />
 		</>
 	);
