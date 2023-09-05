@@ -1,5 +1,4 @@
 const Competence = (props: any) => {
-
 	const progressStyle = {
 		width: `${props.competences.points}%`,
 		background: `linear-gradient(
@@ -11,12 +10,12 @@ const Competence = (props: any) => {
 	};
 	return (
 		<>
-			<p className="mb-1">{props.competences.competence.competence}</p>
-			<div className="d-flex flex-row">
-				<div className="progress rounded">
+			<p className='mb-1'>{props.competences.competence.competence}</p>
+			<div className='d-flex flex-row'>
+				<div className='progress rounded'>
 					<div
-						className="progress-bar"
-						role="progressbar"
+						className='progress-bar'
+						role='progressbar'
 						style={progressStyle}
 						aria-valuenow={props.competences.points}
 						aria-valuemin={0}

@@ -6,18 +6,15 @@ import {
   Entity,
   JoinTable,
   ManyToMany,
-  ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Competence } from '../competences/Competence';
 import { UserCompetences } from '../user-competences/UserCompetences';
 import { Badges } from '../badges/Badges';
 import { Mission } from '../missions/Mission';
 import { Formations } from '../formations/Formations';
 import { Sites } from '../WebAnalytics/sites/Sites';
-import { TagsController } from '../tags/tags.controller';
 import { Tag } from '../tags/Tag';
 
 @Entity()
@@ -25,7 +22,7 @@ export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ unique: true, nullable: true})
+  @Column({ unique: true, nullable: true })
   @IsEmail()
   email: string;
 
@@ -64,19 +61,17 @@ export class User {
   @OneToMany(() => UserCompetences, (userCompetence) => userCompetence.user)
   userCompetences: UserCompetences[];
 
-
-
   @OneToMany(() => Sites, (site) => site.user)
-  sites: Sites[]
+  sites: Sites[];
 
   @OneToMany(() => Tag, (tag) => tag.user)
-  tags: Tag[]
+  tags: Tag[];
 
   @ManyToMany(() => Badges, (badge) => badge.users)
   @JoinTable()
-  badges: Badges[]
+  badges: Badges[];
 
   @ManyToMany(() => Formations, (formation) => formation.users)
   @JoinTable()
-  formations: Formations[]
+  formations: Formations[];
 }

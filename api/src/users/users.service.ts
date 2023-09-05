@@ -220,11 +220,11 @@ export class UsersService {
       competence: 'Vue.js',
     });
 
-    const badgeExpertJs = this.badgesRepository.create({
-      badge: 'Intermediaire JS',
-      nb_point: 30,
-    });
-    const InteJs = await this.badgesRepository.save(badgeExpertJs);
+    // const badgeExpertJs = this.badgesRepository.create({
+    //   badge: 'Intermediaire JS',
+    //   nb_point: 30,
+    // });
+    // const InteJs = await this.badgesRepository.save(badgeExpertJs);
 
     const administrator = this.usersRepository.create({
       role: Role.ADMINISTRATOR,
@@ -240,7 +240,7 @@ export class UsersService {
       email: 'user@user.com',
       firstname: 'Odessa',
       lastname: 'Chesneau',
-      badges: [InteJs],
+      badges: [],
       password: userPassword,
     });
     await this.usersRepository.save(user);
@@ -258,5 +258,15 @@ export class UsersService {
       points: randomInt(1, 100),
     });
     await this.usercompetencesRepository.save(userCompetences2);
+
+    const rh = this.usersRepository.create({
+      role: Role.RH,
+      email: 'rh@rh.com',
+      firstname: 'Jean',
+      lastname: 'Bauche',
+      badges: [],
+      password: userPassword,
+    });
+    await this.usersRepository.save(rh);
   }
 }

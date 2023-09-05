@@ -1,18 +1,18 @@
 import {
-    Body,
-    Controller,
-    Get,
-    Delete,
-    HttpCode,
-    HttpStatus,
-    Param,
-    ParseUUIDPipe,
-    Patch,
-    Post,
-    ValidationPipe,
-    Req,
-    BadRequestException,
-  } from '@nestjs/common';
+  Body,
+  Controller,
+  Get,
+  Delete,
+  HttpCode,
+  HttpStatus,
+  Param,
+  ParseUUIDPipe,
+  Patch,
+  Post,
+  ValidationPipe,
+  Req,
+  BadRequestException,
+} from '@nestjs/common';
 import {
   AuthenticationRequired,
   HasRole,
@@ -36,13 +36,17 @@ export class TunnelsController {
   @Get(':uuid')
   @AuthenticationRequired()
   @HttpCode(HttpStatus.OK)
-  async getTunnelById(@Param('uuid', ParseUUIDPipe) uuid: string): Promise<Tunnel> {
+  async getTunnelById(
+    @Param('uuid', ParseUUIDPipe) uuid: string,
+  ): Promise<Tunnel> {
     return this.tunnelsService.getTunnelById(uuid);
   }
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
-  async createTunnel(@Body() createTunnelDto: CreateTunnelDto): Promise<Tunnel> {
+  async createTunnel(
+    @Body() createTunnelDto: CreateTunnelDto,
+  ): Promise<Tunnel> {
     return this.tunnelsService.createTunnel(createTunnelDto);
   }
 
@@ -55,13 +59,11 @@ export class TunnelsController {
   ): Promise<Tunnel> {
     return this.tunnelsService.updateTunnel(uuid, updateTunnelDto);
   }
-  
+
   @Delete(':uuid')
   @AuthenticationRequired()
   @HttpCode(HttpStatus.NO_CONTENT)
-  async deleteTag(
-    @Param('uuid', ParseUUIDPipe) uuid: string
-    ): Promise<void> {
+  async deleteTag(@Param('uuid', ParseUUIDPipe) uuid: string): Promise<void> {
     return await this.tunnelsService.deleteTunnel(uuid);
   }
 }
