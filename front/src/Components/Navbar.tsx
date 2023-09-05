@@ -50,7 +50,7 @@ const Navbar: React.FC = () => {
 						<img className='logo' src={logo} alt='logo' />
 					</Link>
 				</li>
-				{userInfo && userInfo.role === 'USER' ? (
+				{userInfo && (userInfo.role === 'USER' || userInfo.role === 'RH') ? (
 					<>
 						<li>{userInfo.email}</li>
 						<li>
