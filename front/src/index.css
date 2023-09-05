@@ -299,7 +299,7 @@ ul > li {
   background-color: var(--tertiary-color);
   margin: 1em;
   color: var(--text-color);
-  
+
   &:hover {
     background-color: var(--tertiary-color);
     color: var(--text-color);
@@ -354,4 +354,8 @@ ul > li {
 .namedev {
   font-size: 1.6em;
   padding-top: 10px;
+}
+
+.center {
+  text-align: center;
 }
