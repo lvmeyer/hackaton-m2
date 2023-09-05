@@ -45,6 +45,12 @@ const content = [
     alt: "badge",
     link: "",
   },
+  {
+    key: 7,
+    img: badges1,
+    alt: "badge",
+    link: "",
+  },
 
 ];
 
