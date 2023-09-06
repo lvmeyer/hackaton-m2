@@ -95,6 +95,12 @@ export class UsersController {
     return await this.usersService.createWebMaster(createWebMasterRequest);
   }
 
+  @Patch('requestformation')
+  @HttpCode(HttpStatus.CREATED)
+  async addFormToComp(): Promise<any> {
+    return await this.usersService.addFormToComp();
+  }
+
   @AuthenticationRequired()
   @HasRole(Role.ADMINISTRATOR)
   @Get()

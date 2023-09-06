@@ -156,7 +156,6 @@ ul > li {
 	);
 }
 
-
 .carbon-btn-vert {
 	background-color: #00bb7e;
 	margin: 1em;
@@ -235,8 +234,8 @@ ul > li {
 }
 
 body {
-  font-family: 'Larsseit', sans-serif;
-  color: #282B2A;
+	font-family: 'Larsseit', sans-serif;
+	color: #282b2a;
 }
 
 .nav-bg-color {
@@ -297,14 +296,14 @@ ul > li {
 }
 
 .carbon-btn-vert {
-  background-color: var(--tertiary-color);
-  margin: 1em;
-  color: var(--text-color);
+	background-color: var(--tertiary-color);
+	margin: 1em;
+	color: var(--text-color);
 
-  &:hover {
-    background-color: var(--tertiary-color);
-    color: var(--text-color);
-  }
+	&:hover {
+		background-color: var(--tertiary-color);
+		color: var(--text-color);
+	}
 }
 
 /* Actualités */
@@ -319,8 +318,8 @@ ul > li {
 }
 
 .bg-news {
-  padding: 1em;
-  color: #282B2A;
+	padding: 1em;
+	color: #282b2a;
 }
 
 /* Carrousel */
@@ -348,30 +347,33 @@ ul > li {
 }
 
 .h1-news {
-  text-align: center;
-  padding: 0.5em;
+	text-align: center;
+	padding: 0.5em;
 }
 
 .namedev {
-  font-size: 1.6em;
-  padding-top: 10px;
+	font-size: 1.6em;
+	padding-top: 10px;
 }
 
 .center {
-  text-align: center;
+	text-align: center;
 }
 
-.banner-bar{
-  background-color: #dadada;
-}g
-
-.content-news{
-  padding: 2em;
+.banner-bar {
+	background-color: #dadada;
+}
+g .content-news {
+	padding: 2em;
 }
 
-.notfound{
-  text-align: center;
-  padding-top: 8em;
-  background-color: gray;
-  height: 100vh;
+.notfound {
+	text-align: center;
+	padding-top: 8em;
+	background-color: gray;
+	height: 100vh;
+}
+
+.hide {
+	display: none;
 }

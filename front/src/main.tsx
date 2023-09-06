@@ -31,28 +31,65 @@ import TagView from './Vues/TagView.tsx';
 import TunnelView from './Vues/TunnelView.tsx';
 import NotFoundPage from './Vues/NotFound.tsx';
 import RequireAuth from './Components/RequireAuth.tsx';
+import RequestFormation from './Vues/RequestFormation.tsx';
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
-		<Route path="/" element={<App />}>
-			<Route path="/" element={<Homepage />} />
-			<Route index={true} path="/login" element={<Login />} />
-			<Route path="/home" element={<Home />} />
-			<Route path="/register" element={<Register />} />
-			<Route path="/profile" element={<Profile />} />
-			<Route path="/web-analytics" element={<WebAnalytics />} />
-			<Route path="/webmasters" element={<WebMasters />} />
-			<Route path="/register-webmaster" element={<RegisterWebMaster />} />
-			<Route path="/tags" element={<TagView />} />
-			<Route path="/tunnels" element={<TunnelView />} />
-			<Route path="/formation" element={<RequireAuth><Formation /></RequireAuth>} />
-			<Route path="/formations/create" element={<RequireAuth><CreateFormation /></RequireAuth>} />
-			<Route path="/missions" element={<RequireAuth><Mission /></RequireAuth>} />
-			<Route path="/missions/create" element={<RequireAuth><CreateMission /></RequireAuth>} />
-			<Route path="/level" element={<Level />} />
-			<Route path="/users" element={<Users />} />
-			<Route path="/users/create" element={<CreateUser />} />
-			<Route path="*" element={<NotFoundPage />} />
+		<Route path='/' element={<App />}>
+			<Route path='/' element={<Homepage />} />
+			<Route index={true} path='/login' element={<Login />} />
+			<Route path='/home' element={<Home />} />
+			<Route path='/register' element={<Register />} />
+			<Route path='/profile' element={<Profile />} />
+			<Route path='/web-analytics' element={<WebAnalytics />} />
+			<Route path='/webmasters' element={<WebMasters />} />
+			<Route path='/register-webmaster' element={<RegisterWebMaster />} />
+			<Route path='/tags' element={<TagView />} />
+			<Route path='/tunnels' element={<TunnelView />} />
+			<Route
+				path='/requestformation'
+				element={
+					<RequireAuth>
+						<RequestFormation />
+					</RequireAuth>
+				}
+			/>
+			<Route
+				path='/formation'
+				element={
+					<RequireAuth>
+						<Formation />
+					</RequireAuth>
+				}
+			/>
+			<Route
+				path='/formations/create'
+				element={
+					<RequireAuth>
+						<CreateFormation />
+					</RequireAuth>
+				}
+			/>
+			<Route
+				path='/missions'
+				element={
+					<RequireAuth>
+						<Mission />
+					</RequireAuth>
+				}
+			/>
+			<Route
+				path='/missions/create'
+				element={
+					<RequireAuth>
+						<CreateMission />
+					</RequireAuth>
+				}
+			/>
+			<Route path='/level' element={<Level />} />
+			<Route path='/users' element={<Users />} />
+			<Route path='/users/create' element={<CreateUser />} />
+			<Route path='*' element={<NotFoundPage />} />
 		</Route>
 	)
 );

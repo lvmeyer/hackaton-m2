@@ -112,5 +112,18 @@ export class CompetencesService {
       competence: 'Vue.js',
       type: true,
     });
+
+    await this.competencesRepository.insert({
+      competence: 'Javascript',
+      type: true,
+    });
+    await this.competencesRepository.insert({
+      competence: 'PHP',
+      type: true,
+    });
+    await this.competencesRepository.insert({
+      competence: 'C#',
+      type: true,
+    });
   }
 }

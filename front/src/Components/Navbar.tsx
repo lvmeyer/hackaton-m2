@@ -50,12 +50,38 @@ const Navbar: React.FC = () => {
 						<img className='logo' src={logo} alt='logo' />
 					</Link>
 				</li>
-				{userInfo && (userInfo.role === 'USER' || userInfo.role === 'RH') ? (
+				{userInfo && userInfo.role === 'USER' ? (
 					<>
 						<li>{userInfo.email}</li>
 						<li>
 							<Link className='nav-text' to='/home'>
 								Accueil
+							</Link>
+						</li>
+
+						<li>
+							<Link className='nav-text' to='/profile'>
+								Profil
+							</Link>
+						</li>
+						<li>
+							<button onClick={logoutHandler} className='btn carbon-btn'>
+								Déconnexion
+							</button>
+						</li>
+					</>
+				) : userInfo && userInfo.role === 'RH' ? (
+					<>
+						<li>{userInfo.email}</li>
+						<li>
+							<Link className='nav-text' to='/home'>
+								Accueil
+							</Link>
+						</li>
+
+						<li>
+							<Link className='nav-text' to='/profile'>
+								Profil
 							</Link>
 						</li>
 						<li>
@@ -64,8 +90,8 @@ const Navbar: React.FC = () => {
 							</Link>
 						</li>
 						<li>
-							<Link className='nav-text' to='/profile'>
-								Profil
+							<Link className='nav-text' to='/requestformation'>
+								Demandes
 							</Link>
 						</li>
 						<li>
@@ -98,25 +124,6 @@ const Navbar: React.FC = () => {
 							</Link>
 						</li>
 
-						<li>
-							<button onClick={logoutHandler} className='btn carbon-btn'>
-								Déconnexion
-							</button>
-						</li>
-					</>
-				) : userInfo && userInfo.role === 'USER' ? (
-					<>
-						<li>{userInfo.email}</li>
-						<li>
-							<Link className='nav-text' to='/home'>
-								Accueil
-							</Link>
-						</li>
-						<li>
-							<Link className='nav-text' to='/profile'>
-								Profil
-							</Link>
-						</li>
 						<li>
 							<button onClick={logoutHandler} className='btn carbon-btn'>
 								Déconnexion
