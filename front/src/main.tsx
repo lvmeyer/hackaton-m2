@@ -29,6 +29,7 @@ import CreateUser from './Vues/Users/form_create.tsx';
 import Home from './Vues/Homepage.tsx';
 import TagView from './Vues/TagView.tsx';
 import TunnelView from './Vues/TunnelView.tsx';
+import NotFoundPage from './Vues/NotFound.tsx';
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -50,6 +51,7 @@ const router = createBrowserRouter(
 			<Route path="/level" element={<Level />} />
 			<Route path="/users" element={<Users />} />
 			<Route path="/users/create" element={<CreateUser />} />
+			<Route path="*" element={<NotFoundPage />} />
 		</Route>
 	)
 );

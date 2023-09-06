@@ -363,8 +363,15 @@ ul > li {
 
 .banner-bar{
   background-color: #dadada;
-}
+}g
 
 .content-news{
   padding: 2em;
+}
+
+.notfound{
+  text-align: center;
+  padding-top: 8em;
+  background-color: gray;
+  height: 100vh;
 }
