@@ -36,7 +36,7 @@ export default function ModalInfo() {
             Formations
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Les formations sont réalisées en fonction des disponibilités de nos experts. Chaque formation est composée de 5 niveaux. Après visionnage d'une formation, vous obtenez un badge de compétence en fonction du niveau de celle-ci.
+            Les formations sont réalisées en fonction des disponibilités de nos experts. Chaque formation est composée de 5 niveaux. Lorsque vous monterez en niveau, vous obtenez un badge de compétence en fonction du niveau de celle-ci.
             <br/> Lorsque vous rejoignez une formation, un lien vous sera envoyé par mail par nos équipes pour rejoindre la formation.
           </Typography>
         </Box>

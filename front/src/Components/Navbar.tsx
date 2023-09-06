@@ -78,12 +78,12 @@ const Navbar: React.FC = () => {
 								Accueil
 							</Link>
 						</li>
-
 						<li>
-							<Link className='nav-text' to='/profile'>
-								Profil
+							<Link className='nav-text' to='/formation'>
+								Formations
 							</Link>
 						</li>
+						
 						<li>
 							<Link className='nav-text' to='/missions'>
 								Missions
@@ -92,6 +92,11 @@ const Navbar: React.FC = () => {
 						<li>
 							<Link className='nav-text' to='/requestformation'>
 								Demandes
+							</Link>
+						</li>
+						<li>
+							<Link className='nav-text' to='/profile'>
+								Profil
 							</Link>
 						</li>
 						<li>
