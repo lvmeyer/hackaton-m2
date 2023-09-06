@@ -18,6 +18,9 @@ export class Formations {
   @Column({ nullable: true })
   level: number;
 
+  @Column({ nullable: true, default: false })
+  toValidate: boolean;
+
   @ManyToMany(() => User, (user) => user.formations)
   users: User[];
 }

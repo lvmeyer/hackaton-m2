@@ -53,14 +53,21 @@ const TableauFormations: React.FC = () => {
 			.then((response) => response.json())
 			.then((data) => {
 				setFormationsTerminees(data);
-				console.log(formationsTerminees);
+				// console.log(formationsTerminees);
 			});
 	}, []);
 
-	const rejoindreFormation = (index: number) => {
+	const rejoindreFormation = (formation) => {
+		console.log(formation, userInfo);
+
 		toast.success(
 			"Vous avez rejoint la formation avec succès !\nVous recevrez un mail avec les informations concernant les dates et l'organisation de ces séances"
 		);
+	};
+
+	const onButtonPressed = (target) => {
+		// document.querySelector('.rejoindreformation').classList.remove('hide');
+		target.classList.add('hide');
 	};
 
 	return (
@@ -110,8 +117,11 @@ const TableauFormations: React.FC = () => {
 										<div className='col'>{formation.former}</div>
 										<div className='col'>
 											<button
-												className='btn btn-primary'
-												onClick={() => rejoindreFormation(index)}
+												className='btn btn-primary rejoindreformation'
+												onClick={(element) => {
+													rejoindreFormation(formation);
+													onButtonPressed(element.target);
+												}}
 											>
 												Rejoindre
 											</button>

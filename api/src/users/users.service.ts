@@ -183,6 +183,19 @@ export class UsersService {
     }
   }
 
+  async addFormToComp() {
+    try {
+      const comp = await this.usercompetencesRepository.findOneBy({
+        id: 'c6b3942b-374f-4e27-b2e9-5fce91e2e2d2',
+      });
+
+      comp.points = comp.points + 20;
+      return this.usercompetencesRepository.save(comp);
+    } catch (err) {
+      throw new InternalServerErrorException(err);
+    }
+  }
+
   async delete(uuid: string): Promise<any> {
     const user = await this.usersRepository.findOneBy({ id: uuid });
     if (!user) {
@@ -201,24 +214,21 @@ export class UsersService {
     await this.usersRepository.delete({});
     await this.badgesRepository.delete({});
 
-    const competence = await this.competencesRepository.findOneBy({
-      competence: 'Java',
-    });
-    const competence2 = await this.competencesRepository.findOneBy({
-      competence: '.NET',
-    });
+    // const competence = await this.competencesRepository.findOneBy({
+    //   competence: 'Java',
+    // });
+    // const competence2 = await this.competencesRepository.findOneBy({
+    //   competence: '.NET',
+    // });
     const competence3 = await this.competencesRepository.findOneBy({
-      competence: 'Node.js',
+      competence: 'Javascript',
     });
     const competence4 = await this.competencesRepository.findOneBy({
-      competence: 'Angular',
+      competence: 'PHP',
     });
-    const competence5 = await this.competencesRepository.findOneBy({
-      competence: 'React.js',
-    });
-    const competence6 = await this.competencesRepository.findOneBy({
-      competence: 'Vue.js',
-    });
+    // const competence5 = await this.competencesRepository.findOneBy({
+    //   competence: 'C#',
+    // });
 
     // const badgeExpertJs = this.badgesRepository.create({
     //   badge: 'Intermediaire JS',
@@ -247,15 +257,15 @@ export class UsersService {
 
     const userCompetences = this.usercompetencesRepository.create({
       user: user,
-      competence: competence,
-      points: randomInt(1, 100),
+      competence: competence3,
+      points: 220,
     });
     await this.usercompetencesRepository.save(userCompetences);
 
     const userCompetences2 = this.usercompetencesRepository.create({
       user: user,
-      competence: competence2,
-      points: randomInt(1, 100),
+      competence: competence4,
+      points: 30,
     });
     await this.usercompetencesRepository.save(userCompetences2);
 
