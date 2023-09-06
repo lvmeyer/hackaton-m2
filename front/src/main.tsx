@@ -30,6 +30,7 @@ import Home from './Vues/Homepage.tsx';
 import TagView from './Vues/TagView.tsx';
 import TunnelView from './Vues/TunnelView.tsx';
 import NotFoundPage from './Vues/NotFound.tsx';
+import RequireAuth from './Components/RequireAuth.tsx';
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -44,10 +45,10 @@ const router = createBrowserRouter(
 			<Route path="/register-webmaster" element={<RegisterWebMaster />} />
 			<Route path="/tags" element={<TagView />} />
 			<Route path="/tunnels" element={<TunnelView />} />
-			<Route path="/formation" element={<Formation />} />
-			<Route path="/formations/create" element={<CreateFormation />} />
-			<Route path="/missions" element={<Mission />} />
-			<Route path="/missions/create" element={<CreateMission />} />
+			<Route path="/formation" element={<RequireAuth><Formation /></RequireAuth>} />
+			<Route path="/formations/create" element={<RequireAuth><CreateFormation /></RequireAuth>} />
+			<Route path="/missions" element={<RequireAuth><Mission /></RequireAuth>} />
+			<Route path="/missions/create" element={<RequireAuth><CreateMission /></RequireAuth>} />
 			<Route path="/level" element={<Level />} />
 			<Route path="/users" element={<Users />} />
 			<Route path="/users/create" element={<CreateUser />} />
